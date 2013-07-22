@@ -1,0 +1,35 @@
+#################
+## Java
+#################
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#################
+## Maven
+#################
+
+target/
+idea/
+
+#################
+## Eclipse
+#################
+
+*.pydevproject
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
