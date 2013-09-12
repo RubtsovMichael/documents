@@ -27,6 +27,7 @@
                 <value>documents.model.Department</value>
                 <value>documents.model.Correspondent</value>
                 <value>documents.model.Employee</value>
+                <value>documents.model.User</value>
             </list>
         </property>
     </bean>

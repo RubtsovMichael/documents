@@ -1,6 +1,7 @@
 package documents.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,7 +23,7 @@ public class Department {
     private String fullName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private Set<Employee> employees;
+    private Set<Employee> employees = new HashSet<>(0);
 
     public int getDepartmentId() {
         return departmentId;

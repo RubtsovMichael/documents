@@ -1,6 +1,8 @@
 package documents.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by mike on 18.07.13.
@@ -23,12 +25,30 @@ public class Person {
     @Column(name = "PATRONIMIC_NAME")
     private String patronimicName;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    private Set<Employee> assigments = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    private Set<User> users = new HashSet<>(0);
+
     public Integer getPersonId() {
         return personId;
     }
 
     public String getDisplayName() {
         return getLastName() + ' ' + getFirstName().substring(0, 1) + ". " + (getPatronimicName() == null ? "" : getPatronimicName().substring(0, 1) + ".");
+    }
+
+    public User getUser() {
+        Set<User> users = getUsers();
+
+        if ((users != null) && (users.size() > 0)) {
+            for (User user : users) {
+                return user;
+            }
+        }
+
+        return null;
     }
 
     public void setPersonId(Integer personId) {
@@ -57,5 +77,21 @@ public class Person {
 
     public void setPatronimicName(String patronimicName) {
         this.patronimicName = patronimicName;
+    }
+
+    public Set<Employee> getAssigments() {
+        return assigments;
+    }
+
+    public void setAssigments(Set<Employee> assigments) {
+        this.assigments = assigments;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

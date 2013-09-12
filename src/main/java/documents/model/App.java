@@ -85,9 +85,17 @@ public class App {
         person.setLastName(lastName);
         session.save(person);
 
+        User user = new User();
+        user.setName(person.getDisplayName());
+        user.setPerson(person);
+        person.getUsers().add(user);
+        session.save(user);
+
         Employee employee = new Employee();
         employee.setDepartment(department);
         employee.setPerson(person);
+        department.getEmployees().add(employee);
+        person.getAssigments().add(employee);
         employee.setPost(post);
         employee.setDateBegin(new Date());
         session.save(employee);
@@ -133,22 +141,38 @@ public class App {
 
         session = context.getBean(SessionFactory.class).openSession();
 
-//        session.beginTransaction();
-//
-//        addPosts();
-//        addDepartments();
-//        addCorrespondents();
-//        addEmployees();
-//
-//        session.getTransaction().commit();
+        session.beginTransaction();
 
-        Department dep = (Department) session.get(Department.class, new Integer(2));
+        try {
+            addPosts();
+            addDepartments();
+            addCorrespondents();
+            addEmployees();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+
+
+        Department dep = (Department) session.get(Department.class, new Integer(1));
 
         System.out.println(dep.getShortName());
         System.out.println(dep.getEmployees().getClass());
         System.out.println(dep.getEmployees().size());
 
         for (Employee employee : dep.getEmployees()) {
+            System.out.println(employee.getDisplayName());
+        }
+
+        Person person  = (Person) session.get(Person.class, new Integer(1));
+
+        System.out.println(person.getDisplayName());
+        System.out.println(person.getUser().getName());
+        System.out.println(person.getAssigments().getClass());
+        System.out.println(person.getAssigments().size());
+
+        for (Employee employee : person.getAssigments()) {
             System.out.println(employee.getDisplayName());
         }
 
