@@ -25,10 +25,10 @@ public class Person {
     @Column(name = "PATRONIMIC_NAME")
     private String patronimicName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
     private Set<Employee> assigments = new HashSet<>(0);
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
     private Set<User> users = new HashSet<>(0);
 
     public Integer getPersonId() {

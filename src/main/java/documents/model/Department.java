@@ -22,7 +22,7 @@ public class Department {
     @Column(name="FULL_NAME")
     private String fullName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
     private Set<Employee> employees = new HashSet<>(0);
 
     public int getDepartmentId() {
