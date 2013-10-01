@@ -22,12 +22,12 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>documents.model.Person</value>
-                <value>documents.model.Post</value>
-                <value>documents.model.Department</value>
-                <value>documents.model.Correspondent</value>
-                <value>documents.model.Employee</value>
-                <value>documents.model.User</value>
+                <value>rubtsov.data.model.Person</value>
+                <value>rubtsov.data.model.Post</value>
+                <value>rubtsov.data.model.Department</value>
+                <value>rubtsov.data.model.Correspondent</value>
+                <value>rubtsov.data.model.Employee</value>
+                <value>rubtsov.data.model.User</value>
             </list>
         </property>
     </bean>

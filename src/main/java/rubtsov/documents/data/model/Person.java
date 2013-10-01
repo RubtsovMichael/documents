@@ -1,4 +1,4 @@
-package documents.model;
+package rubtsov.documents.data.model;
 
 import javax.persistence.*;
 import java.util.HashSet;

@@ -1,109 +1,149 @@
-package documents.model;
+package rubtsov.documents.service;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import rubtsov.documents.data.model.*;
+import rubtsov.documents.data.repository.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Date;
 
 /**
- * Created by mike on 19.07.13.
+ * Created with IntelliJ IDEA.
+ * User: mrubtsov
+ * Date: 12.09.13
+ * Time: 16:40
  */
-public class App {
+@Service
+public class DataGeneratorImpl implements DataGenerator {
 
-    private static Department aho;
-    private static Department admin;
-    private static Department oapr;
-    private static Department teh;
+    @Autowired
+    PostsRepository postsRepository;
 
-    private static Post director;
-    private static Post mainEngineer;
-    private static Post mainAccountant;
-    private static Post depHead;
-    private static Post engineer;
-    private static Post archivarius;
+    @Autowired
+    DepartmentsRepository departmentsRepository;
 
-    private static Session session;
+    @Autowired
+    CorrespondentsRepository correspondentsRepository;
 
-    private static void addPosts() {
+    @Autowired
+    PersonsRepository personsRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
+
+    @Autowired
+    EmployeesRepository employeesRepository;
+
+    private Post director;
+    private Post mainEngineer;
+    private Post mainAccountant;
+    private Post depHead;
+    private Post engineer;
+    private Post archivarius;
+
+    private Department aho;
+    private Department admin;
+    private Department oapr;
+    private Department teh;
+
+    @Transactional
+    public void generate() {
+        addPosts();
+        addDepartments();
+        addCorrespondents();
+        addEmployees();
+    }
+
+
+//    @Transactional
+//    public Department getDepartment(Integer id) {
+//        return entityManager.find(Department.class, id);
+//    }
+//
+//    @Transactional
+//    public Person getPerson(Integer id) {
+//        return entityManager.find(Person.class, id);
+//    }
+
+    private void addPosts() {
         mainEngineer = new Post();
         mainEngineer.setDisplayName("гл.инженер");
         mainEngineer.setFullName("главный инженер");
-        session.save(mainEngineer);
+        mainEngineer = postsRepository.saveAndFlush(mainEngineer);
 
         director = new Post();
         director.setDisplayName("директор");
         director.setFullName("директор");
-        session.save(director);
+        director = postsRepository.saveAndFlush(director);
 
         mainAccountant = new Post();
         mainAccountant.setDisplayName("главбух");
         mainAccountant.setFullName("главный бухгалтер");
-        session.save(mainAccountant);
+        mainAccountant = postsRepository.saveAndFlush(mainAccountant);
 
         depHead = new Post();
         depHead.setDisplayName("нач.отдела");
         depHead.setFullName("начальник отдела");
-        session.save(depHead);
+        depHead = postsRepository.saveAndFlush(depHead);
 
         engineer = new Post();
         engineer.setDisplayName("инженер");
         engineer.setFullName("инженер");
-        session.save(engineer);
+        engineer = postsRepository.saveAndFlush(engineer);
 
         archivarius = new Post();
         archivarius.setDisplayName("архивариус");
         archivarius.setFullName("архивариус");
-        session.save(archivarius);
+        archivarius = postsRepository.saveAndFlush(archivarius);
     }
 
-    private static void addDepartments() {
+    private  void addDepartments() {
         aho = new Department();
         aho.setShortName("ахо");
         aho.setFullName("административно-хозяйственный отдел");
-        session.save(aho);
+        aho = departmentsRepository.saveAndFlush(aho);
 
         admin = new Department();
         admin.setShortName("администрация");
         admin.setFullName("администрация");
-        session.save(admin);
+        admin = departmentsRepository.saveAndFlush(admin);
 
         oapr = new Department();
         oapr.setShortName("оапр");
         oapr.setFullName("оапр");
-        session.save(oapr);
+        oapr = departmentsRepository.saveAndFlush(oapr);
 
         teh = new Department();
         teh.setShortName("техотдел");
         teh.setFullName("технический отдел");
-        session.save(teh);
+        teh = departmentsRepository.saveAndFlush(teh);
     }
 
-    private static void addEmployee(String firstName, String lastName, Post post, Department department) {
+    private  void addEmployee(String firstName, String lastName, Post post, Department department) {
         Person person = new Person();
         person.setFirstName(firstName);
         person.setLastName(lastName);
-        session.save(person);
+        personsRepository.saveAndFlush(person);
 
         User user = new User();
         user.setName(person.getDisplayName());
         user.setPerson(person);
         person.getUsers().add(user);
-        session.save(user);
+        usersRepository.saveAndFlush(user);
 
         Employee employee = new Employee();
-        employee.setDepartment(department);
         employee.setPerson(person);
-        department.getEmployees().add(employee);
-        person.getAssigments().add(employee);
         employee.setPost(post);
+        employee.setDepartment(department);
         employee.setDateBegin(new Date());
-        session.save(employee);
+        employeesRepository.saveAndFlush(employee);
+
+//        department.getEmployees().add(employee);
+//        person.getAssigments().add(employee);
     }
 
-    private static void addEmployees() {
+    private  void addEmployees() {
         addEmployee("Михаил", "Рубцов", director, admin);
         addEmployee("Андрей", "Артеменко", mainEngineer, admin);
         addEmployee("Юлия", "Похилова", mainAccountant, admin);
@@ -118,73 +158,24 @@ public class App {
         addEmployee("Марина", "Кузнецова", archivarius, aho);
     }
 
-    private static void addCorrespondents() {
+    private  void addCorrespondents() {
         Correspondent correspondent = new Correspondent();
         correspondent.setDisplayName("засядько");
         correspondent.setFullName("шахта им. Засядько");
         correspondent.setPrefix("ШЗ");
-        session.save(correspondent);
+        correspondentsRepository.saveAndFlush(correspondent);
 
         correspondent = new Correspondent();
         correspondent.setDisplayName("минугля");
         correspondent.setFullName("министерство угольной промышленности");
         correspondent.setPrefix("МУП");
-        session.save(correspondent);
+        correspondentsRepository.saveAndFlush(correspondent);
 
         correspondent = new Correspondent();
         correspondent.setDisplayName("облсовет");
         correspondent.setFullName("донецкий областной совет");
         correspondent.setPrefix("ДОС");
-        session.save(correspondent);
-    }
-
-    public static void main(String argv[]) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("development/testContext.xml");
-
-        EntityManager entityManager = context.getBean(EntityManager.class);
-
-        System.out.println(entityManager);
-
-//        session = context.getBean(SessionFactory.class).openSession();
-//
-//        session.beginTransaction();
-//
-//        try {
-//            addPosts();
-//            addDepartments();
-//            addCorrespondents();
-//            addEmployees();
-//            session.getTransaction().commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            session.getTransaction().rollback();
-//        }
-//
-//
-//        Department dep = (Department) session.get(Department.class, new Integer(1));
-//
-//        System.out.println(dep.getShortName());
-//        System.out.println(dep.getEmployees().getClass());
-//        System.out.println(dep.getEmployees().size());
-//
-//        for (Employee employee : dep.getEmployees()) {
-//            System.out.println(employee.getDisplayName());
-//        }
-//
-//        Person person  = (Person) session.get(Person.class, new Integer(1));
-//
-//        System.out.println(person.getDisplayName());
-//        System.out.println(person.getUser().getName());
-//        System.out.println(person.getAssigments().getClass());
-//        System.out.println(person.getAssigments().size());
-//
-//        for (Employee employee : person.getAssigments()) {
-//            System.out.println(employee.getDisplayName());
-//        }
-//
-//        session.close();
-
-        context.close();
+        correspondentsRepository.saveAndFlush(correspondent);
     }
 
 }
