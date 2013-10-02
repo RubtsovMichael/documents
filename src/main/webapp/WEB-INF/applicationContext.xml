@@ -13,6 +13,5 @@
         </property>
     </bean>
 
-    <import resource="classpath:production/hibernateConfig.xml"/>
 
 </beans>

@@ -19,8 +19,6 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <!--<import resource="classpath:production/hibernateConfig.xml"/>-->
-
     <aop:aspectj-autoproxy expose-proxy="true"/>
 
     <import resource="classpath:META-INF/database.xml"/>

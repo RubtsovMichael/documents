@@ -5,13 +5,20 @@
     <persistence-unit name="documents" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
 
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/documents_test"/>
-            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+            <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/documents_test"/>-->
+            <!--<property name="javax.persistence.jdbc.user" value="sa"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value="1"/>-->
+
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2008Dialect"/>
+            <property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:jtds:sqlserver://mrubtsov-pc:1433/documents;instance=SQLEXPRESS;"/>
+            <property name="javax.persistence.jdbc.user" value="mike"/>
             <property name="javax.persistence.jdbc.password" value="1"/>
         </properties>
     </persistence-unit>
