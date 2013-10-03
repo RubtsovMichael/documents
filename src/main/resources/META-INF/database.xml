@@ -4,8 +4,30 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:META-INF/hibernate.properties</value>
+                <!--<value>classpath:META-INF/mysql_connect.properties</value>-->
+                <value>classpath:META-INF/mssql_connect.properties</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="documents" />
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.hbm2ddl.">${hibernate.hbm2ddl.auto}</prop>
+
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="javax.persistence.jdbc.driver">${jdbc.driver}</prop>
+                <prop key="javax.persistence.jdbc.url">${jdbc.url}</prop>
+                <prop key="javax.persistence.jdbc.user">${jdbc.user}</prop>
+                <prop key="javax.persistence.jdbc.password">${jdbc.password}</prop>
+            </props>
+        </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

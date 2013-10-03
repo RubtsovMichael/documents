@@ -7,8 +7,8 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:production/hibernate.properties</value>
-                <value>classpath:production/database.properties</value>
+                <!--<value>classpath:production/hibernate.properties</value>-->
+                <!--<value>classpath:production/database.properties</value>-->
             </list>
         </property>
     </bean>
