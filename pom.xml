@@ -25,6 +25,7 @@
         <aspectj.version>1.7.3</aspectj.version>
 
         <persistence.version>1.0.2</persistence.version>
+        <velocity.version>1.7</velocity.version>
 
     </properties>
 
@@ -123,6 +124,17 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.aspectj</groupId>

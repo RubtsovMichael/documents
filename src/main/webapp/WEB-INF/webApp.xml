@@ -8,14 +8,23 @@
 
     <context:component-scan base-package="rubtsov.documents.web" />
 
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix">-->
+            <!--<value>/WEB-INF/pages/</value>-->
+        <!--</property>-->
+        <!--<property name="suffix">-->
+            <!--<value>.jsp</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
     </bean>
 
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html; charset=UTF-8" />
+    </bean>
 </beans>

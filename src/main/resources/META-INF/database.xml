@@ -8,8 +8,8 @@
         <property name="locations">
             <list>
                 <value>classpath:META-INF/hibernate.properties</value>
-                <!--<value>classpath:META-INF/mysql_connect.properties</value>-->
-                <value>classpath:META-INF/mssql_connect.properties</value>
+                <value>classpath:META-INF/mysql_connect.properties</value>
+                <!--<value>classpath:META-INF/mssql_connect.properties</value>-->
             </list>
         </property>
     </bean>

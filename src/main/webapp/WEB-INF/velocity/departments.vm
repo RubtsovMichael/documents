@@ -1,0 +1,7 @@
+<html>
+<body>
+    #foreach ($department in $departments)
+        $department<br />
+    #end
+</body>
+</html>
