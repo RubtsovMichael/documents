@@ -29,11 +29,13 @@ public class DepartmentsController {
 
 //        model.addAttribute("departments", Arrays.toString(departmentsService.getAllDepartments().toArray()));
 
-        ArrayList<String> depts = new ArrayList<>();
-        for (Department dep : departmentsService.getAllDepartments()) {
-            depts.add(dep.toString());
-        }
-        model.addAttribute("departments", depts);
+        model.addAttribute("departments", departmentsService.getAllDepartments());
+
+//        ArrayList<String> depts = new ArrayList<>();
+//        for (Department dep : departmentsService.getAllDepartments()) {
+//            depts.add(dep.toString());
+//        }
+//        model.addAttribute("departments", depts);
 
         return Views.DEPARTMENTS;
     }
