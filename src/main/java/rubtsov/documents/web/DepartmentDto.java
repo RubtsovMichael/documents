@@ -1,32 +1,17 @@
-package rubtsov.documents.data.model;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+package rubtsov.documents.web;
 
 /**
- * Created by mike on 19.07.13.
+ * Created by mike on 11.10.13.
  */
-@Entity
-@Table(name = "departments")
-public class Department {
+public class DepartmentDto {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="ID_DEPARTMENT")
     private int departmentId;
 
-    @Column(name="SHORT_NAME")
     private String shortName;
 
-    @Column(name="FULL_NAME")
     private String fullName;
 
-    @Column(name="CODE")
     private String code;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
-    private Set<Employee> employees = new HashSet<>(0);
 
     public int getDepartmentId() {
         return departmentId;
@@ -52,14 +37,6 @@ public class Department {
         this.fullName = fullName;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
-
     public String getCode() {
         return code;
     }
@@ -70,6 +47,11 @@ public class Department {
 
     @Override
     public String toString() {
-        return shortName;
+        return "DepartmentDto{" +
+                "departmentId=" + departmentId +
+                ", shortName='" + shortName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

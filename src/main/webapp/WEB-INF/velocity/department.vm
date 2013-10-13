@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form method="POST">
+    Code: #springFormInput("departmentCommand.code" )
+    Short name: #springFormInput("departmentCommand.shortName" )
+    Full name: #springFormInput("departmentCommand.fullName" )
+
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>

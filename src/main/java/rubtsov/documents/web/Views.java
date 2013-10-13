@@ -9,6 +9,7 @@ package rubtsov.documents.web;
 public interface Views {
 
     public String DEPARTMENTS = "/departments";
+    public String DEPARTMENT_FORM = "/departments/form";
     public String POSTS = "/posts";
     public String PERSONS = "/persons";
 
