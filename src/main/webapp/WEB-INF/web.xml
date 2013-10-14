@@ -5,6 +5,11 @@
    
     <display-name>Documents</display-name>
 
+    <!-- Welcome page -->
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

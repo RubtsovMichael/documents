@@ -8,11 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rubtsov.documents.data.model.Department;
+import org.springframework.web.bind.annotation.RequestParam;
 import rubtsov.documents.service.DepartmentsService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,10 +34,12 @@ public class DepartmentsController {
         return Views.DEPARTMENTS;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENT_FORM)
-    public String departmentForm(Model model) {
+    @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENT_FORM )
+    public String departmentForm(@RequestParam(Views.DEP_ID_PARAM) Integer depId, Model model) {
 
-        model.addAttribute("departmentCommand", new DepartmentDto());
+        DepartmentDto departmentDto = new DepartmentDto();
+        departmentDto.setDepartmentId(depId);
+        model.addAttribute("departmentCommand", departmentDto);
 
         return "/department";
     }

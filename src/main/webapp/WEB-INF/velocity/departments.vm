@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+<head>
+    <title>Подразделения</title>
+</head>
 <body>
-<style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    table, td, th
-    {
-        border:1px solid #44769a;
-    }
-</style>
-    <table>
+##<style>
+##    table
+##    {
+##        border-collapse:collapse;
+##    }
+##    table, td, th
+##    {
+##        border:1px solid #44769a;
+##    }
+##</style>
+    <h3>Подразделения</h3>
+
+    <table border="0">
     #foreach ($department in $departments)
         <tr>
-            <td>$department.shortName</td>
+            <td><a href="#springUrl("/departments/form?id_dep=$department.departmentId")">$department.code - $department.shortName[$department.departmentId]</a></td>
             <td>$department.fullName</td>
         </tr>
     #end
