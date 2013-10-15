@@ -10,7 +10,7 @@ public interface Views {
 
     public String INDEX = "/index";
     public String DEPARTMENTS = "/departments";
-    public String DEPARTMENT_FORM = "/departments/form";
+    public String DEPARTMENT_FORM = "/departments/department";
     public String POSTS = "/posts";
     public String PERSONS = "/persons";
 

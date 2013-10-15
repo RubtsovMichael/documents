@@ -1,5 +1,7 @@
 package rubtsov.documents.web;
 
+import rubtsov.documents.data.model.Department;
+
 /**
  * Created by mike on 11.10.13.
  */
@@ -7,11 +9,11 @@ public class DepartmentDto {
 
     private int departmentId;
 
+    private String code;
+
     private String shortName;
 
     private String fullName;
-
-    private String code;
 
     public int getDepartmentId() {
         return departmentId;
@@ -54,4 +56,15 @@ public class DepartmentDto {
                 ", code='" + code + '\'' +
                 '}';
     }
+
+    public DepartmentDto() {
+    }
+
+    public DepartmentDto(Department department) {
+        this.departmentId = department.getDepartmentId();
+        this.code = department.getCode();
+        this.shortName = department.getShortName();
+        this.fullName = department.getFullName();
+    }
+
 }

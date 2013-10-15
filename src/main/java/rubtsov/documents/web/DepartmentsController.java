@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import rubtsov.documents.data.model.Department;
 import rubtsov.documents.service.DepartmentsService;
 
 /**
@@ -37,11 +38,16 @@ public class DepartmentsController {
     @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENT_FORM )
     public String departmentForm(@RequestParam(Views.DEP_ID_PARAM) Integer depId, Model model) {
 
-        DepartmentDto departmentDto = new DepartmentDto();
-        departmentDto.setDepartmentId(depId);
-        model.addAttribute("departmentCommand", departmentDto);
+        Department dep = departmentsService.load(depId);
 
-        return "/department";
+        if (dep == null) {
+            throw new IllegalArgumentException("Department ID is not found");
+        }
+
+        DepartmentDto departmentDto = new DepartmentDto(dep);
+        model.addAttribute("departmentCommand", departmentDto);
+        model.addAttribute("employees", dep.getEmployees());
+        return Views.DEPARTMENT_FORM;
     }
 
     @RequestMapping(value = Views.DEPARTMENT_FORM, method = RequestMethod.POST)

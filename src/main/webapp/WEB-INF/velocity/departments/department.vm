@@ -20,6 +20,17 @@
         </tr>
     </table>
 
+    <table>
+        #foreach ($employee in $employees)
+            <tr>
+                <td>$employee.post.displayName</td>
+                <td>$employee.person.displayName</td>
+                <td>$employee.dateBegin</td>
+                <td>$employee.dateEnd</td>
+            </tr>
+        #end
+    </table>
+
     <input type="submit" value="submit"/>
 </form>
 </body>

@@ -16,14 +16,14 @@ public class Department {
     @Column(name="ID_DEPARTMENT")
     private int departmentId;
 
+    @Column(name="CODE")
+    private String code;
+
     @Column(name="SHORT_NAME")
     private String shortName;
 
     @Column(name="FULL_NAME")
     private String fullName;
-
-    @Column(name="CODE")
-    private String code;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
     private Set<Employee> employees = new HashSet<>(0);
@@ -71,5 +71,14 @@ public class Department {
     @Override
     public String toString() {
         return shortName;
+    }
+
+    public Department() {
+    }
+
+    public Department(String code, String shortName, String fullName) {
+        this.shortName = shortName;
+        this.fullName = fullName;
+        this.code = code;
     }
 }

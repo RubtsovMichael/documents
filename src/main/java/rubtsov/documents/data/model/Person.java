@@ -26,7 +26,7 @@ public class Person {
     private String patronimicName;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
-    private Set<Employee> assigments = new HashSet<>(0);
+    private Set<Employee> assignments = new HashSet<>(0);
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
     private Set<User> users = new HashSet<>(0);
@@ -79,12 +79,12 @@ public class Person {
         this.patronimicName = patronimicName;
     }
 
-    public Set<Employee> getAssigments() {
-        return assigments;
+    public Set<Employee> getAssignments() {
+        return assignments;
     }
 
-    public void setAssigments(Set<Employee> assigments) {
-        this.assigments = assigments;
+    public void setAssigments(Set<Employee> assignments) {
+        this.assignments = assignments;
     }
 
     public Set<User> getUsers() {

@@ -23,6 +23,10 @@ public class Correspondent {
     @Column(name="prefix")
     private String prefix;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_case")
+    private CaseFolder caseFolder;
+
     public int getCorrespondentId() {
         return correspondentId;
     }
@@ -53,5 +57,23 @@ public class Correspondent {
 
     public void setPrefix(String prefix) {
         this.prefix = prefix;
+    }
+
+    public CaseFolder getCaseFolder() {
+        return caseFolder;
+    }
+
+    public void setCaseFolder(CaseFolder caseFolder) {
+        this.caseFolder = caseFolder;
+    }
+
+    public Correspondent() {
+    }
+
+    public Correspondent(String displayName, String fullName, String prefix, CaseFolder caseFolder) {
+        this.displayName = displayName;
+        this.fullName = fullName;
+        this.prefix = prefix;
+        this.caseFolder = caseFolder;
     }
 }

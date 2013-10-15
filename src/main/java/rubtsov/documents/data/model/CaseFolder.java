@@ -1,6 +1,8 @@
 package rubtsov.documents.data.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +28,9 @@ public class CaseFolder {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "caseFolder")
+    private Set<Correspondent> correspondents = new HashSet<>(0);
+
     public int getCaseId() {
         return caseId;
     }
@@ -48,5 +53,30 @@ public class CaseFolder {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Correspondent> getCorrespondents() {
+        return correspondents;
+    }
+
+    public void setCorrespondents(Set<Correspondent> correspondents) {
+        this.correspondents = correspondents;
+    }
+
+    public CaseFolder() {
+    }
+
+    public CaseFolder(String code, String name, String description) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
     }
 }

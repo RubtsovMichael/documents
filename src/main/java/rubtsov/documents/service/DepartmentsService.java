@@ -14,4 +14,5 @@ public interface DepartmentsService {
 
     List<Department> getAllDepartments();
 
+    Department load(Integer id);
 }

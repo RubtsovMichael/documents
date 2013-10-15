@@ -35,6 +35,9 @@ public class DataGeneratorImpl implements DataGenerator {
     @Autowired
     EmployeesRepository employeesRepository;
 
+    @Autowired
+    CasesRepository casesRepository;
+
     private Post director;
     private Post mainEngineer;
     private Post mainAccountant;
@@ -54,17 +57,6 @@ public class DataGeneratorImpl implements DataGenerator {
         addCorrespondents();
         addEmployees();
     }
-
-
-//    @Transactional
-//    public Department getDepartment(Integer id) {
-//        return entityManager.find(Department.class, id);
-//    }
-//
-//    @Transactional
-//    public Person getPerson(Integer id) {
-//        return entityManager.find(Person.class, id);
-//    }
 
     private void addPosts() {
         mainEngineer = new Post();
@@ -98,29 +90,14 @@ public class DataGeneratorImpl implements DataGenerator {
         archivarius = postsRepository.saveAndFlush(archivarius);
     }
 
-    private  void addDepartments() {
-        aho = new Department();
-        aho.setShortName("ахо");
-        aho.setFullName("административно-хозяйственный отдел");
-        aho = departmentsRepository.saveAndFlush(aho);
-
-        admin = new Department();
-        admin.setShortName("администрация");
-        admin.setFullName("администрация");
-        admin = departmentsRepository.saveAndFlush(admin);
-
-        oapr = new Department();
-        oapr.setShortName("оапр");
-        oapr.setFullName("оапр");
-        oapr = departmentsRepository.saveAndFlush(oapr);
-
-        teh = new Department();
-        teh.setShortName("техотдел");
-        teh.setFullName("технический отдел");
-        teh = departmentsRepository.saveAndFlush(teh);
+    private void addDepartments() {
+        aho = departmentsRepository.saveAndFlush(new Department("01", "ахо", "административно-хозяйственный отдел"));
+        admin = departmentsRepository.saveAndFlush(new Department("02", "администрация", "администрация"));
+        oapr = departmentsRepository.saveAndFlush(new Department("03", "оапр", "оапр"));
+        teh = departmentsRepository.saveAndFlush(new Department("04", "техотдел", "технический отдел"));
     }
 
-    private  void addEmployee(String firstName, String lastName, Post post, Department department) {
+    private void addEmployee(String firstName, String lastName, Post post, Department department) {
         Person person = new Person();
         person.setFirstName(firstName);
         person.setLastName(lastName);
@@ -158,24 +135,19 @@ public class DataGeneratorImpl implements DataGenerator {
         addEmployee("Марина", "Кузнецова", archivarius, aho);
     }
 
-    private  void addCorrespondents() {
-        Correspondent correspondent = new Correspondent();
-        correspondent.setDisplayName("засядько");
-        correspondent.setFullName("шахта им. Засядько");
-        correspondent.setPrefix("ШЗ");
-        correspondentsRepository.saveAndFlush(correspondent);
+    private void addCorrespondents() {
+        CaseFolder caseFolder = casesRepository.saveAndFlush(new CaseFolder("01", "дело1", ""));
 
-        correspondent = new Correspondent();
-        correspondent.setDisplayName("минугля");
-        correspondent.setFullName("министерство угольной промышленности");
-        correspondent.setPrefix("МУП");
-        correspondentsRepository.saveAndFlush(correspondent);
+        correspondentsRepository.saveAndFlush(new Correspondent("засядько", "шахта им. Засядько", "ШЗ", caseFolder));
+        correspondentsRepository.saveAndFlush(new Correspondent("минугля", "министерство угольной промышленности", "МУП", caseFolder));
 
-        correspondent = new Correspondent();
-        correspondent.setDisplayName("облсовет");
-        correspondent.setFullName("донецкий областной совет");
-        correspondent.setPrefix("ДОС");
-        correspondentsRepository.saveAndFlush(correspondent);
+        caseFolder = casesRepository.saveAndFlush(new CaseFolder("02", "дело2", ""));
+        correspondentsRepository.saveAndFlush(new Correspondent("облсовет", "донецкий областной совет", "ДОС", caseFolder));
+        correspondentsRepository.saveAndFlush(new Correspondent("экон", "экон", "экон", caseFolder));
+        correspondentsRepository.saveAndFlush(new Correspondent("епам", "епам", "епам", caseFolder));
+
+        caseFolder = casesRepository.saveAndFlush(new CaseFolder("03", "дело3", ""));
+        correspondentsRepository.saveAndFlush(new Correspondent("макеевуголь", "макеевуголь", "МУ", caseFolder));
     }
 
 }
