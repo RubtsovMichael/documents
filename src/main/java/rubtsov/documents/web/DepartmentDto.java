@@ -47,15 +47,15 @@ public class DepartmentDto {
         this.code = code;
     }
 
-    @Override
-    public String toString() {
-        return "DepartmentDto{" +
-                "departmentId=" + departmentId +
-                ", shortName='" + shortName + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", code='" + code + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "DepartmentDto{" +
+//                "departmentId=" + departmentId +
+//                ", shortName='" + shortName + '\'' +
+//                ", fullName='" + fullName + '\'' +
+//                ", code='" + code + '\'' +
+//                '}';
+//    }
 
     public DepartmentDto() {
     }
