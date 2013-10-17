@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #springBind("departmentCommand.departmentId")
     <title>Подразделение [$departmentCommand.departmentId]</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <form method="POST">
     <table border="0">
         <tr>
             <td>Code:</td>
-            <td>#springFormInput("departmentCommand.code")</td>
+            <td>#springFormInput("departmentCommand.code" "")</td>
         </tr>
         <tr>
             <td>Short name:</td>
-            <td>#springFormInput("departmentCommand.shortName")</td>
+            <td>#springFormInput("departmentCommand.shortName" "")</td>
         </tr>
         <tr>
             <td>Full name:</td>
-            <td>#springFormInput("departmentCommand.fullName")</td>
+            <td>#springFormInput("departmentCommand.fullName" "")</td>
         </tr>
     </table>
 

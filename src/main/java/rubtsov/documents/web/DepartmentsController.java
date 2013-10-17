@@ -40,15 +40,11 @@ public class DepartmentsController {
 
         Department dep = departmentsService.load(depId);
 
-//        if (dep == null) {
-//            throw new IllegalArgumentException("Department ID is not found");
-//        }
+        if (dep == null) {
+            throw new IllegalArgumentException("Department ID is not found");
+        }
 
-        DepartmentDto departmentDto = new DepartmentDto();
-        departmentDto.setDepartmentId(depId);
-        LOG.debug(departmentDto.toString());
-        LOG.debug(String.valueOf(departmentDto.getDepartmentId()));
-        model.addAttribute("departmentCommand", departmentDto);
+        model.addAttribute("departmentCommand", new DepartmentDto(dep));
         model.addAttribute("employees", dep.getEmployees());
         return Views.DEPARTMENT_FORM;
     }
