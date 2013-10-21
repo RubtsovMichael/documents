@@ -6,7 +6,7 @@
 <body>
 
 <h2>Student Information</h2>
-<form:form method="POST" action="/documents/addStudent">
+<form:form method="POST" action="/documents/addStudent" commandName="student">
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>

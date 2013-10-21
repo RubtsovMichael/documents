@@ -8,15 +8,6 @@
 
     <context:component-scan base-package="rubtsov.documents.web" />
 
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="prefix">-->
-            <!--<value>/WEB-INF/pages/</value>-->
-        <!--</property>-->
-        <!--<property name="suffix">-->
-            <!--<value>.jsp</value>-->
-        <!--</property>-->
-    <!--</bean>-->
-
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
         <property name="velocityProperties">
