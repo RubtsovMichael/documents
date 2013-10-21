@@ -15,4 +15,6 @@ public interface DepartmentsService {
     List<Department> getAllDepartments();
 
     Department load(Long id);
+
+    Department save(Department department);
 }

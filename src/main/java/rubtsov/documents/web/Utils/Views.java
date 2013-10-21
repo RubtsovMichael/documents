@@ -1,4 +1,4 @@
-package rubtsov.documents.web;
+package rubtsov.documents.web.Utils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,10 +10,9 @@ public interface Views {
 
     public String INDEX = "/index";
     public String DEPARTMENTS = "/departments";
-    public String DEPARTMENT_FORM = "/departments/department";
+    public String DEPARTMENT_FORM = "/department_form";
     public String POSTS = "/posts";
     public String PERSONS = "/persons";
 
-    public String DEP_ID_PARAM = "id_dep";
 
 }

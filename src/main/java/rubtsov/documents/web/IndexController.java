@@ -3,6 +3,7 @@ package rubtsov.documents.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import rubtsov.documents.web.Utils.Views;
 
 /**
  * Created with IntelliJ IDEA.

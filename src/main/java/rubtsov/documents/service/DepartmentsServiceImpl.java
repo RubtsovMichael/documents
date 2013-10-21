@@ -28,4 +28,9 @@ public class DepartmentsServiceImpl implements DepartmentsService {
     public Department load(Long id) {
         return departmentsRepository.findOne(id);
     }
+
+    @Override
+    public Department save(Department department) {
+        return departmentsRepository.saveAndFlush(department);
+    }
 }

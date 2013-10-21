@@ -5,12 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import rubtsov.documents.data.model.Department;
 import rubtsov.documents.service.DepartmentsService;
+import rubtsov.documents.web.Utils.Views;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,8 +33,8 @@ public class DepartmentsController {
         return Views.DEPARTMENTS;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENT_FORM )
-    public String departmentForm(@RequestParam(Views.DEP_ID_PARAM) Long depId, Model model) {
+    @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENTS + "/{depId}" )
+    public String departmentForm(@PathVariable Long depId, Model model) {
 
         Department dep = departmentsService.load(depId);
 
@@ -49,16 +47,25 @@ public class DepartmentsController {
         return Views.DEPARTMENT_FORM;
     }
 
-    @RequestMapping(value = Views.DEPARTMENT_FORM, method = RequestMethod.POST)
+    @RequestMapping(value = Views.DEPARTMENTS + "/*", method = RequestMethod.POST)
     public String create(
             @ModelAttribute("departmentCommand") final DepartmentDto departmentCommand) {
         if (departmentCommand == null) {
             throw new IllegalArgumentException("A departmentDto is required");
         }
 
-        LOG.debug(departmentCommand.toString());
-        LOG.debug(String.valueOf(departmentCommand.getDepartmentId()));
+        LOG.debug("Submitted depId " + departmentCommand.getDepartmentId());
+        Department dep = departmentsService.load(Long.valueOf(departmentCommand.getDepartmentId()));
+        updateDepartmentFromDto(dep, departmentCommand);
+        departmentsService.save(dep);
+
         return "redirect:" + Views.DEPARTMENTS;
+    }
+
+    private void updateDepartmentFromDto(Department dep, DepartmentDto dto) {
+        dep.setFullName(dto.getFullName());
+        dep.setShortName(dto.getShortName());
+        dep.setCode(dto.getCode());
     }
 
 }
