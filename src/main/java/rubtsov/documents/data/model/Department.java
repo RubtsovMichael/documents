@@ -14,7 +14,7 @@ public class Department {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID_DEPARTMENT")
-    private int departmentId;
+    private Long departmentId;
 
     @Column(name="CODE")
     private String code;
@@ -28,11 +28,11 @@ public class Department {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department")
     private Set<Employee> employees = new HashSet<>(0);
 
-    public int getDepartmentId() {
+    public Long getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
 

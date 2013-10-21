@@ -13,7 +13,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id_employee")
-    private int employeeId;
+    private Long employeeId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_department")
@@ -39,11 +39,11 @@ public class Employee {
         return getPerson().getDisplayName() + ", " + getPost().getDisplayName() + " " + getDepartment().getShortName();
     }
 
-    public int getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 

@@ -9,5 +9,5 @@ import rubtsov.documents.data.model.Department;
  * Date: 27.09.13
  * Time: 17:37
  */
-public interface DepartmentsRepository extends JpaRepository<Department, Integer> {
+public interface DepartmentsRepository extends JpaRepository<Department, Long> {
 }

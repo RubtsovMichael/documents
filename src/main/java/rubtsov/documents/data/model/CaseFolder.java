@@ -17,7 +17,7 @@ public class CaseFolder {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID_CASE")
-    private int caseId;
+    private Long caseId;
 
     @Column(name="CODE")
     private String code;
@@ -31,11 +31,11 @@ public class CaseFolder {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "caseFolder")
     private Set<Correspondent> correspondents = new HashSet<>(0);
 
-    public int getCaseId() {
+    public Long getCaseId() {
         return caseId;
     }
 
-    public void setCaseId(int caseId) {
+    public void setCaseId(Long caseId) {
         this.caseId = caseId;
     }
 

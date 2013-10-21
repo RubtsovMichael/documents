@@ -2,12 +2,13 @@ package rubtsov.documents.web;
 
 import rubtsov.documents.data.model.Department;
 
+import static rubtsov.documents.web.Utils.ViewUtils.stringToView;
 /**
  * Created by mike on 11.10.13.
  */
 public class DepartmentDto {
 
-    private int departmentId;
+    private String departmentId;
 
     private String code;
 
@@ -15,11 +16,11 @@ public class DepartmentDto {
 
     private String fullName;
 
-    public int getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -61,10 +62,10 @@ public class DepartmentDto {
     }
 
     public DepartmentDto(Department department) {
-        this.departmentId = department.getDepartmentId();
-        this.code = department.getCode();
-        this.shortName = department.getShortName();
-        this.fullName = department.getFullName();
+        this.departmentId = department.getDepartmentId().toString();
+        this.code = stringToView(department.getCode());
+        this.shortName = stringToView(department.getShortName());
+        this.fullName = stringToView(department.getFullName());
     }
 
 }

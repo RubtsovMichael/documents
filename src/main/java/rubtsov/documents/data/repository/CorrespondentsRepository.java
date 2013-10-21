@@ -9,5 +9,5 @@ import rubtsov.documents.data.model.Correspondent;
  * Date: 27.09.13
  * Time: 17:40
  */
-public interface CorrespondentsRepository extends JpaRepository<Correspondent, Integer> {
+public interface CorrespondentsRepository extends JpaRepository<Correspondent, Long> {
 }

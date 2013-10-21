@@ -25,7 +25,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
     }
 
     @Override
-    public Department load(Integer id) {
+    public Department load(Long id) {
         return departmentsRepository.findOne(id);
     }
 }

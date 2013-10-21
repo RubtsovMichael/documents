@@ -36,7 +36,7 @@ public class DepartmentsController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENT_FORM )
-    public String departmentForm(@RequestParam(Views.DEP_ID_PARAM) Integer depId, Model model) {
+    public String departmentForm(@RequestParam(Views.DEP_ID_PARAM) Long depId, Model model) {
 
         Department dep = departmentsService.load(depId);
 

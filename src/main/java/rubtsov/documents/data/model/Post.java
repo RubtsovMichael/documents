@@ -1,7 +1,6 @@
 package rubtsov.documents.data.model;
 
 import javax.persistence.*;
-import java.rmi.Naming;
 
 /**
  * Created by mike on 18.07.13.
@@ -13,7 +12,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID_POST")
-    private int postId;
+    private Long postId;
 
     @Column(name="DISPLAY_NAME")
     private String displayName;
@@ -21,11 +20,11 @@ public class Post {
     @Column(name="FULL_NAME")
     private String fullName;
 
-    public int getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 

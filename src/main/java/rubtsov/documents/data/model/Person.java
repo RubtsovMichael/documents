@@ -14,7 +14,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "ID_PERSON")
-    private Integer personId;
+    private Long personId;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -31,7 +31,7 @@ public class Person {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
     private Set<User> users = new HashSet<>(0);
 
-    public Integer getPersonId() {
+    public Long getPersonId() {
         return personId;
     }
 
@@ -51,7 +51,7 @@ public class Person {
         return null;
     }
 
-    public void setPersonId(Integer personId) {
+    public void setPersonId(Long personId) {
         this.personId = personId;
     }
 

@@ -12,7 +12,7 @@ public class Correspondent {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id_correspondent")
-    private int correspondentId;
+    private Long correspondentId;
 
     @Column(name="display_name")
     private String displayName;
@@ -27,11 +27,11 @@ public class Correspondent {
     @JoinColumn(name = "id_case")
     private CaseFolder caseFolder;
 
-    public int getCorrespondentId() {
+    public Long getCorrespondentId() {
         return correspondentId;
     }
 
-    public void setCorrespondentId(int correspondentId) {
+    public void setCorrespondentId(Long correspondentId) {
         this.correspondentId = correspondentId;
     }
 

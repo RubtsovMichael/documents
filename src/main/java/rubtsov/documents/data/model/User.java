@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id_user")
-    private int userID;
+    private Long userID;
 
     @Column(name="name")
     private String name;
@@ -21,11 +21,11 @@ public class User {
     @JoinColumn(name = "id_person")
     private Person person;
 
-    public int getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 

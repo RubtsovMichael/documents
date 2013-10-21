@@ -9,5 +9,5 @@ import rubtsov.documents.data.model.Post;
  * Date: 27.09.13
  * Time: 16:26
  */
-public interface PostsRepository extends JpaRepository<Post, Integer> {
+public interface PostsRepository extends JpaRepository<Post, Long> {
 }

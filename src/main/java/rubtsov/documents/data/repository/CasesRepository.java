@@ -9,5 +9,5 @@ import rubtsov.documents.data.model.CaseFolder;
  * Date: 15.10.13
  * Time: 16:52
  */
-public interface CasesRepository extends JpaRepository<CaseFolder, Integer> {
+public interface CasesRepository extends JpaRepository<CaseFolder, Long> {
 }
