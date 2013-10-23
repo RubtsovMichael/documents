@@ -1,4 +1,4 @@
-package rubtsov.documents.web;
+package rubtsov.documents.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

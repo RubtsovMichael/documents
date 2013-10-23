@@ -1,4 +1,4 @@
-package rubtsov.documents.web;
+package rubtsov.documents.web.dto;
 
 import rubtsov.documents.data.model.Department;
 
