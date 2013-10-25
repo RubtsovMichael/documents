@@ -20,9 +20,6 @@ public class Correspondent {
     @Column(name="full_name")
     private String fullName;
 
-    @Column(name="prefix")
-    private String prefix;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_case")
     private CaseFolder caseFolder;
@@ -51,14 +48,6 @@ public class Correspondent {
         this.fullName = fullName;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
     public CaseFolder getCaseFolder() {
         return caseFolder;
     }
@@ -70,10 +59,9 @@ public class Correspondent {
     public Correspondent() {
     }
 
-    public Correspondent(String displayName, String fullName, String prefix, CaseFolder caseFolder) {
+    public Correspondent(String displayName, String fullName, CaseFolder caseFolder) {
         this.displayName = displayName;
         this.fullName = fullName;
-        this.prefix = prefix;
         this.caseFolder = caseFolder;
     }
 }

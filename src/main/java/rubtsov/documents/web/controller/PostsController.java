@@ -13,6 +13,8 @@ import rubtsov.documents.service.PostsService;
 import rubtsov.documents.web.Utils.Views;
 import rubtsov.documents.web.dto.PostDto;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -42,11 +44,11 @@ public class PostsController {
         PostDto postDto;
         if (postId == -1) {
             postDto = new PostDto();
-            postDto.setPostId(postId);
+            postDto.setPostId(Long.valueOf(-1));
         } else {
             Post post = postsService.load(postId);
             if (post == null) {
-                throw new IllegalArgumentException("Department ID is not found");
+                throw new IllegalArgumentException("Post ID is not found");
             }
             postDto = new PostDto(post);
         }
@@ -64,8 +66,15 @@ public class PostsController {
         }
 
         LOG.debug("Submitted postId " + postDto.getPostId());
-        Post post = postsService.load(Long.valueOf(postDto.getPostId()));
-//        updateDepartmentFromDto(dep, departmentCommand);
+
+        Post post;
+        if (postDto.getPostId().equals(Long.valueOf(-1))) {
+            post = new Post();
+        } else {
+            post = postsService.load(Long.valueOf(postDto.getPostId()));
+        }
+
+        postDto.saveToEntity(post);
         postsService.save(post);
 
         return "redirect:" + Views.POSTS;

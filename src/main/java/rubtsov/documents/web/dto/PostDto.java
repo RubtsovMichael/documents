@@ -51,4 +51,8 @@ public class PostDto implements Serializable {
         this.fullName = post.getFullName();
     }
 
+    public void saveToEntity(Post post) {
+        post.setDisplayName(getDisplayName());
+        post.setFullName(getFullName());
+    }
 }

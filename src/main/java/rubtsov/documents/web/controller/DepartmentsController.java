@@ -57,16 +57,9 @@ public class DepartmentsController {
 
         LOG.debug("Submitted depId " + departmentCommand.getDepartmentId());
         Department dep = departmentsService.load(Long.valueOf(departmentCommand.getDepartmentId()));
-        updateDepartmentFromDto(dep, departmentCommand);
+        departmentCommand.saveToEntity(dep);
         departmentsService.save(dep);
 
         return "redirect:" + Views.DEPARTMENTS;
     }
-
-    private void updateDepartmentFromDto(Department dep, DepartmentDto dto) {
-        dep.setFullName(dto.getFullName());
-        dep.setShortName(dto.getShortName());
-        dep.setCode(dto.getCode());
-    }
-
 }

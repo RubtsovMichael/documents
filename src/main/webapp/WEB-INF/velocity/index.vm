@@ -6,5 +6,6 @@
 <body>
     <h3><a href="#springUrl("/departments")">Подразделения</a></h3>
     <h3><a href="#springUrl("/posts")">Должности</a></h3>
+    <h3><a href="#springUrl("/case_folders")">Дела</a></h3>
 </body>
 </html>

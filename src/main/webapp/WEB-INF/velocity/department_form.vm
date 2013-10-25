@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    #springBind("departmentCommand.departmentId")
+##    #springBind("departmentCommand.departmentId")
     <title>Подразделение [$departmentCommand.departmentId]</title>
     <meta charset="UTF-8">
 </head>

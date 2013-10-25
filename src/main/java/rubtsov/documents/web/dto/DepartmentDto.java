@@ -68,4 +68,9 @@ public class DepartmentDto {
         this.fullName = stringToView(department.getFullName());
     }
 
+    public void saveToEntity(Department dep) {
+        dep.setFullName(getFullName());
+        dep.setShortName(getShortName());
+        dep.setCode(getCode());
+    }
 }

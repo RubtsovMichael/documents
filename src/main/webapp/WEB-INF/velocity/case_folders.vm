@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Дела</title>
+</head>
+<body>
+    <h3>Дела</h3>
+
+    <a href="#springUrl("/case_folders/-1")">Создать новое</a>
+    <table border="0">
+        <tr>
+            <th>Префикс нумерации</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+        </tr>
+    #foreach ($caseFolder in $caseFolders)
+        <tr>
+            <td><a href="#springUrl("/case_folders/$caseFolder.caseId")">$caseFolder.code</a></td>
+            <td>$caseFolder.name [$caseFolder.caseId]</td>
+            <td>$caseFolder.description</td>
+        </tr>
+    #end
+    </table>
+</body>
+</html>

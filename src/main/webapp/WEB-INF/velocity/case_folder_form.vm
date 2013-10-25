@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-##    #springBind("postCommand.postId")
-    <title>Должность [$postCommand.postId]</title>
+    <title>Должность [$caseCommand.caseId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
 <form method="POST">
-    #springFormHiddenInput("postCommand.postId" "")
+    #springFormHiddenInput("caseCommand.caseId" "")
     <table border="0">
         <tr>
+            <td>Code:</td>
+            <td>#springFormInput("caseCommand.code" "")</td>
+        </tr>
+        <tr>
             <td>Short name:</td>
-            <td>#springFormInput("postCommand.displayName" "")</td>
+            <td>#springFormInput("caseCommand.name" "")</td>
         </tr>
         <tr>
             <td>Full name:</td>
-            <td>#springFormInput("postCommand.fullName" "")</td>
+            <td>#springFormInput("caseCommand.description" "")</td>
         </tr>
         <tr>
             <td colspan="2" align="right">
