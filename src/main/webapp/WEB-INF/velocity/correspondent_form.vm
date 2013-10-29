@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Коррепондент [$correspondentCommand.correspondentId]</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form method="POST">
+    #springFormHiddenInput("correspondentCommand.correspondentId" "")
+    #springFormHiddenInput("correspondentCommand.caseFolder.caseId")
+    <table border="0">
+        <tr>
+            <td>Наименование:</td>
+            <td>#springFormInput("correspondentCommand.displayName" "")</td>
+        </tr>
+        <tr>
+            <td>Описание:</td>
+            <td>#springFormInput("correspondentCommand.fullName" "")</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <input type="submit" value="Сохранить" />
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

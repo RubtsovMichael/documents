@@ -1,14 +1,16 @@
 package rubtsov.documents.web.dto;
 
 import rubtsov.documents.data.model.CaseFolder;
-import sun.print.resources.serviceui_it;
+import rubtsov.documents.data.model.Correspondent;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by mike on 25.10.13.
  */
-public class CaseFolderDto implements Serializable {
+public class CaseFolderDto implements Serializable, EntityDto<CaseFolder>{
 
     private Long caseId;
 
@@ -17,6 +19,8 @@ public class CaseFolderDto implements Serializable {
     private String name;
 
     private String description;
+
+    private Set<CorrespondentDto> correspondents =  new HashSet<>();
 
     public Long getCaseId() {
         return caseId;
@@ -50,19 +54,40 @@ public class CaseFolderDto implements Serializable {
         this.description = description;
     }
 
+    public Set<CorrespondentDto> getCorrespondents() {
+        return correspondents;
+    }
+
+    public void setCorrespondents(Set<CorrespondentDto> correspondents) {
+        this.correspondents = correspondents;
+    }
+
     public CaseFolderDto() {
     }
 
     public CaseFolderDto(CaseFolder caseFolder) {
-        caseId = caseFolder.getCaseId();
-        name = caseFolder.getName();
-        description = caseFolder.getDescription();
-        code = caseFolder.getCode();
+        loadFromEntity(caseFolder);
     }
 
-    public void saveToEntity(CaseFolder caseFolder) {
-        caseFolder.setCode(getCode());
-        caseFolder.setName(getName());
-        caseFolder.setDescription(getDescription());
+    @Override
+    public void saveToEntity(CaseFolder entity) {
+        entity.setCode(getCode());
+        entity.setName(getName());
+        entity.setDescription(getDescription());
     }
+
+    @Override
+    public void loadFromEntity(CaseFolder entity) {
+        caseId = entity.getCaseId();
+        name = entity.getName();
+        description = entity.getDescription();
+        code = entity.getCode();
+
+        for (Correspondent correspondent : entity.getCorrespondents()) {
+            CorrespondentDto correspondentDto = new CorrespondentDto(correspondent);
+            correspondentDto.setCaseFolder(this);
+            correspondents.add(correspondentDto);
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ public interface Views {
     public String POST_FORM = "/post_form";
     public String CASE_FOLDERS = "/case_folders";
     public String CASE_FOLDER_FORM = "/case_folder_form";
+    public String CORRESPONDENT_FORM = "/correspondent_form";
     public String PERSONS = "/persons";
 
 
