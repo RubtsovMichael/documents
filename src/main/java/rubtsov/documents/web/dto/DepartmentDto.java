@@ -2,11 +2,11 @@ package rubtsov.documents.web.dto;
 
 import rubtsov.documents.data.model.Department;
 
-import static rubtsov.documents.web.Utils.ViewUtils.stringToView;
+import static rubtsov.documents.web.Utils.Conversions.stringToViewString;
 /**
  * Created by mike on 11.10.13.
  */
-public class DepartmentDto {
+public class DepartmentDto implements EntityDto<Department>{
 
     private String departmentId;
 
@@ -62,12 +62,18 @@ public class DepartmentDto {
     }
 
     public DepartmentDto(Department department) {
-        this.departmentId = department.getDepartmentId().toString();
-        this.code = stringToView(department.getCode());
-        this.shortName = stringToView(department.getShortName());
-        this.fullName = stringToView(department.getFullName());
+        loadFromEntity(department);
     }
 
+    @Override
+    public void loadFromEntity(Department department) {
+        this.departmentId = department.getDepartmentId().toString();
+        this.code = stringToViewString(department.getCode());
+        this.shortName = stringToViewString(department.getShortName());
+        this.fullName = stringToViewString(department.getFullName());
+    }
+
+    @Override
     public void saveToEntity(Department dep) {
         dep.setFullName(getFullName());
         dep.setShortName(getShortName());

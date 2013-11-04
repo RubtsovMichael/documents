@@ -3,14 +3,13 @@ package rubtsov.documents.web.dto;
 import rubtsov.documents.data.model.CaseFolder;
 import rubtsov.documents.data.model.Correspondent;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by mike on 25.10.13.
  */
-public class CaseFolderDto implements Serializable, EntityDto<CaseFolder>{
+public class CaseFolderDto implements EntityDto<CaseFolder>{
 
     private Long caseId;
 
