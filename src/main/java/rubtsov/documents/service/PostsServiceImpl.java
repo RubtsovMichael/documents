@@ -2,9 +2,11 @@ package rubtsov.documents.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rubtsov.documents.data.model.Post;
+import rubtsov.documents.data.model.dto.PostDto;
+import rubtsov.documents.data.model.entity.Post;
 import rubtsov.documents.data.repository.PostsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,4 +36,37 @@ public class PostsServiceImpl implements PostsService {
         return postsRepository.saveAndFlush(post);
     }
 
+    @Override
+    public Post saveFromDto(PostDto postDto) {
+        if (postDto == null) {
+            throw new IllegalArgumentException("Post dto required!");
+        }
+
+        if (postDto.getPostId() == null) {
+            throw new IllegalArgumentException("Post dto has null id!");
+        }
+
+        Post post;
+        if (postDto.getPostId().equals(Long.valueOf(-1L))) {
+            post = new Post();
+        } else {
+            post = load(postDto.getPostId());
+        }
+
+        post.setFullName(postDto.getFullName());
+        post.setDisplayName(postDto.getDisplayName());
+
+        return save(post);
+    }
+
+    @Override
+    public List<PostDto> getAllPostsDtos() {
+        ArrayList<PostDto> postDtos = new ArrayList<>();
+
+        for (Post post : getAllPosts()) {
+            postDtos.add(new PostDto(post));
+        }
+
+        return postDtos;
+    }
 }

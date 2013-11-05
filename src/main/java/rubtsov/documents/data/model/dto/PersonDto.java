@@ -1,7 +1,7 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.Employee;
-import rubtsov.documents.data.model.Person;
+import rubtsov.documents.data.model.entity.Employee;
+import rubtsov.documents.data.model.entity.Person;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import java.util.Set;
  * Date: 04.11.13
  * Time: 16:32
  */
-public class PersonDto implements EntityDto<Person> {
+public class PersonDto {
 
     private Long personId;
 
@@ -78,18 +78,6 @@ public class PersonDto implements EntityDto<Person> {
     }
 
     public PersonDto(Person person) {
-        loadFromEntity(person);
-    }
-
-    @Override
-    public void saveToEntity(Person person) {
-        person.setFirstName(getFirstName());
-        person.setLastName(getLastName());
-        person.setPatronimicName(getPatronimicName());
-    }
-
-    @Override
-    public void loadFromEntity(Person person) {
         personId = person.getPersonId();
         firstName = person.getFirstName();
         lastName = person.getLastName();

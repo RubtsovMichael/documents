@@ -1,4 +1,4 @@
-package rubtsov.documents.data.model;
+package rubtsov.documents.data.model.entity;
 
 import javax.persistence.*;
 

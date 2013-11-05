@@ -1,6 +1,7 @@
 package rubtsov.documents.service;
 
-import rubtsov.documents.data.model.CaseFolder;
+import rubtsov.documents.data.model.dto.CaseFolderDto;
+import rubtsov.documents.data.model.entity.CaseFolder;
 
 import java.util.List;
 
@@ -14,4 +15,9 @@ public interface CasesService {
     CaseFolder load(Long id);
 
     CaseFolder save(CaseFolder caseFolder);
+
+    CaseFolder saveFromDto(CaseFolderDto caseFolderDto);
+
+    List<CaseFolderDto> getAllCaseFoldersDtos();
+
 }

@@ -1,6 +1,7 @@
 package rubtsov.documents.service;
 
-import rubtsov.documents.data.model.Correspondent;
+import rubtsov.documents.data.model.dto.CorrespondentDto;
+import rubtsov.documents.data.model.entity.Correspondent;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public interface CorrespondentsService {
     Correspondent load(Long id);
 
     Correspondent save(Correspondent correspondent);
+
+    Correspondent saveFromDto(CorrespondentDto correspondentDto);
+
+    List<CorrespondentDto> getAllCorrespondentsDtos();
 
 }

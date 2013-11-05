@@ -1,9 +1,8 @@
 package rubtsov.documents.web.Utils;
 
-import rubtsov.documents.data.model.CaseFolder;
-import rubtsov.documents.web.dto.CaseFolderDto;
-
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,17 +13,6 @@ import java.util.*;
 public class Conversions{
 
     public static Calendar LAST_DATE = new GregorianCalendar(2099, 12, 31);
-
-    public static List<CaseFolderDto> caseFoldersToDtos(List<CaseFolder> entities) {
-        ArrayList<CaseFolderDto> dtos = new ArrayList<>(entities.size());
-
-        for (CaseFolder entity : entities) {
-            CaseFolderDto dto = new CaseFolderDto(entity);
-            dtos.add(dto);
-        }
-
-        return dtos;
-    }
 
     public static String stringToViewString(String value) {
         return value == null ? "" : value;

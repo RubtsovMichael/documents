@@ -1,6 +1,6 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.Correspondent;
+import rubtsov.documents.data.model.entity.Correspondent;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,7 +8,7 @@ import rubtsov.documents.data.model.Correspondent;
  * Date: 29.10.13
  * Time: 13:19
  */
-public class CorrespondentDto implements EntityDto<Correspondent>{
+public class CorrespondentDto {
 
     private Long correspondentId;
 
@@ -54,19 +54,9 @@ public class CorrespondentDto implements EntityDto<Correspondent>{
     }
 
     public CorrespondentDto(Correspondent correspondent) {
-        loadFromEntity(correspondent);
-    }
-
-    @Override
-    public void saveToEntity(Correspondent correspondent) {
-        correspondent.setDisplayName(getDisplayName());
-        correspondent.setFullName(getFullName());
-    }
-
-    @Override
-    public void loadFromEntity(Correspondent entity) {
-        this.correspondentId = entity.getCorrespondentId();
-        this.displayName = entity.getDisplayName();
-        this.fullName = entity.getFullName();
+        correspondentId = correspondent.getCorrespondentId();
+        displayName = correspondent.getDisplayName();
+        fullName = correspondent.getFullName();
+        caseFolder = new CaseFolderDto(correspondent.getCaseFolder());
     }
 }

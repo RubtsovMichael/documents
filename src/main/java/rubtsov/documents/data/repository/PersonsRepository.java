@@ -1,7 +1,7 @@
 package rubtsov.documents.data.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import rubtsov.documents.data.model.Person;
+import rubtsov.documents.data.model.entity.Person;
 
 /**
  * Created with IntelliJ IDEA.

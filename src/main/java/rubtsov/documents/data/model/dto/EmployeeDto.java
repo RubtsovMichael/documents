@@ -1,6 +1,6 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.Employee;
+import rubtsov.documents.data.model.entity.Employee;
 import rubtsov.documents.web.Utils.Conversions;
 
 import java.util.Calendar;
@@ -11,7 +11,7 @@ import java.util.Calendar;
  * Date: 04.11.13
  * Time: 16:34
  */
-public class EmployeeDto implements EntityDto<Employee> {
+public class EmployeeDto {
 
     private Long employeeId;
 
@@ -77,15 +77,6 @@ public class EmployeeDto implements EntityDto<Employee> {
     }
 
     public EmployeeDto(Employee employee) {
-        loadFromEntity(employee);
-    }
-
-    @Override
-    public void saveToEntity(Employee employee) {
-    }
-
-    @Override
-    public void loadFromEntity(Employee employee) {
         employeeId = employee.getEmployeeId();
         department = new DepartmentDto(employee.getDepartment());
         post = new PostDto(employee.getPost());

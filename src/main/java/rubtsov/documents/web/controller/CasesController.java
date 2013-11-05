@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rubtsov.documents.data.model.CaseFolder;
-import rubtsov.documents.data.model.Correspondent;
+import rubtsov.documents.data.model.dto.CaseFolderDto;
+import rubtsov.documents.data.model.dto.CorrespondentDto;
+import rubtsov.documents.data.model.entity.CaseFolder;
+import rubtsov.documents.data.model.entity.Correspondent;
 import rubtsov.documents.service.CasesService;
 import rubtsov.documents.service.CorrespondentsService;
-import rubtsov.documents.web.Utils.Conversions;
 import rubtsov.documents.web.Utils.Views;
-import rubtsov.documents.web.dto.CaseFolderDto;
-import rubtsov.documents.web.dto.CorrespondentDto;
 
 /**
  * Created by mike on 25.10.13.
@@ -35,7 +34,7 @@ public class CasesController {
     @RequestMapping(method = RequestMethod.GET, value = Views.CASE_FOLDERS)
     public String getPosts(ModelMap model) {
 
-        model.put("caseFolders", Conversions.caseFoldersToDtos(casesService.getAllCaseFolders()));
+        model.put("caseFolders", casesService.getAllCaseFoldersDtos());
 
         return Views.CASE_FOLDERS;
     }
@@ -90,15 +89,7 @@ public class CasesController {
 
         LOG.debug("Submitted caseId " + caseFolderDto.getCaseId());
 
-        CaseFolder caseFolder;
-        if (caseFolderDto.getCaseId().equals(Long.valueOf(-1))) {
-            caseFolder = new CaseFolder();
-        } else {
-            caseFolder = casesService.load(Long.valueOf(caseFolderDto.getCaseId()));
-        }
-
-        caseFolderDto.saveToEntity(caseFolder);
-        casesService.save(caseFolder);
+        casesService.saveFromDto(caseFolderDto);
 
         return "redirect:" + Views.CASE_FOLDERS;
     }
@@ -112,16 +103,7 @@ public class CasesController {
 
         LOG.debug("Submitted corrspondentId " + correspondentDto.getCorrespondentId());
 
-        Correspondent correspondent;
-        if (correspondentDto.getCorrespondentId().equals(Long.valueOf(-1))) {
-            correspondent = new Correspondent();
-            correspondent.setCaseFolder(casesService.load(correspondentDto.getCaseFolder().getCaseId()));
-        } else {
-            correspondent = correspondentsService.load(Long.valueOf(correspondentDto.getCorrespondentId()));
-        }
-
-        correspondentDto.saveToEntity(correspondent);
-        correspondentsService.save(correspondent);
+        correspondentsService.saveFromDto(correspondentDto);
 
         return "redirect:" + Views.CASE_FOLDERS;
     }

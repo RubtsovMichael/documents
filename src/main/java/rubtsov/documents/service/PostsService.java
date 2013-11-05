@@ -1,6 +1,7 @@
 package rubtsov.documents.service;
 
-import rubtsov.documents.data.model.Post;
+import rubtsov.documents.data.model.dto.PostDto;
+import rubtsov.documents.data.model.entity.Post;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public interface PostsService {
     Post load(Long id);
 
     Post save(Post post);
+
+    Post saveFromDto(PostDto postDto);
+
+    List<PostDto> getAllPostsDtos();
 
 }

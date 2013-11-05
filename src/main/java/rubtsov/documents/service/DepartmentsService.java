@@ -1,6 +1,7 @@
 package rubtsov.documents.service;
 
-import rubtsov.documents.data.model.Department;
+import rubtsov.documents.data.model.dto.DepartmentDto;
+import rubtsov.documents.data.model.entity.Department;
 
 import java.util.List;
 
@@ -17,4 +18,9 @@ public interface DepartmentsService {
     Department load(Long id);
 
     Department save(Department department);
+
+    Department saveFromDto(DepartmentDto departmentDto);
+
+    List<DepartmentDto> getAllDepartmentsDtos();
+
 }

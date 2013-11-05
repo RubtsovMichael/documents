@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import rubtsov.documents.data.model.Department;
+import rubtsov.documents.data.model.entity.Department;
 import rubtsov.documents.service.DepartmentsService;
 import rubtsov.documents.web.Utils.Views;
-import rubtsov.documents.web.dto.DepartmentDto;
+import rubtsov.documents.data.model.dto.DepartmentDto;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,7 +29,7 @@ public class DepartmentsController {
     @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENTS)
     public String departments(Model model) {
 
-        model.addAttribute("departments", departmentsService.getAllDepartments());
+        model.addAttribute("departments", departmentsService.getAllDepartmentsDtos());
 
         return Views.DEPARTMENTS;
     }
@@ -56,9 +56,8 @@ public class DepartmentsController {
         }
 
         LOG.debug("Submitted depId " + departmentCommand.getDepartmentId());
-        Department dep = departmentsService.load(Long.valueOf(departmentCommand.getDepartmentId()));
-        departmentCommand.saveToEntity(dep);
-        departmentsService.save(dep);
+
+        departmentsService.saveFromDto(departmentCommand);
 
         return "redirect:" + Views.DEPARTMENTS;
     }

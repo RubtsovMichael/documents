@@ -1,7 +1,7 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.CaseFolder;
-import rubtsov.documents.data.model.Correspondent;
+import rubtsov.documents.data.model.entity.CaseFolder;
+import rubtsov.documents.data.model.entity.Correspondent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by mike on 25.10.13.
  */
-public class CaseFolderDto implements EntityDto<CaseFolder>{
+public class CaseFolderDto {
 
     private Long caseId;
 
@@ -65,28 +65,13 @@ public class CaseFolderDto implements EntityDto<CaseFolder>{
     }
 
     public CaseFolderDto(CaseFolder caseFolder) {
-        loadFromEntity(caseFolder);
-    }
+        caseId = caseFolder.getCaseId();
+        name = caseFolder.getName();
+        description = caseFolder.getDescription();
+        code = caseFolder.getCode();
 
-    @Override
-    public void saveToEntity(CaseFolder entity) {
-        entity.setCode(getCode());
-        entity.setName(getName());
-        entity.setDescription(getDescription());
-    }
-
-    @Override
-    public void loadFromEntity(CaseFolder entity) {
-        caseId = entity.getCaseId();
-        name = entity.getName();
-        description = entity.getDescription();
-        code = entity.getCode();
-
-        for (Correspondent correspondent : entity.getCorrespondents()) {
-            CorrespondentDto correspondentDto = new CorrespondentDto(correspondent);
-            correspondentDto.setCaseFolder(this);
-            correspondents.add(correspondentDto);
+        for (Correspondent correspondent : caseFolder.getCorrespondents()) {
+            correspondents.add(new CorrespondentDto(correspondent));
         }
     }
-
 }

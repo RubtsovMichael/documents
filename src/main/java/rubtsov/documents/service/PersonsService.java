@@ -1,6 +1,6 @@
 package rubtsov.documents.service;
 
-import rubtsov.documents.data.model.Person;
+import rubtsov.documents.data.model.entity.Person;
 
 import java.util.List;
 

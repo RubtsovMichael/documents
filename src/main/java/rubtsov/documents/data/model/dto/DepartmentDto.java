@@ -1,14 +1,18 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.Department;
+import rubtsov.documents.data.model.entity.Department;
+import rubtsov.documents.data.model.entity.Employee;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static rubtsov.documents.web.Utils.Conversions.stringToViewString;
 /**
  * Created by mike on 11.10.13.
  */
-public class DepartmentDto implements EntityDto<Department>{
+public class DepartmentDto {
 
-    private String departmentId;
+    private Long departmentId;
 
     private String code;
 
@@ -16,11 +20,13 @@ public class DepartmentDto implements EntityDto<Department>{
 
     private String fullName;
 
-    public String getDepartmentId() {
+    private Set<EmployeeDto> employees = new HashSet<>();
+
+    public Long getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -48,6 +54,14 @@ public class DepartmentDto implements EntityDto<Department>{
         this.code = code;
     }
 
+    public Set<EmployeeDto> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<EmployeeDto> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "DepartmentDto{" +
@@ -62,21 +76,14 @@ public class DepartmentDto implements EntityDto<Department>{
     }
 
     public DepartmentDto(Department department) {
-        loadFromEntity(department);
+        departmentId = department.getDepartmentId();
+        code = stringToViewString(department.getCode());
+        shortName = stringToViewString(department.getShortName());
+        fullName = stringToViewString(department.getFullName());
+
+        for (Employee employee : department.getEmployees()) {
+            employees.add(new EmployeeDto(employee));
+        }
     }
 
-    @Override
-    public void loadFromEntity(Department department) {
-        this.departmentId = department.getDepartmentId().toString();
-        this.code = stringToViewString(department.getCode());
-        this.shortName = stringToViewString(department.getShortName());
-        this.fullName = stringToViewString(department.getFullName());
-    }
-
-    @Override
-    public void saveToEntity(Department dep) {
-        dep.setFullName(getFullName());
-        dep.setShortName(getShortName());
-        dep.setCode(getCode());
-    }
 }

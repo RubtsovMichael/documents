@@ -1,6 +1,6 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.Post;
+import rubtsov.documents.data.model.entity.Post;
 
 import java.io.Serializable;
 
@@ -49,10 +49,5 @@ public class PostDto implements Serializable {
         this.postId = post.getPostId();
         this.displayName = post.getDisplayName();
         this.fullName = post.getFullName();
-    }
-
-    public void saveToEntity(Post post) {
-        post.setDisplayName(getDisplayName());
-        post.setFullName(getFullName());
     }
 }

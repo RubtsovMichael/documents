@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rubtsov.documents.data.model.Post;
+import rubtsov.documents.data.model.entity.Post;
 import rubtsov.documents.service.PostsService;
 import rubtsov.documents.web.Utils.Views;
-import rubtsov.documents.web.dto.PostDto;
-
-import javax.annotation.PostConstruct;
+import rubtsov.documents.data.model.dto.PostDto;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,7 +31,7 @@ public class PostsController {
     @RequestMapping(method = RequestMethod.GET, value = Views.POSTS)
     public String getPosts(ModelMap model) {
 
-        model.put("posts", postsService.getAllPosts());
+        model.put("posts", postsService.getAllPostsDtos());
 
         return Views.POSTS;
     }
@@ -67,15 +65,7 @@ public class PostsController {
 
         LOG.debug("Submitted postId " + postDto.getPostId());
 
-        Post post;
-        if (postDto.getPostId().equals(Long.valueOf(-1))) {
-            post = new Post();
-        } else {
-            post = postsService.load(Long.valueOf(postDto.getPostId()));
-        }
-
-        postDto.saveToEntity(post);
-        postsService.save(post);
+        postsService.saveFromDto(postDto);
 
         return "redirect:" + Views.POSTS;
     }

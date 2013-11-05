@@ -2,7 +2,7 @@ package rubtsov.documents.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rubtsov.documents.data.model.User;
+import rubtsov.documents.data.model.entity.User;
 import rubtsov.documents.data.repository.UsersRepository;
 
 import java.util.List;

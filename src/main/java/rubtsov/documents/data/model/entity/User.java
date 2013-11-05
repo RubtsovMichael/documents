@@ -1,20 +1,24 @@
-package rubtsov.documents.web.dto;
+package rubtsov.documents.data.model.entity;
 
-import rubtsov.documents.data.model.Person;
-import rubtsov.documents.data.model.User;
+import javax.persistence.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mrubtsov
- * Date: 04.11.13
- * Time: 16:29
+ * Created by mike on 22.07.13.
  */
-public class UserDto implements EntityDto<User> {
+@Entity
+@Table(name="users")
+public class User {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id_user")
     private Long userID;
 
+    @Column(name="name")
     private String name;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_person")
     private Person person;
 
     public Long getUserID() {
@@ -39,17 +43,5 @@ public class UserDto implements EntityDto<User> {
 
     public void setPerson(Person person) {
         this.person = person;
-    }
-
-    @Override
-    public void saveToEntity(User user) {
-        user.setName(getName());
-    }
-
-    @Override
-    public void loadFromEntity(User user) {
-        userID = user.getUserID();
-        name = user.getName();
-//        person = new perso
     }
 }

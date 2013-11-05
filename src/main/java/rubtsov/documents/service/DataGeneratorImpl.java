@@ -3,7 +3,7 @@ package rubtsov.documents.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rubtsov.documents.data.model.*;
+import rubtsov.documents.data.model.entity.*;
 import rubtsov.documents.data.repository.*;
 
 import java.util.Date;
