@@ -1,7 +1,6 @@
 package rubtsov.documents.data.model.dto;
 
 import rubtsov.documents.data.model.entity.Department;
-import rubtsov.documents.data.model.entity.Employee;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -80,10 +79,6 @@ public class DepartmentDto {
         code = stringToViewString(department.getCode());
         shortName = stringToViewString(department.getShortName());
         fullName = stringToViewString(department.getFullName());
-
-        for (Employee employee : department.getEmployees()) {
-            employees.add(new EmployeeDto(employee));
-        }
     }
 
 }

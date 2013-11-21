@@ -3,7 +3,9 @@ package rubtsov.documents.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rubtsov.documents.data.model.dto.DepartmentDto;
+import rubtsov.documents.data.model.dto.EmployeeDto;
 import rubtsov.documents.data.model.entity.Department;
+import rubtsov.documents.data.model.entity.Employee;
 import rubtsov.documents.data.repository.DepartmentsRepository;
 
 import java.util.ArrayList;
@@ -65,7 +67,14 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         ArrayList<DepartmentDto> departmentDtos = new ArrayList<>();
 
         for (Department department : getAllDepartments()) {
-            departmentDtos.add(new DepartmentDto(department));
+
+            DepartmentDto departmentDto = new DepartmentDto(department);
+
+            for (Employee employee : department.getEmployees()) {
+                departmentDto.getEmployees().add(new EmployeeDto(employee));
+            }
+
+            departmentDtos.add(departmentDto);
         }
 
         return departmentDtos;

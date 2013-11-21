@@ -1,7 +1,6 @@
 package rubtsov.documents.data.model.dto;
 
 import rubtsov.documents.data.model.entity.CaseFolder;
-import rubtsov.documents.data.model.entity.Correspondent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -69,9 +68,5 @@ public class CaseFolderDto {
         name = caseFolder.getName();
         description = caseFolder.getDescription();
         code = caseFolder.getCode();
-
-        for (Correspondent correspondent : caseFolder.getCorrespondents()) {
-            correspondents.add(new CorrespondentDto(correspondent));
-        }
     }
 }

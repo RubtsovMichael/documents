@@ -1,6 +1,5 @@
 package rubtsov.documents.data.model.dto;
 
-import rubtsov.documents.data.model.entity.Employee;
 import rubtsov.documents.data.model.entity.Person;
 
 import java.util.HashSet;
@@ -82,9 +81,5 @@ public class PersonDto {
         firstName = person.getFirstName();
         lastName = person.getLastName();
         patronimicName = person.getPatronimicName();
-
-        for (Employee employee : person.getAssignments()) {
-            assignments.add(new EmployeeDto(employee));
-        }
     }
 }

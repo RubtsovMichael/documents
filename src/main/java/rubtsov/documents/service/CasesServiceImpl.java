@@ -3,7 +3,9 @@ package rubtsov.documents.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rubtsov.documents.data.model.dto.CaseFolderDto;
+import rubtsov.documents.data.model.dto.CorrespondentDto;
 import rubtsov.documents.data.model.entity.CaseFolder;
+import rubtsov.documents.data.model.entity.Correspondent;
 import rubtsov.documents.data.repository.CasesRepository;
 
 import java.util.ArrayList;
@@ -62,7 +64,13 @@ public class CasesServiceImpl implements CasesService {
         ArrayList<CaseFolderDto> caseFolderDtos = new ArrayList<>();
 
         for (CaseFolder caseFolder : getAllCaseFolders()) {
-            caseFolderDtos.add(new CaseFolderDto(caseFolder));
+            CaseFolderDto caseFolderDto = new CaseFolderDto(caseFolder);
+
+            for (Correspondent correspondent : caseFolder.getCorrespondents()) {
+                caseFolderDto.getCorrespondents().add(new CorrespondentDto(correspondent));
+            }
+
+            caseFolderDtos.add(caseFolderDto);
         }
 
         return caseFolderDtos;
