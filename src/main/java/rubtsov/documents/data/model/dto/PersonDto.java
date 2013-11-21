@@ -82,4 +82,9 @@ public class PersonDto {
         lastName = person.getLastName();
         patronimicName = person.getPatronimicName();
     }
+
+    public String getDisplayName() {
+        return getLastName() + ' ' + getFirstName().substring(0, 1) + ". " + (getPatronimicName() == null ? "" : getPatronimicName().substring(0, 1) + ".");
+    }
+
 }

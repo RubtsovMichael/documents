@@ -67,16 +67,30 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         ArrayList<DepartmentDto> departmentDtos = new ArrayList<>();
 
         for (Department department : getAllDepartments()) {
-
-            DepartmentDto departmentDto = new DepartmentDto(department);
-
-            for (Employee employee : department.getEmployees()) {
-                departmentDto.getEmployees().add(new EmployeeDto(employee));
-            }
-
-            departmentDtos.add(departmentDto);
+            departmentDtos.add(entityToDto(department));
         }
 
         return departmentDtos;
+    }
+
+    private DepartmentDto entityToDto(Department department) {
+        DepartmentDto departmentDto = new DepartmentDto(department);
+
+        for (Employee employee : department.getEmployees()) {
+            departmentDto.getEmployees().add(new EmployeeDto(employee));
+        }
+
+        return departmentDto;
+    }
+
+    @Override
+    public DepartmentDto getAsDto(Long id) {
+        Department department = load(id);
+
+        if (department == null) {
+            throw new IllegalArgumentException("Department ID is not found");
+        }
+
+        return entityToDto(department);
     }
 }

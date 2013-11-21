@@ -23,4 +23,6 @@ public interface DepartmentsService {
 
     List<DepartmentDto> getAllDepartmentsDtos();
 
+    DepartmentDto getAsDto(Long id);
+
 }

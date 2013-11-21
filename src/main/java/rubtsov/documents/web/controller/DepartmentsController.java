@@ -36,15 +36,7 @@ public class DepartmentsController {
 
     @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENTS + "/{depId}" )
     public String departmentForm(@PathVariable Long depId, Model model) {
-
-        Department dep = departmentsService.load(depId);
-
-        if (dep == null) {
-            throw new IllegalArgumentException("Department ID is not found");
-        }
-
-        model.addAttribute("departmentCommand", new DepartmentDto(dep));
-        model.addAttribute("employees", dep.getEmployees());
+        model.addAttribute("departmentCommand", departmentsService.getAsDto(depId));
         return Views.DEPARTMENT_FORM;
     }
 
