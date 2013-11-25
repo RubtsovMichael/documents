@@ -28,8 +28,8 @@
             <tr>
                 <td>$employee.post.displayName</td>
                 <td>$employee.person.displayName</td>
-                <td>$employee.dateBegin.time</td>
-                <td>$employee.dateEnd.time</td>
+                <td>$employee.dateBegin</td>
+                <td>#if ($employee.dateEnd) $employee.dateEnd #else #end</td>
             </tr>
         #end
     </table>

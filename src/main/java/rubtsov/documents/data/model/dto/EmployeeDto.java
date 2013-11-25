@@ -1,9 +1,8 @@
 package rubtsov.documents.data.model.dto;
 
 import rubtsov.documents.data.model.entity.Employee;
-import rubtsov.documents.web.Utils.Conversions;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,9 +20,9 @@ public class EmployeeDto {
 
     private PersonDto person;
 
-    private Calendar dateBegin;
+    private Date dateBegin;
 
-    private Calendar dateEnd;
+    private Date dateEnd;
 
     public Long getEmployeeId() {
         return employeeId;
@@ -57,19 +56,19 @@ public class EmployeeDto {
         this.person = person;
     }
 
-    public Calendar getDateBegin() {
+    public Date getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(Calendar dateBegin) {
+    public void setDateBegin(Date dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public Calendar getDateEnd() {
+    public Date getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Calendar dateEnd) {
+    public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
     }
 
@@ -81,8 +80,8 @@ public class EmployeeDto {
         department = new DepartmentDto(employee.getDepartment());
         post = new PostDto(employee.getPost());
         person = new PersonDto(employee.getPerson());
-        dateBegin = Conversions.dateToViewCalendar(employee.getDateBegin());
-        dateEnd = Conversions.dateToViewCalendar(employee.getDateEnd());
+        dateBegin = employee.getDateBegin();
+        dateEnd = employee.getDateEnd();
     }
 }
 

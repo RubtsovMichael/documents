@@ -5,7 +5,7 @@ import rubtsov.documents.data.model.entity.Department;
 import java.util.HashSet;
 import java.util.Set;
 
-import static rubtsov.documents.web.Utils.Conversions.stringToViewString;
+import static rubtsov.documents.data.model.Utils.Conversions.stringToViewString;
 /**
  * Created by mike on 11.10.13.
  */
