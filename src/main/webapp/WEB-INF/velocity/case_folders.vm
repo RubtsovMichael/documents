@@ -1,36 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Дела</title>
 </head>
 <body>
-    <h3>Дела</h3>
+    #parse("common/navigation.vm")
 
-    <a href="#springUrl("/case_folders/-1")">Добавить дело</a>
-    <table border="0">
-        <tr>
-            <th>Префикс нумерации</th>
-            <th>Наименование</th>
-            <th>Описание</th>
-        </tr>
-        #foreach ($caseFolder in $caseFolders)
+    <div class="float-left">
+        <h3>Дела</h3>
+
+        <a href="#springUrl("/case_folders/-1")">Добавить дело</a>
+        <table border="0">
             <tr>
-                <td><a href="#springUrl("/case_folders/$caseFolder.caseId")">$caseFolder.code</a></td>
-                <td>$caseFolder.name [$caseFolder.caseId]</td>
-                <td>$caseFolder.description</td>
+                <th>Префикс нумерации</th>
+                <th>Наименование</th>
+                <th>Описание</th>
             </tr>
-            <tr>
-                <td/>
-                <td colspan="2">
-                    <ul>
-                        #foreach ($corrspondent in $caseFolder.correspondents)
-                            <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/$corrspondent.correspondentId")">$corrspondent.displayName [$corrspondent.correspondentId] $corrspondent.fullName</a></li>
-                        #end
-                        <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/-1")">Добавить корреспондента</a></li>
-                    </ul>
-                </td>
-            </tr>
-        #end
-    </table>
+            #foreach ($caseFolder in $caseFolders)
+                <tr>
+                    <td><a href="#springUrl("/case_folders/$caseFolder.caseId")">$caseFolder.code</a></td>
+                    <td>$caseFolder.name [$caseFolder.caseId]</td>
+                    <td>$caseFolder.description</td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td colspan="2">
+                        <ul>
+                            #foreach ($corrspondent in $caseFolder.correspondents)
+                                <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/$corrspondent.correspondentId")">$corrspondent.displayName [$corrspondent.correspondentId] $corrspondent.fullName</a></li>
+                            #end
+                            <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/-1")">Добавить корреспондента</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            #end
+        </table>
+    </div>
 </body>
 </html>

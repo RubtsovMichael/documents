@@ -1,23 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Должности</title>
 </head>
 <body>
-    <h3>Должности</h3>
+    #parse("common/navigation.vm")
 
-    <a href="#springUrl("/posts/-1")">Создать новую</a>
-    <table border="0">
-        <tr>
-            <th>Наименование</th>
-            <th>Полное наименование</th>
-        </tr>
-    #foreach ($post in $posts)
-        <tr>
-            <td><a href="#springUrl("/posts/$post.postId")">$post.displayName [$post.postId]</a></td>
-            <td>$post.fullName</td>
-        </tr>
-    #end
-    </table>
+    <div class="float-left">
+        <h3>Должности</h3>
+
+        <a href="#springUrl("/posts/-1")">Создать новую</a>
+        <table border="0">
+            <tr>
+                <th>Наименование</th>
+                <th>Полное наименование</th>
+            </tr>
+        #foreach ($post in $posts)
+            <tr>
+                <td><a href="#springUrl("/posts/$post.postId")">$post.displayName [$post.postId]</a></td>
+                <td>$post.fullName</td>
+            </tr>
+        #end
+        </table>
+    </div>
 </body>
 </html>

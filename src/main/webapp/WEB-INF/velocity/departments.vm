@@ -1,28 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Подразделения</title>
 </head>
 <body>
-##<style>
-##    table
-##    {
-##        border-collapse:collapse;
-##    }
-##    table, td, th
-##    {
-##        border:1px solid #44769a;
-##    }
-##</style>
-    <h3>Подразделения</h3>
+    #parse("common/navigation.vm")
 
-    <table border="0">
-    #foreach ($department in $departments)
-        <tr>
-            <td><a href="#springUrl("/departments/$department.departmentId")">$department.code $department.shortName [$department.departmentId]</a></td>
-            <td>$department.fullName</td>
-        </tr>
-    #end
-    </table>
+    <div class="float-left">
+        <h3>Подразделения</h3>
+
+        <table border="0">
+        #foreach ($department in $departments)
+            <tr>
+                <td><a href="#springUrl("/departments/$department.departmentId")">$department.code $department.shortName [$department.departmentId]</a></td>
+                <td>$department.fullName</td>
+            </tr>
+        #end
+        </table>
+    </div>
 </body>
 </html>

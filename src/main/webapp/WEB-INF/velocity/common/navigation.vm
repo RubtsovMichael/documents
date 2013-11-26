@@ -1,0 +1,7 @@
+<div class="float-left">
+    <table>
+        <tr><td><a href="#springUrl("/departments")">Подразделения</a></td></tr>
+        <tr><td><a href="#springUrl("/posts")">Должности</a></td></tr>
+        <tr><td><a href="#springUrl("/case_folders")">Дела</a></td></tr>
+    </table>
+</div>

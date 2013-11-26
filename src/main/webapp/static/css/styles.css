@@ -1,0 +1,23 @@
+a:link {
+    color:#326ca6;
+}
+
+a:visited {
+    color:#326ca6;
+}
+
+a:hover {
+    color:#326ca6;
+}
+
+div.float-left {
+    float: left;
+}
+
+table {
+    border-collapse:collapse;
+}
+
+td, th {
+    border:1px solid #ddd;
+}

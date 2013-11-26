@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        a:link    {color:green;}
-        a:visited {color:green;}
-        a:hover   {color:red;}
-    </style>
+    #include("common/styles_import.txt")
     <title>Главная</title>
 </head>
 <body>
-    <h3><a href="#springUrl("/departments")">Подразделения</a></h3>
-    <h3><a href="#springUrl("/posts")">Должности</a></h3>
-    <h3><a href="#springUrl("/case_folders")">Дела</a></h3>
+    #parse("common/navigation.vm")
 </body>
 </html>
