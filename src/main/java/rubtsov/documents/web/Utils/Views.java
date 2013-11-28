@@ -18,5 +18,8 @@ public interface Views {
     public String CORRESPONDENT_FORM = "/correspondent_form";
     public String PERSONS = "/persons";
 
+    public String EMPLOYEES = "/employees";
+    public String EMPLOYEE_FORM = "/employee_form";
+
 
 }
