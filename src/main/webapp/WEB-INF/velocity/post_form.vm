@@ -10,11 +10,11 @@
     #springFormHiddenInput("postCommand.postId" "")
     <table border="0">
         <tr>
-            <td>Short name:</td>
+            <td>Короткое наименование:</td>
             <td>#springFormInput("postCommand.displayName" "")</td>
         </tr>
         <tr>
-            <td>Full name:</td>
+            <td>Полное наименование:</td>
             <td>#springFormInput("postCommand.fullName" "")</td>
         </tr>
         <tr>

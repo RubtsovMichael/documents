@@ -53,6 +53,8 @@ public class DepartmentsServiceImpl implements DepartmentsService {
             department = new Department();
         } else {
             department = load(departmentDto.getDepartmentId());
+            if (department == null)
+                throw new IllegalArgumentException("Department with id [" + departmentDto.getDepartmentId() + "] is not found for update");
         }
 
         department.setCode(departmentDto.getCode());

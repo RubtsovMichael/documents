@@ -47,11 +47,7 @@ public class CasesController {
             caseFolderDto = new CaseFolderDto();
             caseFolderDto.setCaseId(Long.valueOf(-1));
         } else {
-            CaseFolder caseFolder = casesService.load(caseId);
-            if (caseFolder == null) {
-                throw new IllegalArgumentException("Case folder ID is not found");
-            }
-            caseFolderDto = new CaseFolderDto(caseFolder);
+            caseFolderDto = casesService.getAsDto(caseId);
         }
 
         model.put("caseCommand", caseFolderDto);
@@ -68,11 +64,7 @@ public class CasesController {
             correspondentDto.setCorrespondentId(Long.valueOf(-1));
             correspondentDto.setCaseFolder(new CaseFolderDto(casesService.load(caseId)));
         } else {
-            Correspondent correspondent = correspondentsService.load(corrId);
-            if (correspondent == null) {
-                throw new IllegalArgumentException("Case folder ID is not found");
-            }
-            correspondentDto = new CorrespondentDto (correspondent);
+            correspondentDto = correspondentsService.getAsDto(corrId);
         }
 
         model.put("correspondentCommand", correspondentDto);

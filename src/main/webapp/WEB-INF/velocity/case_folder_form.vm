@@ -9,15 +9,15 @@
     #springFormHiddenInput("caseCommand.caseId" "")
     <table border="0">
         <tr>
-            <td>Code:</td>
+            <td>Код:</td>
             <td>#springFormInput("caseCommand.code" "")</td>
         </tr>
         <tr>
-            <td>Short name:</td>
+            <td>Наименование:</td>
             <td>#springFormInput("caseCommand.name" "")</td>
         </tr>
         <tr>
-            <td>Full name:</td>
+            <td>Описание:</td>
             <td>#springFormInput("caseCommand.description" "")</td>
         </tr>
         <tr>

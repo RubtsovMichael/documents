@@ -17,7 +17,7 @@ public interface EmployeesService {
 
     Employee load(Long id);
 
-    Employee save(Employee user);
+    Employee save(Employee employee);
 
     Employee saveFromDto(EmployeeDto employeeDto);
 

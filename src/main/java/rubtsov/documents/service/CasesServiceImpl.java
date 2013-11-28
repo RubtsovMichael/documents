@@ -50,6 +50,8 @@ public class CasesServiceImpl implements CasesService {
             caseFolder = new CaseFolder();
         } else {
             caseFolder = load(caseFolderDto.getCaseId());
+            if (caseFolder == null)
+                throw new IllegalArgumentException("Casefolder with id [" + caseFolderDto.getCaseId() + "] is not found for update");
         }
 
         caseFolder.setCode(caseFolderDto.getCode());
@@ -64,15 +66,30 @@ public class CasesServiceImpl implements CasesService {
         ArrayList<CaseFolderDto> caseFolderDtos = new ArrayList<>();
 
         for (CaseFolder caseFolder : getAllCaseFolders()) {
-            CaseFolderDto caseFolderDto = new CaseFolderDto(caseFolder);
-
-            for (Correspondent correspondent : caseFolder.getCorrespondents()) {
-                caseFolderDto.getCorrespondents().add(new CorrespondentDto(correspondent));
-            }
-
-            caseFolderDtos.add(caseFolderDto);
+            caseFolderDtos.add(entityToDto(caseFolder));
         }
 
         return caseFolderDtos;
+    }
+
+    private CaseFolderDto entityToDto(CaseFolder caseFolder) {
+        CaseFolderDto caseFolderDto = new CaseFolderDto(caseFolder);
+
+        for (Correspondent correspondent : caseFolder.getCorrespondents()) {
+            caseFolderDto.getCorrespondents().add(new CorrespondentDto(correspondent));
+        }
+
+        return caseFolderDto;
+    }
+
+    @Override
+    public CaseFolderDto getAsDto(Long id) {
+        CaseFolder caseFolder = load(id);
+
+        if (caseFolder == null) {
+            throw new IllegalArgumentException("Case folder ID [" + id + "] is not found");
+        }
+
+        return entityToDto(caseFolder);
     }
 }

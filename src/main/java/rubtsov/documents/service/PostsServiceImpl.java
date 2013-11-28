@@ -51,6 +51,8 @@ public class PostsServiceImpl implements PostsService {
             post = new Post();
         } else {
             post = load(postDto.getPostId());
+            if (post == null)
+                throw new IllegalArgumentException("Post with id [" + postDto.getPostId() + "] is not found for update");
         }
 
         post.setFullName(postDto.getFullName());
@@ -68,5 +70,16 @@ public class PostsServiceImpl implements PostsService {
         }
 
         return postDtos;
+    }
+
+    @Override
+    public PostDto getAsDto(Long id) {
+        Post post = load(id);
+
+        if (post == null) {
+            throw new IllegalArgumentException("Post ID [" + id + "] is not found");
+        }
+
+        return new PostDto(post);
     }
 }

@@ -23,4 +23,5 @@ public interface CorrespondentsService {
 
     List<CorrespondentDto> getAllCorrespondentsDtos();
 
+    CorrespondentDto getAsDto(Long id);
 }

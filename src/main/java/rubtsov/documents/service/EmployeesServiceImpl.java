@@ -6,6 +6,7 @@ import rubtsov.documents.data.model.dto.EmployeeDto;
 import rubtsov.documents.data.model.entity.Employee;
 import rubtsov.documents.data.repository.EmployeesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,33 +21,77 @@ public class EmployeesServiceImpl implements EmployeesService {
     @Autowired
     EmployeesRepository employeesRepository;
 
+    @Autowired
+    PersonsService personsService;
+
+    @Autowired
+    PostsService postsService;
+
+    @Autowired
+    DepartmentsService departmentsService;
+
     @Override
     public List<Employee> getAllEmployees() {
-        return null;
+        return employeesRepository.findAll();
     }
 
     @Override
     public Employee load(Long id) {
-        return null;
+        return employeesRepository.findOne(id);
     }
 
     @Override
     public Employee save(Employee user) {
-        return null;
+        return employeesRepository.saveAndFlush(user);
     }
 
     @Override
     public Employee saveFromDto(EmployeeDto employeeDto) {
-        return null;
+        if (employeeDto == null) {
+            throw new IllegalArgumentException("Employee dto required!");
+        }
+
+        if (employeeDto.getEmployeeId() == null) {
+            throw new IllegalArgumentException("Employee dto has null id!");
+        }
+
+        Employee employee;
+        if (employeeDto.getEmployeeId().equals(Long.valueOf(-1L))) {
+            employee = new Employee();
+        } else {
+            employee = load(employeeDto.getEmployeeId());
+            if (employee == null)
+                throw new IllegalArgumentException("Employee with id [" + employeeDto.getEmployeeId() + "] is not found for update");
+        }
+
+        employee.setDateBegin(employeeDto.getDateBegin());
+        employee.setDateEnd(employeeDto.getDateEnd());
+        employee.setPerson(personsService.load(employeeDto.getPerson().getPersonId()));
+        employee.setPost(postsService.load(employeeDto.getPost().getPostId()));
+        employee.setDepartment(departmentsService.load(employeeDto.getDepartment().getDepartmentId()));
+
+        return save(employee);
     }
 
     @Override
     public List<EmployeeDto> getAllEmployeesDtos() {
-        return null;
+        ArrayList<EmployeeDto> employeeDtos = new ArrayList<>();
+
+        for (Employee employee : getAllEmployees()) {
+            employeeDtos.add(new EmployeeDto(employee));
+        }
+
+        return employeeDtos;
     }
 
     @Override
     public EmployeeDto getAsDto(Long id) {
-        return null;
+        Employee employee = load(id);
+
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee ID [" + id + "] is not found");
+        }
+
+        return new EmployeeDto(employee);
     }
 }

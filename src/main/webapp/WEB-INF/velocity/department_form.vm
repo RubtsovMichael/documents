@@ -10,15 +10,15 @@
     #springFormHiddenInput("departmentCommand.departmentId" "")
     <table border="0">
         <tr>
-            <td>Code:</td>
+            <td>Код:</td>
             <td>#springFormInput("departmentCommand.code" "")</td>
         </tr>
         <tr>
-            <td>Short name:</td>
+            <td>Короткое наименование:</td>
             <td>#springFormInput("departmentCommand.shortName" "")</td>
         </tr>
         <tr>
-            <td>Full name:</td>
+            <td>Полное наименование:</td>
             <td>#springFormInput("departmentCommand.fullName" "")</td>
         </tr>
     </table>

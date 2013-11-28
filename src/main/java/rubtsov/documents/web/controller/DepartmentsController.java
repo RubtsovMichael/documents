@@ -36,7 +36,15 @@ public class DepartmentsController {
 
     @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENTS + "/{depId}" )
     public String departmentForm(@PathVariable Long depId, Model model) {
-        model.addAttribute("departmentCommand", departmentsService.getAsDto(depId));
+
+        DepartmentDto departmentDto;
+        if (depId == -1) {
+            departmentDto = new DepartmentDto();
+            departmentDto.setDepartmentId(Long.valueOf(-1));
+        } else {
+            departmentDto = departmentsService.getAsDto(depId);
+        }
+        model.addAttribute("departmentCommand", departmentDto);
         return Views.DEPARTMENT_FORM;
     }
 

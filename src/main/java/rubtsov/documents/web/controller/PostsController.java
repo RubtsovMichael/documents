@@ -44,11 +44,7 @@ public class PostsController {
             postDto = new PostDto();
             postDto.setPostId(Long.valueOf(-1));
         } else {
-            Post post = postsService.load(postId);
-            if (post == null) {
-                throw new IllegalArgumentException("Post ID is not found");
-            }
-            postDto = new PostDto(post);
+            postDto = postsService.getAsDto(postId);
         }
 
         model.put("postCommand", postDto);

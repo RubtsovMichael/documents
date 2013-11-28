@@ -10,6 +10,7 @@
     <div class="float-left">
         <h3>Подразделения</h3>
 
+        <a href="#springUrl("/departments/-1")">Создать новое</a>
         <table border="0">
         #foreach ($department in $departments)
             <tr>

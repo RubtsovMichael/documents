@@ -54,6 +54,8 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
             correspondent = new Correspondent();
         } else {
             correspondent = load(correspondentDto.getCorrespondentId());
+            if (correspondent == null)
+                throw new IllegalArgumentException("Correspondent with id [" + correspondentDto.getCorrespondentId() + "] is not found for update");
         }
 
         correspondent.setFullName(correspondentDto.getFullName());
@@ -72,5 +74,16 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
         }
 
         return correspondentDtos;
+    }
+
+    @Override
+    public CorrespondentDto getAsDto(Long id) {
+        Correspondent correspondent = load(id);
+
+        if (correspondent == null) {
+            throw new IllegalArgumentException("Correspondent with ID [" + id + "] is not found");
+        }
+
+        return new CorrespondentDto(correspondent);
     }
 }

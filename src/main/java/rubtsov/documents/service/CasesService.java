@@ -20,4 +20,6 @@ public interface CasesService {
 
     List<CaseFolderDto> getAllCaseFoldersDtos();
 
+    CaseFolderDto getAsDto(Long id);
+
 }
