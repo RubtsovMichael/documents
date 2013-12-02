@@ -17,7 +17,7 @@ import rubtsov.documents.web.Utils.Views;
  * Time: 18:08
  */
 @Controller
-@RequestMapping("/employee**")
+@RequestMapping(Views.EMPLOYEES + "/**")
 public class EmployeesController {
 
     @Autowired
