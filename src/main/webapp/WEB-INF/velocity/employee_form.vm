@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Должность [$employeeCommand.employeeId]</title>
+    <title>Сотрудник [$employeeCommand.employeeId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
 <form method="POST">
     #springFormHiddenInput("employeeCommand.employeeId" "")
+    #springFormHiddenInput("employeeCommand.department.departmentId" "")
+    #springFormHiddenInput("employeeCommand.post.postId" "")
+    #springFormHiddenInput("employeeCommand.person.personId" "")
     <table border="0">
         <tr>
-            <td>Код:</td>
-            <td>#springFormInput("employeeCommand.dateBegin" "")</td>
+            <td>Дата назначения на должность:</td>
+            <td>#springFormInput("employeeCommand.dateBegin" '')</td>
         </tr>
-        <tr>
-            <td>Код:</td>
-            <td>#springFormInput("employeeCommand.dateEnd" "")</td>
-        </tr>
+##        <tr>
+##            <td>Дата снятия с должности :</td>
+##            <td>#springFormInput("employeeCommand.dateEnd" "")</td>
+##        </tr>
         <tr>
             <td colspan="2" align="right">
                 <input type="submit" value="submit" />

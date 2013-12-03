@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rubtsov.documents.data.model.dto.CaseFolderDto;
 import rubtsov.documents.data.model.dto.CorrespondentDto;
-import rubtsov.documents.data.model.entity.CaseFolder;
-import rubtsov.documents.data.model.entity.Correspondent;
 import rubtsov.documents.service.CasesService;
 import rubtsov.documents.service.CorrespondentsService;
 import rubtsov.documents.web.Utils.Views;
@@ -23,7 +21,7 @@ import rubtsov.documents.web.Utils.Views;
 @RequestMapping(Views.CASE_FOLDERS + "/**")
 public class CasesController {
 
-    Logger LOG = org.slf4j.LoggerFactory.getLogger(PostsController.class);
+    Logger LOG = org.slf4j.LoggerFactory.getLogger(CasesController.class);
 
     @Autowired
     private CasesService casesService;
