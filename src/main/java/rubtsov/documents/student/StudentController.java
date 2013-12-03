@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -19,7 +21,12 @@ public class StudentController {
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String initForm(ModelMap model) {
-        model.put("student", new Student());
+        Student student = new Student();
+        student.setId(1);
+        student.setAge(3);
+        student.setName("sasdasd");
+        student.setBirth(new Date());
+        model.put("student", student);
         return "student";
     }
 

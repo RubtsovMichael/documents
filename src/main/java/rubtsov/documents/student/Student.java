@@ -1,5 +1,7 @@
 package rubtsov.documents.student;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -10,6 +12,7 @@ public class Student {
     private Integer age;
     private String name;
     private Integer id;
+    private Date birth;
 
     public void setAge(Integer age) {
         this.age = age;
@@ -30,5 +33,13 @@ public class Student {
     }
     public Integer getId() {
         return id;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 }
