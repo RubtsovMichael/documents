@@ -21,7 +21,13 @@
             <td>Полное наименование:</td>
             <td>#springFormInput("departmentCommand.fullName" "")</td>
         </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <input type="submit" value="Сохранить" />
+            </td>
+        </tr>
     </table>
+</form>
 
     <table>
         #foreach ($employee in $departmentCommand.employees)
@@ -34,7 +40,5 @@
         #end
     </table>
 
-    <input type="submit" value="submit" />
-</form>
 </body>
 </html>

@@ -45,6 +45,11 @@ public class PostDto implements Serializable {
     public PostDto() {
     }
 
+    @Override
+    public String toString() {
+        return displayName;
+    }
+
     public PostDto(Post post) {
         this.postId = post.getPostId();
         this.displayName = post.getDisplayName();

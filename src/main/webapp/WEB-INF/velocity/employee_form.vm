@@ -12,13 +12,20 @@
     #springFormHiddenInput("employeeCommand.person.personId" "")
     <table border="0">
         <tr>
+            <td>Подразделение:</td>
+            <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+        </tr>
+        <tr>
+            <td>Должность:</td>
+            <td>#springFormSingleSelect("employeeCommand.postId" $posts '')</td>
+        </tr>        <tr>
             <td>Дата назначения на должность:</td>
             <td>#springFormInput("employeeCommand.dateBegin" '')</td>
         </tr>
-##        <tr>
-##            <td>Дата снятия с должности :</td>
-##            <td>#springFormInput("employeeCommand.dateEnd" "")</td>
-##        </tr>
+        <tr>
+            <td>Дата снятия с должности :</td>
+            <td>#springFormInput("employeeCommand.dateEnd" "")</td>
+        </tr>
         <tr>
             <td colspan="2" align="right">
                 <input type="submit" value="submit" />

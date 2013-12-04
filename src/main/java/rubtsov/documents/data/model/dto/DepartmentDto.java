@@ -63,12 +63,7 @@ public class DepartmentDto {
 
     @Override
     public String toString() {
-        return "DepartmentDto{" +
-                "departmentId=" + departmentId +
-                ", shortName='" + shortName + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", code='" + code + '\'' +
-                '}';
+        return shortName + " [" + fullName + "]";
     }
 
     public DepartmentDto() {

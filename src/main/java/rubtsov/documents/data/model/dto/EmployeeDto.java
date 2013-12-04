@@ -16,9 +16,15 @@ public class EmployeeDto {
 
     private DepartmentDto department;
 
+    private Long departmentId;
+
     private PostDto post;
 
+    private Long postId;
+
     private PersonDto person;
+
+    private Long personId;
 
     private Date dateBegin;
 
@@ -72,14 +78,41 @@ public class EmployeeDto {
         this.dateEnd = dateEnd;
     }
 
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public Long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
+
     public EmployeeDto() {
     }
 
     public EmployeeDto(Employee employee) {
         employeeId = employee.getEmployeeId();
         department = new DepartmentDto(employee.getDepartment());
+        departmentId = employee.getDepartment().getDepartmentId();
         post = new PostDto(employee.getPost());
+        postId = employee.getPost().getPostId();
         person = new PersonDto(employee.getPerson());
+        personId = employee.getPerson().getPersonId();
         dateBegin = employee.getDateBegin();
         dateEnd = employee.getDateEnd();
     }

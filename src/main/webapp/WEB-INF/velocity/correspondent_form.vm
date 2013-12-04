@@ -7,7 +7,7 @@
 <body>
 <form method="POST">
     #springFormHiddenInput("correspondentCommand.correspondentId" "")
-    #springFormHiddenInput("correspondentCommand.caseFolder.caseId")
+    #springFormHiddenInput("correspondentCommand.caseFolder.caseId" "")
     <table border="0">
         <tr>
             <td>Наименование:</td>

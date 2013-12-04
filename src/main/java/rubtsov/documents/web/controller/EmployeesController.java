@@ -2,15 +2,23 @@ package rubtsov.documents.web.controller;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import rubtsov.documents.data.model.dto.DepartmentDto;
 import rubtsov.documents.data.model.dto.EmployeeDto;
+import rubtsov.documents.data.model.dto.PostDto;
+import rubtsov.documents.service.DepartmentsService;
 import rubtsov.documents.service.EmployeesService;
+import rubtsov.documents.service.PostsService;
 import rubtsov.documents.web.Utils.Views;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,8 +35,21 @@ public class EmployeesController {
     @Autowired
     EmployeesService employeesService;
 
+    @Autowired
+    DepartmentsService departmentsService;
+
+    @Autowired
+    PostsService postsService;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        dateFormat.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = Views.EMPLOYEES + "/{employeeId}")
-    public String getCaseForm(@PathVariable Long employeeId, ModelMap model) {
+    public String getEmployeeForm(@PathVariable Long employeeId, ModelMap model) {
 
         EmployeeDto employeeDto;
         if (employeeId == -1) {
@@ -38,13 +59,25 @@ public class EmployeesController {
             employeeDto = employeesService.getAsDto(employeeId);
         }
 
+        HashMap<Long, DepartmentDto> depts = new HashMap<>();
+        for (DepartmentDto departmentDto : departmentsService.getAllDepartmentsDtos()) {
+            depts.put(departmentDto.getDepartmentId(), departmentDto);
+        }
+
+        HashMap<Long, PostDto> posts = new HashMap<>();
+        for (PostDto postDto : postsService.getAllPostsDtos()) {
+            posts.put(postDto.getPostId(), postDto);
+        }
+
+        model.put("depts", depts);
+        model.put("posts", posts);
         model.put("employeeCommand", employeeDto);
 
         return Views.EMPLOYEE_FORM;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = Views.EMPLOYEES + "/*")
-    public String saveEmployee(@ModelAttribute("employeeCommand") EmployeeDto employeeDto) {
+    public String saveEmployee(@ModelAttribute("employeeCommand") EmployeeDto employeeDto, BindingResult result) {
 
         if (employeeDto == null) {
             throw new IllegalArgumentException("An employeeDto is required");
