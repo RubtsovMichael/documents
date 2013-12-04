@@ -19,6 +19,13 @@ import java.util.Date;
 //@RequestMapping(value = "/student")
 public class StudentController {
 
+//    @InitBinder
+//    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+//        binder.registerCustomEditor(Date.class, editor);
+//    }
+
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public String initForm(ModelMap model) {
         Student student = new Student();
