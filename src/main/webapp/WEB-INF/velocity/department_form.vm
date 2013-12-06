@@ -33,7 +33,7 @@
         #foreach ($employee in $departmentCommand.employees)
             <tr>
                 <td>$employee.post.displayName</td>
-                <td><a href="#springUrl("/employees/$employee.employeeId")">$employee.person.displayName</a></td>
+                <td><a href="#springUrl("/deprtments/$departmentCommand.departmentId/employees/$employee.employeeId")">$employee.person</a></td>
                 <td>$employee.dateBegin</td>
                 <td>#if ($employee.dateEnd) $employee.dateEnd #else #end</td>
             </tr>

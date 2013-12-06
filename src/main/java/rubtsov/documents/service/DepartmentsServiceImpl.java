@@ -9,7 +9,9 @@ import rubtsov.documents.data.model.entity.Employee;
 import rubtsov.documents.data.repository.DepartmentsRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -94,5 +96,14 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         }
 
         return entityToDto(department);
+    }
+
+    @Override
+    public Map<Long, DepartmentDto> getDeptsAsMap() {
+        HashMap<Long, DepartmentDto> depts = new HashMap<>();
+        for (DepartmentDto departmentDto : getAllDepartmentsDtos()) {
+            depts.put(departmentDto.getDepartmentId(), departmentDto);
+        }
+        return depts;
     }
 }

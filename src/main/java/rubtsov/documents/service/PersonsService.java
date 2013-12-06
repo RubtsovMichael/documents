@@ -1,8 +1,10 @@
 package rubtsov.documents.service;
 
+import rubtsov.documents.data.model.dto.PersonDto;
 import rubtsov.documents.data.model.entity.Person;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,5 +19,13 @@ public interface PersonsService {
     Person load(Long id);
 
     Person save(Person person);
+
+    Person saveFromDto(PersonDto personDto);
+
+    List<PersonDto> getAllPersonsDtos();
+
+    Map<Long, PersonDto> getPersonsAsMap();
+
+    PersonDto getAsDto(Long id);
 
 }

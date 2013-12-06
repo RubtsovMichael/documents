@@ -23,7 +23,7 @@ public class PersonDto {
 
     private Set<EmployeeDto> assignments = new HashSet<>();
 
-    private Set<UserDto> users = new HashSet<>();
+//    private Set<UserDto> users = new HashSet<>();
 
     public Long getPersonId() {
         return personId;
@@ -65,13 +65,13 @@ public class PersonDto {
         this.assignments = assignments;
     }
 
-    public Set<UserDto> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserDto> users) {
-        this.users = users;
-    }
+//    public Set<UserDto> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<UserDto> users) {
+//        this.users = users;
+//    }
 
     public PersonDto() {
     }
@@ -83,7 +83,8 @@ public class PersonDto {
         patronimicName = person.getPatronimicName();
     }
 
-    public String getDisplayName() {
+    @Override
+    public String toString() {
         return getLastName() + ' ' + getFirstName().substring(0, 1) + ". " + (getPatronimicName() == null ? "" : getPatronimicName().substring(0, 1) + ".");
     }
 

@@ -7,7 +7,9 @@ import rubtsov.documents.data.model.entity.Post;
 import rubtsov.documents.data.repository.PostsRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -81,5 +83,14 @@ public class PostsServiceImpl implements PostsService {
         }
 
         return new PostDto(post);
+    }
+
+    @Override
+    public Map<Long, PostDto> getPostsAsMap() {
+        HashMap<Long, PostDto> posts = new HashMap<>();
+        for (PostDto postDto : getAllPostsDtos()) {
+            posts.put(postDto.getPostId(), postDto);
+        }
+        return posts;
     }
 }

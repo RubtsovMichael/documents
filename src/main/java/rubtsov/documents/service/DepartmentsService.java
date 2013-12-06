@@ -4,6 +4,7 @@ import rubtsov.documents.data.model.dto.DepartmentDto;
 import rubtsov.documents.data.model.entity.Department;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,8 @@ public interface DepartmentsService {
     Department saveFromDto(DepartmentDto departmentDto);
 
     List<DepartmentDto> getAllDepartmentsDtos();
+
+    Map<Long, DepartmentDto> getDeptsAsMap();
 
     DepartmentDto getAsDto(Long id);
 

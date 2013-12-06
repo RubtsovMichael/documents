@@ -4,6 +4,7 @@ import rubtsov.documents.data.model.dto.PostDto;
 import rubtsov.documents.data.model.entity.Post;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,8 @@ public interface PostsService {
     Post saveFromDto(PostDto postDto);
 
     List<PostDto> getAllPostsDtos();
+
+    Map<Long, PostDto> getPostsAsMap();
 
     PostDto getAsDto(Long id);
 }
