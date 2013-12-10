@@ -14,10 +14,10 @@ div.float-left {
     float: left;
 }
 
-table {
+table.list {
     border-collapse:collapse;
 }
 
-td, th {
+.list td, th {
     border:1px solid #ddd;
 }

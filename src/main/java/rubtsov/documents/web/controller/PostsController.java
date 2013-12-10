@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rubtsov.documents.data.model.entity.Post;
+import rubtsov.documents.data.model.dto.PostDto;
 import rubtsov.documents.service.PostsService;
 import rubtsov.documents.web.Utils.Views;
-import rubtsov.documents.data.model.dto.PostDto;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,7 +27,7 @@ public class PostsController {
     @Autowired
     private PostsService postsService;
 
-    @RequestMapping(method = RequestMethod.GET, value = Views.POSTS)
+    @RequestMapping(method = RequestMethod.GET)
     public String getPosts(ModelMap model) {
 
         model.put("posts", postsService.getAllPostsDtos());

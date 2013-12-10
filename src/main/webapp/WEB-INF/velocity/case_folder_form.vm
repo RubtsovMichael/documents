@@ -20,11 +20,7 @@
             <td>Описание:</td>
             <td>#springFormInput("caseCommand.description" "")</td>
         </tr>
-        <tr>
-            <td colspan="2" align="right">
-                <input type="submit" value="submit" />
-            </td>
-        </tr>
+        #include("common/edit_form_submit.txt")
     </table>
 </form>
 </body>

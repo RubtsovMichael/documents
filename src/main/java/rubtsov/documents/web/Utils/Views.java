@@ -17,7 +17,7 @@ public interface Views {
     public String CASE_FOLDER_FORM = "/case_folder_form";
     public String CORRESPONDENT_FORM = "/correspondent_form";
     public String PERSONS = "/persons";
-
+    public String PERSON_FORM = "/person_form";
     public String EMPLOYEES = "/employees";
     public String EMPLOYEE_FORM = "/employee_form";
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #include("common/styles_import.txt")
+    <title>Физические лица</title>
+</head>
+<body>
+    #parse("common/navigation.vm")
+
+<div class="float-left">
+    <h3>Физические лица</h3>
+
+    <a href="#springUrl("/persons/-1")">Создать новое</a>
+    <table class="list">
+        #foreach ($person in $persons)
+            <tr>
+                <td><a href="#springUrl("/persons/$person.personId")">$person.fullName [$person.personId]</a></td>
+            </tr>
+        #end
+    </table>
+</div>
+</body>
+</html>

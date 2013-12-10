@@ -11,7 +11,7 @@
         <h3>Должности</h3>
 
         <a href="#springUrl("/posts/-1")">Создать новую</a>
-        <table border="0">
+        <table class="list">
             <tr>
                 <th>Наименование</th>
                 <th>Полное наименование</th>

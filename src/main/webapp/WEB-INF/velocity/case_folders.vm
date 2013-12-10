@@ -11,7 +11,7 @@
         <h3>Дела</h3>
 
         <a href="#springUrl("/case_folders/-1")">Добавить дело</a>
-        <table border="0">
+        <table class="list">
             <tr>
                 <th>Префикс нумерации</th>
                 <th>Наименование</th>

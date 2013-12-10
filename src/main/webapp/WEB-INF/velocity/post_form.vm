@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-##    #springBind("postCommand.postId")
     <title>Должность [$postCommand.postId]</title>
     <meta charset="UTF-8">
 </head>
@@ -17,11 +16,7 @@
             <td>Полное наименование:</td>
             <td>#springFormInput("postCommand.fullName" "")</td>
         </tr>
-        <tr>
-            <td colspan="2" align="right">
-                <input type="submit" value="submit" />
-            </td>
-        </tr>
+        #include("common/edit_form_submit.txt")
     </table>
 </form>
 </body>

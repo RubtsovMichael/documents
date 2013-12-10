@@ -71,7 +71,7 @@ public class PersonsServiceImpl implements PersonsService {
         ArrayList<PersonDto> personDtos = new ArrayList<>();
 
         for (Person person : getAllPersons()) {
-            personDtos.add(new PersonDto(person));
+            personDtos.add(entityToDto(person));
         }
 
         return personDtos;
@@ -94,7 +94,7 @@ public class PersonsServiceImpl implements PersonsService {
             throw new IllegalArgumentException("Person ID is not found");
         }
 
-        return new PersonDto(person);
+        return entityToDto(person);
     }
 
     private PersonDto entityToDto(Person person) {

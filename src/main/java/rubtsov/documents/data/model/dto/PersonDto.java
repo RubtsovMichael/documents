@@ -85,7 +85,15 @@ public class PersonDto {
 
     @Override
     public String toString() {
-        return getLastName() + ' ' + getFirstName().substring(0, 1) + ". " + (getPatronimicName() == null ? "" : getPatronimicName().substring(0, 1) + ".");
+        return getLastName() + ' ' +
+                (getFirstName() == null ? "" : getFirstName().substring(0, 1) + ". ") +
+                (getPatronimicName() == null ? "" : getPatronimicName().substring(0, 1) + ".");
+    }
+
+    public String getFullName() {
+        return getLastName() + ' ' +
+                (getFirstName() == null ? "" : getFirstName() + ' ') +
+                (getPatronimicName() == null ? "" : getPatronimicName());
     }
 
 }
