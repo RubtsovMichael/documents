@@ -49,7 +49,7 @@ public class EmployeesController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "*" + Views.EMPLOYEES + "/{employeeId}")
+    @RequestMapping(method = RequestMethod.GET, value = "**" + Views.EMPLOYEES + "/{employeeId}")
     public String getEmployeeForm(@PathVariable Long employeeId, ModelMap model) {
 
         EmployeeDto employeeDto;
@@ -68,18 +68,17 @@ public class EmployeesController {
         return Views.EMPLOYEE_FORM;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/departments/{depId}" + Views.EMPLOYEES + "/*")
+    @RequestMapping(method = RequestMethod.POST, value = "/departments/{depId}/employees/*")
     public String saveEmployee(@PathVariable Long depId,
             @ModelAttribute("employeeCommand") EmployeeDto employeeDto, BindingResult result) {
-
         if (employeeDto == null) {
             throw new IllegalArgumentException("An employeeDto is required");
         }
 
         LOG.debug("Submitted employeeId " + employeeDto.getEmployeeId());
 
-//        casesService.saveFromDto(caseFolderDto);
+        employeesService.saveFromDto(employeeDto);
 
-        return "redirect:" + Views.DEPARTMENTS;
+        return "redirect:" + Views.DEPARTMENTS + "/{depId}";
     }
 }

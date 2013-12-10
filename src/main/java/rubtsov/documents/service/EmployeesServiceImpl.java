@@ -66,9 +66,9 @@ public class EmployeesServiceImpl implements EmployeesService {
 
         employee.setDateBegin(employeeDto.getDateBegin());
         employee.setDateEnd(employeeDto.getDateEnd());
-        employee.setPerson(personsService.load(employeeDto.getPerson().getPersonId()));
-        employee.setPost(postsService.load(employeeDto.getPost().getPostId()));
-        employee.setDepartment(departmentsService.load(employeeDto.getDepartment().getDepartmentId()));
+        employee.setPerson(personsService.load(employeeDto.getPersonId()));
+        employee.setPost(postsService.load(employeeDto.getPostId()));
+        employee.setDepartment(departmentsService.load(employeeDto.getDepartmentId()));
 
         return save(employee);
     }
