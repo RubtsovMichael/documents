@@ -38,6 +38,9 @@ public class DataGeneratorImpl implements DataGenerator {
     @Autowired
     CasesRepository casesRepository;
 
+    @Autowired
+    DocumentsRepository documentsRepository;
+
     private Post director;
     private Post mainEngineer;
     private Post mainAccountant;
@@ -56,6 +59,24 @@ public class DataGeneratorImpl implements DataGenerator {
         addDepartments();
         addCorrespondents();
         addEmployees();
+        addDocuments();
+    }
+
+    private void addDocuments() {
+        Document doc = new Document();
+        doc.setNumber("NN111");
+        doc.setDescription("первый\nдокумент");
+        documentsRepository.saveAndFlush(doc);
+
+        doc = new Document();
+        doc.setNumber("NN112");
+        doc.setDescription("второй\nдокумент");
+        documentsRepository.saveAndFlush(doc);
+
+        doc = new Document();
+        doc.setNumber("NN113");
+        doc.setDescription("третий\nдокумент");
+        documentsRepository.saveAndFlush(doc);
     }
 
     private void addPosts() {

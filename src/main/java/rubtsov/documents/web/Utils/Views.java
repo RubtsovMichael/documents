@@ -20,6 +20,8 @@ public interface Views {
     public String PERSON_FORM = "/person_form";
     public String EMPLOYEES = "/employees";
     public String EMPLOYEE_FORM = "/employee_form";
+    public String DOCUMENTS = "/documents";
+    public String DOCUMENT_FORM = "/document_form";
 
 
 }

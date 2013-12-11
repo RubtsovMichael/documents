@@ -4,5 +4,6 @@
         <tr><td><a href="#springUrl("/posts")">Должности</a></td></tr>
         <tr><td><a href="#springUrl("/case_folders")">Дела</a></td></tr>
         <tr><td><a href="#springUrl("/persons")">Физлица</a></td></tr>
+        <tr><td><a href="#springUrl("/documents")">Документы</a></td></tr>
     </table>
 </div>

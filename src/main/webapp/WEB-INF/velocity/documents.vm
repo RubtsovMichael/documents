@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #include("common/styles_import.txt")
+    <title>Документы</title>
+</head>
+<body>
+    #parse("common/navigation.vm")
+
+<div class="float-left">
+    <h3>Документы</h3>
+
+    <table class="list">
+        <tr>
+            <th>Номер</th>
+            <th>Описание</th>
+        </tr>
+        #foreach ($doc in $docs)
+            <tr>
+                <td><a href="#springUrl("/documents/$doc.documentId")">$doc.number [$doc.documentId]</a></td>
+                <td>$doc.description</td>
+            </tr>
+        #end
+    </table>
+</div>
+</body>
+</html>
