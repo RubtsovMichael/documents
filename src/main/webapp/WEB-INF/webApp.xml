@@ -8,6 +8,9 @@
 
     <context:component-scan base-package="rubtsov.documents.web" />
 
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
         <property name="velocityProperties">

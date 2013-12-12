@@ -5,12 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import rubtsov.documents.data.model.dto.DocumentDto;
+import rubtsov.documents.data.model.dto.FileDto;
 import rubtsov.documents.service.DocumentsService;
 import rubtsov.documents.web.Utils.Views;
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,6 +56,7 @@ public class DocumentsController {
         }
 
         model.put("docCommand", documentDto);
+        model.put("fileCommand", new FileDto());
 
         return Views.DOCUMENT_FORM;
     }
@@ -70,6 +75,44 @@ public class DocumentsController {
         return "redirect:" + Views.DOCUMENTS;
     }
 
+
+    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/fileUpload")
+    public String fileUploaded(
+            @ModelAttribute("fileCommand") FileDto fileCommand,
+            BindingResult result) {
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+
+        MultipartFile file = fileCommand.getFile();
+//        fileValidator.validate(uploadedFile, result);
+
+        String fileName = file.getOriginalFilename();
+
+        if (result.hasErrors()) {
+            return Views.DOCUMENTS;
+        }
+
+        try {
+            inputStream = file.getInputStream();
+
+            File newFile = new File("/home/mrubtsov/projects/java/" + fileName);
+            if (!newFile.exists()) {
+                newFile.createNewFile();
+            }
+            outputStream = new FileOutputStream(newFile);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return "redirect:" + Views.DOCUMENTS;
+    }
 
 }
 

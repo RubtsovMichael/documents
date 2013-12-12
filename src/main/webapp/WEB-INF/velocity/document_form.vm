@@ -19,5 +19,24 @@
         #include("common/edit_form_submit.txt")
     </table>
 </form>
+
+<form method="post" enctype="multipart/form-data" action="/documents/documents/fileUpload">
+    <table>
+        <tr>
+            <td>Upload File:&nbsp;</td>
+            <td>
+                #springBind("fileCommand.file")
+                <input type="file" id="${status.expression}" name="${status.expression}" value="$!status.value" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="Upload" />
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
