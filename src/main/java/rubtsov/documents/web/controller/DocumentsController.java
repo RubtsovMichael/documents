@@ -1,5 +1,6 @@
 package rubtsov.documents.web.controller;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -15,8 +16,13 @@ import rubtsov.documents.service.DocumentsService;
 import rubtsov.documents.web.Utils.Views;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static java.nio.file.StandardCopyOption.*;
 
 /**
  * Created by mike on 11.12.13.
@@ -76,42 +82,64 @@ public class DocumentsController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/fileUpload")
-    public String fileUploaded(
-            @ModelAttribute("fileCommand") FileDto fileCommand,
-            BindingResult result) {
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-
+    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/fileUpload")
+    public String fileUploaded(@ModelAttribute("fileCommand") FileDto fileCommand,
+                               @PathVariable Long docId, BindingResult result) {
         MultipartFile file = fileCommand.getFile();
 //        fileValidator.validate(uploadedFile, result);
-
-        String fileName = file.getOriginalFilename();
 
         if (result.hasErrors()) {
             return Views.DOCUMENTS;
         }
 
+        String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+
         try {
-            inputStream = file.getInputStream();
-
-            File newFile = new File("/home/mrubtsov/projects/java/" + fileName);
-            if (!newFile.exists()) {
-                newFile.createNewFile();
-            }
-            outputStream = new FileOutputStream(newFile);
-            int read = 0;
-            byte[] bytes = new byte[1024];
-
-            while ((read = inputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
-            }
+            writeFile(file.getInputStream(), Files.newOutputStream(createFile(docId, extension)));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return "redirect:" + Views.DOCUMENTS;
+    }
+
+    private Path createFile(Long docId, String extension) throws IOException {
+        String folderPath = File.separator + "home" +
+                File.separator + "mrubtsov" +
+                File.separator + "projects" +
+                File.separator + "java" +
+                File.separator + "docimages" +
+                File.separator + docId;
+
+        String filePath = folderPath +
+                File.separator + "image." + extension;
+
+        Path file = Paths.get(filePath);
+
+        Path folder = Paths.get(folderPath);
+        if (!Files.exists(folder)) {
+            Files.createDirectories(folder);
+        } else {
+            if (Files.exists(file)) {
+                String targetPath = folderPath + File.separator + new Date().getTime() + '.' + extension;
+                Files.move(file, Paths.get(targetPath), REPLACE_EXISTING, ATOMIC_MOVE);
+            }
+        }
+
+        return Files.createFile(file);
+    }
+
+    private void writeFile(InputStream inputStream, OutputStream outputStream) throws IOException {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+        int read;
+        byte[] bytes = new byte[1024];
+
+        while ((read = bufferedInputStream.read(bytes)) != -1) {
+            bufferedOutputStream.write(bytes, 0, read);
+        }
+        bufferedOutputStream.flush();
     }
 
 }
