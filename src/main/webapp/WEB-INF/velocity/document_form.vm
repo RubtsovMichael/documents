@@ -9,8 +9,8 @@
     #springFormHiddenInput("docCommand.documentId" "")
     <table border="0">
         <tr>
-            <td>Номер:</td>
-            <td>#springFormInput("docCommand.number" "")</td>
+            <td>Регистрационный номер:</td>
+            <td>#springFormInput("docCommand.innerNumber" "")</td>
         </tr>
         <tr>
             <td>Описание:</td>

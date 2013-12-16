@@ -1,6 +1,9 @@
 package rubtsov.documents.data.model.dto;
 
 import rubtsov.documents.data.model.entity.Document;
+import rubtsov.documents.data.model.entity.DocumentType;
+
+import java.util.Date;
 
 /**
  * Created by mike on 11.12.13.
@@ -9,9 +12,27 @@ public class DocumentDto {
 
     private Long documentId;
 
-    private String number;
+    private DocumentType docType;
+
+    private String outerNumber;
+
+    private String innerNumber;
+
+    private Date innerDate;
+
+    private Date outerDate;
 
     private String description;
+
+    private CorrespondentDto correspondent;
+
+    private Long correspondentId;
+
+    private PersonDto author;
+
+    private Long authorId;
+
+    private String outerAuthor;
 
     public Long getDocumentId() {
         return documentId;
@@ -21,12 +42,44 @@ public class DocumentDto {
         this.documentId = documentId;
     }
 
-    public String getNumber() {
-        return number;
+    public DocumentType getDocType() {
+        return docType;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setDocType(DocumentType docType) {
+        this.docType = docType;
+    }
+
+    public String getOuterNumber() {
+        return outerNumber;
+    }
+
+    public void setOuterNumber(String outerNumber) {
+        this.outerNumber = outerNumber;
+    }
+
+    public String getInnerNumber() {
+        return innerNumber;
+    }
+
+    public void setInnerNumber(String innerNumber) {
+        this.innerNumber = innerNumber;
+    }
+
+    public Date getInnerDate() {
+        return innerDate;
+    }
+
+    public void setInnerDate(Date innerDate) {
+        this.innerDate = innerDate;
+    }
+
+    public Date getOuterDate() {
+        return outerDate;
+    }
+
+    public void setOuterDate(Date outerDate) {
+        this.outerDate = outerDate;
     }
 
     public String getDescription() {
@@ -37,17 +90,68 @@ public class DocumentDto {
         this.description = description;
     }
 
+    public CorrespondentDto getCorrespondent() {
+        return correspondent;
+    }
+
+    public void setCorrespondent(CorrespondentDto correspondent) {
+        this.correspondent = correspondent;
+    }
+
+    public Long getCorrespondentId() {
+        return correspondentId;
+    }
+
+    public void setCorrespondentId(Long correspondentId) {
+        this.correspondentId = correspondentId;
+    }
+
+    public PersonDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(PersonDto author) {
+        this.author = author;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getOuterAuthor() {
+        return outerAuthor;
+    }
+
+    public void setOuterAuthor(String outerAuthor) {
+        this.outerAuthor = outerAuthor;
+    }
+
     public DocumentDto() {
     }
 
     public DocumentDto(Document document) {
         documentId = document.getDocumentId();
-        number = document.getNumber();
+        docType = document.getDocType();
+        innerNumber = document.getInnerNumber();
+        outerNumber = document.getOuterNumber();
+        innerDate = document.getInnerDate();
+        outerDate = document.getOuterDate();
         description = document.getDescription();
+        outerAuthor = document.getOuterAuthor();
+
+        author = new PersonDto(document.getAuthor());
+        authorId = document.getAuthor().getPersonId();
+        correspondent = new CorrespondentDto(document.getCorrespondent());
+        correspondentId = document.getCorrespondent().getCorrespondentId();
+
     }
 
     @Override
     public String toString() {
-        return number;
+        return innerNumber;
     }
 }

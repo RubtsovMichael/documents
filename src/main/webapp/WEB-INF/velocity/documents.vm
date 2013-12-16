@@ -17,7 +17,7 @@
         </tr>
         #foreach ($doc in $docs)
             <tr>
-                <td><a href="#springUrl("/documents/$doc.documentId")">$doc.number [$doc.documentId]</a></td>
+                <td><a href="#springUrl("/documents/$doc.documentId")">$doc.innerNumber [$doc.documentId]</a></td>
                 <td>$doc.description</td>
             </tr>
         #end
