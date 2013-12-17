@@ -143,10 +143,14 @@ public class DocumentDto {
         description = document.getDescription();
         outerAuthor = document.getOuterAuthor();
 
-        author = new PersonDto(document.getAuthor());
-        authorId = document.getAuthor().getPersonId();
-        correspondent = new CorrespondentDto(document.getCorrespondent());
-        correspondentId = document.getCorrespondent().getCorrespondentId();
+        if (document.getAuthor() != null) {
+            author = new PersonDto(document.getAuthor());
+            authorId = document.getAuthor().getPersonId();
+        }
+        if (document.getCorrespondent() != null) {
+            correspondent = new CorrespondentDto(document.getCorrespondent());
+            correspondentId = document.getCorrespondent().getCorrespondentId();
+        }
 
     }
 

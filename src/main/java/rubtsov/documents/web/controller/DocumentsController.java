@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import rubtsov.documents.data.model.dto.DocumentDto;
 import rubtsov.documents.data.model.dto.FileDto;
 import rubtsov.documents.service.DocumentsService;
+import rubtsov.documents.web.Utils.Preferences;
 import rubtsov.documents.web.Utils.Views;
 
 import java.io.*;
@@ -35,6 +36,9 @@ public class DocumentsController {
 
     @Autowired
     DocumentsService documentsService;
+
+    @Autowired
+    Preferences preferences;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -105,12 +109,7 @@ public class DocumentsController {
     }
 
     private Path createFile(Long docId, String extension) throws IOException {
-        String folderPath = File.separator + "home" +
-                File.separator + "mrubtsov" +
-                File.separator + "projects" +
-                File.separator + "java" +
-                File.separator + "docimages" +
-                File.separator + docId;
+        String folderPath = preferences.getImagesFolder() + docId;
 
         String filePath = folderPath +
                 File.separator + "image." + extension;

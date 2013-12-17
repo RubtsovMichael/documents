@@ -63,19 +63,25 @@ public class DataGeneratorImpl implements DataGenerator {
     }
 
     private void addDocuments() {
+        addDocument(DocumentType.INCOMING, "NN111", "ФППЫПВ", new Date(), new Date(), "первый\nдокумент", null, null, "Иванов");
+        addDocument(DocumentType.INCOMING, "NN112", "фывлоыжфл", new Date(), new Date(), "второй\nдокумент", null, null, "Петров");
+        addDocument(DocumentType.OUTGOING, "NN113", null, new Date(), new Date(), "третий\nдокумент", null, null, null);
+    }
+
+    private void addDocument(DocumentType docType, String innerNumber, String outerNumber,
+            Date innerDate, Date outerDate, String description, Correspondent correspondent,
+            Person author, String outerAuthor) {
         Document doc = new Document();
-        doc.setInnerNumber("NN111");
-        doc.setDescription("первый\nдокумент");
-        documentsRepository.saveAndFlush(doc);
+        doc.setDocType(docType);
 
-        doc = new Document();
-        doc.setInnerNumber("NN112");
-        doc.setDescription("второй\nдокумент");
-        documentsRepository.saveAndFlush(doc);
+        doc.setInnerNumber(innerNumber);
+        doc.setOuterNumber(outerNumber);
 
-        doc = new Document();
-        doc.setInnerNumber("NN113");
-        doc.setDescription("третий\nдокумент");
+        doc.setInnerDate(innerDate);
+        doc.setOuterDate(outerDate);
+
+        doc.setOuterAuthor(outerAuthor);
+        doc.setDescription(description);
         documentsRepository.saveAndFlush(doc);
     }
 

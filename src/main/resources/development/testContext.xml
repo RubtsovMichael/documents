@@ -14,7 +14,9 @@
 
     <import resource="classpath:META-INF/database.xml"/>
 
-    <context:component-scan base-package="rubtsov.documents"/>
+    <context:component-scan base-package="rubtsov.documents.data"/>
+
+    <context:component-scan base-package="rubtsov.documents.service"/>
 
 
 </beans>
