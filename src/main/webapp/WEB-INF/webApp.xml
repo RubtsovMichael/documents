@@ -33,4 +33,8 @@
         <property name="exposeSpringMacroHelpers" value="true"/>
         <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity/toolbox.xml" />-->
     </bean>
+
+    <!--<mvc:interceptors>-->
+        <!--<bean class="rubtsov.documents.web.Utils.UtilityAddingInterceptor" autowire="constructor" />-->
+    <!--</mvc:interceptors>-->
 </beans>

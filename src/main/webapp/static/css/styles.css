@@ -1,3 +1,5 @@
+*{font-family:Verdana;}
+
 a:link {
     color:#326ca6;
 }
@@ -16,6 +18,10 @@ div.float-left {
 
 table.list {
     border-collapse:collapse;
+}
+
+table.menu {
+    font-size: 20px;
 }
 
 .list td, th {
