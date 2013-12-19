@@ -20,23 +20,8 @@
     </table>
 </form>
 
-<form method="post" enctype="multipart/form-data" action="/documents/documents/$docCommand.documentId/fileUpload">
-    <table>
-        <tr>
-            <td>Upload File:&nbsp;</td>
-            <td>
-                #springBind("fileCommand.file")
-                <input type="file" id="${status.expression}" name="${status.expression}" value="$!status.value" />
-
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <input type="submit" value="Upload" />
-            </td>
-        </tr>
-    </table>
+<form method="get" enctype="multipart/form-data" action="/documents/documents/$docCommand.documentId/fileUpload">
+    <input type="submit" value="Загрузить изображение" />
 </form>
 </body>
 </html>

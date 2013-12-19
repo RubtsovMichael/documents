@@ -1,8 +1,8 @@
-package rubtsov.documents.web.Utils;
+package rubtsov.documents.web.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import rubtsov.documents.utils.Preferences;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package rubtsov.documents.web.Utils;
+package rubtsov.documents.utils;
 
 /**
  * Created by mrubtsov on 17.12.13.

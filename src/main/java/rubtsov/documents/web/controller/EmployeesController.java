@@ -13,7 +13,7 @@ import rubtsov.documents.service.DepartmentsService;
 import rubtsov.documents.service.EmployeesService;
 import rubtsov.documents.service.PersonsService;
 import rubtsov.documents.service.PostsService;
-import rubtsov.documents.web.Utils.Views;
+import rubtsov.documents.web.utils.Views;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

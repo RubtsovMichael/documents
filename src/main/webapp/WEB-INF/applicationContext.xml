@@ -13,4 +13,8 @@
 
     <context:component-scan base-package="rubtsov.documents.service"/>
 
+    <bean id="preferences" class="rubtsov.documents.utils.Preferences">
+        <property name="imagesFolder" value="/home/mrubtsov/projects/java/docimages/" />
+    </bean>
+
 </beans>

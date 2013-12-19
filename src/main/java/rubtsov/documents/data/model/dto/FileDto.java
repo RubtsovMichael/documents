@@ -9,11 +9,21 @@ public class FileDto {
 
     private MultipartFile file;
 
+    private DocumentDto document;
+
     public MultipartFile getFile() {
         return file;
     }
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public DocumentDto getDocument() {
+        return document;
+    }
+
+    public void setDocument(DocumentDto document) {
+        this.document = document;
     }
 }

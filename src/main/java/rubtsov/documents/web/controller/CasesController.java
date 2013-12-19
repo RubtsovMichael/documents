@@ -13,7 +13,7 @@ import rubtsov.documents.data.model.dto.CaseFolderDto;
 import rubtsov.documents.data.model.dto.CorrespondentDto;
 import rubtsov.documents.service.CasesService;
 import rubtsov.documents.service.CorrespondentsService;
-import rubtsov.documents.web.Utils.Views;
+import rubtsov.documents.web.utils.Views;
 
 /**
  * Created by mike on 25.10.13.

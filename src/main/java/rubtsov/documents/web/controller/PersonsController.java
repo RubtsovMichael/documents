@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rubtsov.documents.data.model.dto.PersonDto;
 import rubtsov.documents.service.PersonsService;
-import rubtsov.documents.web.Utils.Views;
+import rubtsov.documents.web.utils.Views;
 
 /**
  * Created by mrubtsov on 10.12.13.

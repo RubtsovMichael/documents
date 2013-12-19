@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import rubtsov.documents.data.model.entity.Department;
 import rubtsov.documents.service.DepartmentsService;
-import rubtsov.documents.web.Utils.Views;
+import rubtsov.documents.web.utils.Views;
 import rubtsov.documents.data.model.dto.DepartmentDto;
 
 /**

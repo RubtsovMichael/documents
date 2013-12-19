@@ -1,4 +1,4 @@
-package rubtsov.documents.web.Utils;
+package rubtsov.documents.web.utils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +22,6 @@ public interface Views {
     public String EMPLOYEE_FORM = "/employee_form";
     public String DOCUMENTS = "/documents";
     public String DOCUMENT_FORM = "/document_form";
-
+    public String FILE_UPLOAD_FORM = "/file_upload_form";
 
 }

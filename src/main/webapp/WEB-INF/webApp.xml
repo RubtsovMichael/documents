@@ -21,10 +21,6 @@
         </property>
     </bean>
 
-    <bean id="preferences" class="rubtsov.documents.web.Utils.Preferences">
-        <property name="imagesFolder" value="/home/mrubtsov/projects/java/docimages/" />
-    </bean>
-
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="cache" value="true"/>
         <property name="prefix" value=""/>
@@ -34,7 +30,9 @@
         <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity/toolbox.xml" />-->
     </bean>
 
+    <bean id="fileValidator" class="rubtsov.documents.validator.FileValidator" />
+
     <!--<mvc:interceptors>-->
-        <!--<bean class="rubtsov.documents.web.Utils.UtilityAddingInterceptor" autowire="constructor" />-->
+        <!--<bean class="rubtsov.documents.web.utils.UtilityAddingInterceptor" autowire="constructor" />-->
     <!--</mvc:interceptors>-->
 </beans>
