@@ -7,9 +7,9 @@
 <body>
     #parse("common/navigation.vm")
 
-<div class="float-left">
-    <h3>Документы</h3>
-
+<div class="contentwrap">
+    Документы
+    <br>
     <table class="list">
         <tr>
             <th>Номер</th>

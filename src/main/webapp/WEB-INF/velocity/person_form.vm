@@ -5,23 +5,27 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST">
-    #springFormHiddenInput("personCommand.personId" "")
-    <table border="0">
-        <tr>
-            <td>Фамилия:</td>
-            <td>#springFormInput("personCommand.lastName" "")</td>
-        </tr>
-        <tr>
-            <td>Имя:</td>
-            <td>#springFormInput("personCommand.firstName" "")</td>
-        </tr>
-        <tr>
-            <td>Отчество:</td>
-            <td>#springFormInput("personCommand.patronimicName" "")</td>
-        </tr>
-        #include("common/edit_form_submit.txt")
-    </table>
-</form>
+    #parse("common/navigation.vm")
+
+    <div class="contentwrap">
+        <form method="POST">
+            #springFormHiddenInput("personCommand.personId" "")
+            <table border="0">
+                <tr>
+                    <td>Фамилия:</td>
+                    <td>#springFormInput("personCommand.lastName" "")</td>
+                </tr>
+                <tr>
+                    <td>Имя:</td>
+                    <td>#springFormInput("personCommand.firstName" "")</td>
+                </tr>
+                <tr>
+                    <td>Отчество:</td>
+                    <td>#springFormInput("personCommand.patronimicName" "")</td>
+                </tr>
+                #include("common/edit_form_submit.txt")
+            </table>
+        </form>
+    </div>
 </body>
 </html>

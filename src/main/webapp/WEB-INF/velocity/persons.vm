@@ -7,11 +7,13 @@
 <body>
     #parse("common/navigation.vm")
 
-<div class="float-left">
-    <h3>Физические лица</h3>
-    <img src="/documents/static/images/persons64.png" alt="Физические лица">
+<div class="contentwrap">
+    Физические лица
     <br/>
-    <a href="#springUrl("/persons/-1")">Создать новое</a>
+    <img src="/documents/static/images/persons64.png" alt="Физические лица">
+    <form method="get" action="/documents/persons/-1">
+        <input type="submit" value="Добавить"/>
+    </form>
     <table class="list">
         #foreach ($person in $persons)
             <tr>

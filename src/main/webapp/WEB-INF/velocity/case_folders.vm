@@ -7,9 +7,9 @@
 <body>
     #parse("common/navigation.vm")
 
-    <div class="float-left">
-        <h3>Дела</h3>
-
+    <div class="contentwrap">
+        Дела
+        <br>
         <a href="#springUrl("/case_folders/-1")">Добавить дело</a>
         <table class="list">
             <tr>

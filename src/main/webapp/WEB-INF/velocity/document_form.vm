@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Документ [$docCommand.documentId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST">
-    #springFormHiddenInput("docCommand.documentId" "")
-    <table border="0">
-        <tr>
-            <td>Регистрационный номер:</td>
-            <td>#springFormInput("docCommand.innerNumber" "")</td>
-        </tr>
-        <tr>
-            <td>Описание:</td>
-            <td>#springFormTextarea("docCommand.description" "")</td>
-        </tr>
-        #include("common/edit_form_submit.txt")
-    </table>
-</form>
+    #parse("common/navigation.vm")
 
-<form method="get" enctype="multipart/form-data" action="/documents/documents/$docCommand.documentId/fileUpload">
-    <input type="submit" value="Загрузить изображение" />
-</form>
+    <div class="contentwrap">
+        <form method="POST">
+            #springFormHiddenInput("docCommand.documentId" "")
+            <table border="0">
+                <tr>
+                    <td>Регистрационный номер:</td>
+                    <td>#springFormInput("docCommand.innerNumber" "")</td>
+                </tr>
+                <tr>
+                    <td>Описание:</td>
+                    <td>#springFormTextarea("docCommand.description" "")</td>
+                </tr>
+                #include("common/edit_form_submit.txt")
+            </table>
+        </form>
+
+        #if ($docCommand.documentId != -1)
+
+            <div class="hdivider">
+            </div>
+
+            <form method="get" action="/documents/documents/$docCommand.documentId/fileUpload">
+                <input type="submit" value="Загрузить изображение" />
+            </form>
+        #end
+    </div>
 </body>
 </html>

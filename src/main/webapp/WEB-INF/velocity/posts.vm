@@ -7,9 +7,9 @@
 <body>
     #parse("common/navigation.vm")
 
-    <div class="float-left">
-        <h3>Должности</h3>
-
+    <div class="contentwrap">
+        Должности
+        <br>
         <a href="#springUrl("/posts/-1")">Создать новую</a>
         <table class="list">
             <tr>

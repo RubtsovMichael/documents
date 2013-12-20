@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Должность [$caseCommand.caseId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST">
-    #springFormHiddenInput("caseCommand.caseId" "")
-    <table border="0">
-        <tr>
-            <td>Код:</td>
-            <td>#springFormInput("caseCommand.code" "")</td>
-        </tr>
-        <tr>
-            <td>Наименование:</td>
-            <td>#springFormInput("caseCommand.name" "")</td>
-        </tr>
-        <tr>
-            <td>Описание:</td>
-            <td>#springFormInput("caseCommand.description" "")</td>
-        </tr>
-        #include("common/edit_form_submit.txt")
-    </table>
-</form>
+    #parse("common/navigation.vm")
+
+    <div class="contentwrap">
+        <form method="POST">
+            #springFormHiddenInput("caseCommand.caseId" "")
+            <table border="0">
+                <tr>
+                    <td>Код:</td>
+                    <td>#springFormInput("caseCommand.code" "")</td>
+                </tr>
+                <tr>
+                    <td>Наименование:</td>
+                    <td>#springFormInput("caseCommand.name" "")</td>
+                </tr>
+                <tr>
+                    <td>Описание:</td>
+                    <td>#springFormInput("caseCommand.description" "")</td>
+                </tr>
+                #include("common/edit_form_submit.txt")
+            </table>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,4 +1,12 @@
-*{font-family:Verdana;}
+body {
+    font-family: Verdana, Arial;
+    height: 100%;
+    margin-top: 0px;
+}
+
+html {
+    height: 100%;
+}
 
 a:link {
     color:#326ca6;
@@ -12,8 +20,23 @@ a:hover {
     color:#326ca6;
 }
 
-div.float-left {
+div.menuwrap {
     float: left;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    width: 200px;
+}
+
+div.contentwrap {
+    padding-left: 5px;
+    height: 100%;
+    margin-left: 200px;
+}
+
+div.hdivider {
+    margin-top: 3px;
+    padding-top: 3px;
+    border-top: 1px solid #ddd;
 }
 
 table.list {
@@ -21,9 +44,25 @@ table.list {
 }
 
 table.menu {
+    width: 200px;
     font-size: 20px;
 }
 
 .list td, th {
     border:1px solid #ddd;
 }
+
+th {
+    background-color: #F0F0F0;
+}
+
+.menu a{
+    display: block;
+    background-color: inherit;
+}
+
+.menu a:hover{
+    display: block;
+    background-color: #F0F0F0;
+}
+

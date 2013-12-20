@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Должность [$postCommand.postId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST">
-    #springFormHiddenInput("postCommand.postId" "")
-    <table border="0">
-        <tr>
-            <td>Короткое наименование:</td>
-            <td>#springFormInput("postCommand.displayName" "")</td>
-        </tr>
-        <tr>
-            <td>Полное наименование:</td>
-            <td>#springFormInput("postCommand.fullName" "")</td>
-        </tr>
-        #include("common/edit_form_submit.txt")
-    </table>
-</form>
+    #parse("common/navigation.vm")
+
+    <div class="contentwrap">
+        <form method="POST">
+            #springFormHiddenInput("postCommand.postId" "")
+            <table border="0">
+                <tr>
+                    <td>Короткое наименование:</td>
+                    <td>#springFormInput("postCommand.displayName" "")</td>
+                </tr>
+                <tr>
+                    <td>Полное наименование:</td>
+                    <td>#springFormInput("postCommand.fullName" "")</td>
+                </tr>
+                #include("common/edit_form_submit.txt")
+            </table>
+        </form>
+    </div>
 </body>
 </html>

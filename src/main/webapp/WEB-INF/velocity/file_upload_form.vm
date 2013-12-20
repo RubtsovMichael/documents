@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Загрузка изображения для документа [$fileCommand.document.documentId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="post" enctype="multipart/form-data" action="/documents/documents/$fileCommand.document.documentId/fileUpload">
-    #springFormHiddenInput("fileCommand.document.documentId" "")
-    <table>
-        <tr>
-            <td>Выберите файл:&nbsp;</td>
-            <td>
-                #springBind("fileCommand.file")
-                <input type="file" id="${status.expression}" name="${status.expression}" value="$!status.value" />
-                #springShowErrors("<br>" "")<br>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <input type="submit" value="Загрузить файл" />
-            </td>
-        </tr>
-    </table>
-</form>
+    #parse("common/navigation.vm")
+
+    <div class="contentwrap">
+        Загрузка изображения для документа [$fileCommand.document.innerNumber]
+        <form method="post" enctype="multipart/form-data" action="/documents/documents/$fileCommand.document.documentId/fileUpload">
+            #springFormHiddenInput("fileCommand.document.documentId" "")
+            #springFormHiddenInput("fileCommand.document.innerNumber" "")
+            <table>
+                <tr>
+                    <td>Выберите файл:&nbsp;</td>
+                    <td>
+                        #springBind("fileCommand.file")
+                        <input type="file" id="${status.expression}" name="${status.expression}" value="$!status.value" />
+                        #springShowErrors("<br>" "")<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="submit" value="Загрузить файл" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Сотрудник [$employeeCommand.employeeId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<form method="POST">
-    #springFormHiddenInput("employeeCommand.employeeId" "")
-    #springFormHiddenInput("employeeCommand.department.departmentId" "")
-    #springFormHiddenInput("employeeCommand.post.postId" "")
-    #springFormHiddenInput("employeeCommand.person.personId" "")
-    <table border="0">
-        <tr>
-            <td>Подразделение:</td>
-            <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
-        </tr>
-        <tr>
-            <td>Должность:</td>
-            <td>#springFormSingleSelect("employeeCommand.postId" $posts '')</td>
-        </tr>
-        <tr>
-            <td>Физлицо:</td>
-            <td>#springFormSingleSelect("employeeCommand.personId" $persons '')</td>
-        </tr>
-        <tr>
-            <td>Дата назначения на должность:</td>
-            <td>#springFormInput("employeeCommand.dateBegin" '')</td>
-        </tr>
-        <tr>
-            <td>Дата снятия с должности :</td>
-            <td>#springFormInput("employeeCommand.dateEnd" "")</td>
-        </tr>
-        #include("common/edit_form_submit.txt")
-    </table>
-</form>
+    #parse("common/navigation.vm")
+
+    <div class="contentwrap">
+
+        <form method="POST">
+            #springFormHiddenInput("employeeCommand.employeeId" "")
+            #springFormHiddenInput("employeeCommand.department.departmentId" "")
+            #springFormHiddenInput("employeeCommand.post.postId" "")
+            #springFormHiddenInput("employeeCommand.person.personId" "")
+            <table border="0">
+                <tr>
+                    <td>Подразделение:</td>
+                    <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+                </tr>
+                <tr>
+                    <td>Должность:</td>
+                    <td>#springFormSingleSelect("employeeCommand.postId" $posts '')</td>
+                </tr>
+                <tr>
+                    <td>Физлицо:</td>
+                    <td>#springFormSingleSelect("employeeCommand.personId" $persons '')</td>
+                </tr>
+                <tr>
+                    <td>Дата назначения на должность:</td>
+                    <td>#springFormInput("employeeCommand.dateBegin" '')</td>
+                </tr>
+                <tr>
+                    <td>Дата снятия с должности :</td>
+                    <td>#springFormInput("employeeCommand.dateEnd" "")</td>
+                </tr>
+                #include("common/edit_form_submit.txt")
+            </table>
+        </form>
+    </div>
 </body>
 </html>

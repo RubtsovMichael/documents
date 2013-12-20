@@ -7,10 +7,11 @@
 <body>
     #parse("common/navigation.vm")
 
-    <div class="float-left">
-        <h3>Подразделения</h3>
-
-        <a href="#springUrl("/departments/-1")">Создать новое</a>
+    <div class="contentwrap">
+        Подразделения
+        <form method="get" action="/documents/departments/-1">
+            <input type="submit" value="Добавить"/>
+        </form>
         <table class="list">
         #foreach ($department in $departments)
             <tr>
