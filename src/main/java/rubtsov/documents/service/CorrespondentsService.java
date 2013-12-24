@@ -4,6 +4,7 @@ import rubtsov.documents.data.model.dto.CorrespondentDto;
 import rubtsov.documents.data.model.entity.Correspondent;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +13,10 @@ import java.util.List;
  * Time: 15:33
  */
 public interface CorrespondentsService {
+
+    List<Correspondent> getByCaseFolderId(Long caseId);
+
+    Map<Long, CorrespondentDto> getAsMapByCaseFolderId(Long caseId);
 
     List<Correspondent> getAllCorrespondents();
 

@@ -69,4 +69,9 @@ public class CaseFolderDto {
         description = caseFolder.getDescription();
         code = caseFolder.getCode();
     }
+
+    @Override
+    public String toString() {
+        return code + " " + name ;
+    }
 }

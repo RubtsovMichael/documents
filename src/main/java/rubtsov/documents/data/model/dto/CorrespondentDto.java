@@ -59,4 +59,9 @@ public class CorrespondentDto {
         fullName = correspondent.getFullName();
         caseFolder = new CaseFolderDto(correspondent.getCaseFolder());
     }
+
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }

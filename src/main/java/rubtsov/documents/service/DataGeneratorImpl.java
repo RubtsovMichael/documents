@@ -165,16 +165,16 @@ public class DataGeneratorImpl implements DataGenerator {
     private void addCorrespondents() {
         CaseFolder caseFolder = casesRepository.saveAndFlush(new CaseFolder("01", "дело1", ""));
 
-        correspondentsRepository.saveAndFlush(new Correspondent("засядько", "шахта им. Засядько", caseFolder));
-        correspondentsRepository.saveAndFlush(new Correspondent("минугля", "министерство угольной промышленности", caseFolder));
+        correspondentsRepository.save(new Correspondent("засядько", "шахта им. Засядько", caseFolder));
+        correspondentsRepository.save(new Correspondent("минугля", "министерство угольной промышленности", caseFolder));
 
         caseFolder = casesRepository.saveAndFlush(new CaseFolder("02", "дело2", ""));
-        correspondentsRepository.saveAndFlush(new Correspondent("облсовет", "донецкий областной совет", caseFolder));
-        correspondentsRepository.saveAndFlush(new Correspondent("экон", "экон", caseFolder));
-        correspondentsRepository.saveAndFlush(new Correspondent("епам", "епам", caseFolder));
+        correspondentsRepository.save(new Correspondent("облсовет", "донецкий областной совет", caseFolder));
+        correspondentsRepository.save(new Correspondent("экон", "экон", caseFolder));
+        correspondentsRepository.save(new Correspondent("епам", "епам", caseFolder));
 
         caseFolder = casesRepository.saveAndFlush(new CaseFolder("03", "дело3", ""));
-        correspondentsRepository.saveAndFlush(new Correspondent("макеевуголь", "макеевуголь", caseFolder));
+        correspondentsRepository.save(new Correspondent("макеевуголь", "макеевуголь", caseFolder));
     }
 
 }

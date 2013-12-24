@@ -7,7 +7,9 @@ import rubtsov.documents.data.model.entity.Correspondent;
 import rubtsov.documents.data.repository.CorrespondentsRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,8 +27,22 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
     private CasesService casesService;
 
     @Override
+    public List<Correspondent> getByCaseFolderId(Long caseId) {
+        return correspondentsRepository.getByCaseFolderId(caseId);
+    }
+
+    @Override
+    public Map<Long, CorrespondentDto> getAsMapByCaseFolderId(Long caseId) {
+        HashMap<Long, CorrespondentDto> corrs = new HashMap<>();
+        for (Correspondent correspondent : getByCaseFolderId(caseId)) {
+            corrs.put(correspondent.getCorrespondentId(), new CorrespondentDto(correspondent));
+        }
+        return corrs;
+    }
+
+    @Override
     public List<Correspondent> getAllCorrespondents() {
-        return correspondentsRepository.findAll();
+        return null;//correspondentsRepository.findAll();
     }
 
     @Override
@@ -36,7 +52,7 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
 
     @Override
     public Correspondent save(Correspondent correspondent) {
-        return correspondentsRepository.saveAndFlush(correspondent);
+        return correspondentsRepository.save(correspondent);
     }
 
     @Override

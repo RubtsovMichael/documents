@@ -9,7 +9,9 @@ import rubtsov.documents.data.model.entity.Correspondent;
 import rubtsov.documents.data.repository.CasesRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mike on 25.10.13.
@@ -91,5 +93,14 @@ public class CasesServiceImpl implements CasesService {
         }
 
         return entityToDto(caseFolder);
+    }
+
+    @Override
+    public Map<Long, CaseFolderDto> getCasesAsMap() {
+        HashMap<Long, CaseFolderDto> cases = new HashMap<>();
+        for (CaseFolderDto caseFolderDto : getAllCaseFoldersDtos()) {
+            cases.put(caseFolderDto.getCaseId(), caseFolderDto);
+        }
+        return cases;
     }
 }

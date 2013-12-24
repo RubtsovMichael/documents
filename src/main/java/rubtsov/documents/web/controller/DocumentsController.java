@@ -9,6 +9,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import rubtsov.documents.data.model.dto.DocumentDto;
 import rubtsov.documents.data.model.dto.FileDto;
+import rubtsov.documents.service.CasesService;
+import rubtsov.documents.service.CorrespondentsService;
 import rubtsov.documents.service.DocumentsService;
 import rubtsov.documents.web.utils.Views;
 
@@ -26,6 +28,12 @@ public class DocumentsController {
 
     @Autowired
     DocumentsService documentsService;
+
+    @Autowired
+    CasesService casesService;
+
+    @Autowired
+    CorrespondentsService correspondentsService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -53,7 +61,8 @@ public class DocumentsController {
         }
 
         model.put("docCommand", documentDto);
-        model.put("fileCommand", new FileDto());
+        model.put("caseFolders", casesService.getCasesAsMap());
+        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(documentDto.getCaseId()));
 
         return Views.DOCUMENT_FORM;
     }

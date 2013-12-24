@@ -34,6 +34,8 @@ public class DocumentDto {
 
     private String outerAuthor;
 
+    private Long caseId;
+
     public Long getDocumentId() {
         return documentId;
     }
@@ -130,6 +132,14 @@ public class DocumentDto {
         this.outerAuthor = outerAuthor;
     }
 
+    public Long getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
+    }
+
     public DocumentDto() {
     }
 
@@ -150,6 +160,7 @@ public class DocumentDto {
         if (document.getCorrespondent() != null) {
             correspondent = new CorrespondentDto(document.getCorrespondent());
             correspondentId = document.getCorrespondent().getCorrespondentId();
+            caseId = document.getCorrespondent().getCaseFolder().getCaseId();
         }
 
     }
