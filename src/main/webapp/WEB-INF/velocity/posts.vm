@@ -10,7 +10,10 @@
     <div class="contentwrap">
         Должности
         <br>
-        <a href="#springUrl("/posts/-1")">Создать новую</a>
+        <img src="/documents/static/images/posts64.png" alt="Должности">
+        <form method="get" action="/documents/posts/-1">
+            <input type="submit" value="Добавить"/>
+        </form>
         <table class="list">
             <tr>
                 <th>Наименование</th>

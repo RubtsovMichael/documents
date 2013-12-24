@@ -9,7 +9,9 @@
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
-
+        Сотрудник
+        <br/>
+        <img src="/documents/static/images/employee64.png" alt="Сотрудник">
         <form method="POST">
             #springFormHiddenInput("employeeCommand.employeeId" "")
             #springFormHiddenInput("employeeCommand.department.departmentId" "")

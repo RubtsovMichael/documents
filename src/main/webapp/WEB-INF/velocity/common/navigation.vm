@@ -1,10 +1,10 @@
 <div class="menuwrap">
     <table class="menu">
         <tr><td><img src="/documents/static/images/docstore.png" alt="Документооборот"></td></tr>
-        <tr><td><a href="#springUrl("/departments")">Подразделения</a></td></tr>
-        <tr><td><a href="#springUrl("/posts")">Должности</a></td></tr>
-        <tr><td><a href="#springUrl("/case_folders")">Дела</a></td></tr>
+        <tr><td><a href="#springUrl("/departments")"><img src="/documents/static/images/depts20.png" alt="Подразделения">Подразделения</a></td></tr>
+        <tr><td><a href="#springUrl("/posts")"><img src="/documents/static/images/posts20.png" alt="Должности">Должности</a></td></tr>
+        <tr><td><a href="#springUrl("/case_folders")"><img src="/documents/static/images/folders20.png" alt="Дела">Дела</a></td></tr>
         <tr><td><a href="#springUrl("/persons")"><img src="/documents/static/images/persons20.png" alt="Физические лица"><span>Физлица</span></a></td></tr>
-        <tr><td><a href="#springUrl("/documents")">Документы</a></td></tr>
+        <tr><td><a href="#springUrl("/documents")"><img src="/documents/static/images/docs20.png" alt="Документы">Документы</a></td></tr>
     </table>
 </div>

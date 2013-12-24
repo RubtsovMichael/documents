@@ -10,7 +10,10 @@
     <div class="contentwrap">
         Дела
         <br>
-        <a href="#springUrl("/case_folders/-1")">Добавить дело</a>
+        <img src="/documents/static/images/folders64.png" alt="Дела">
+        <form method="get" action="/documents/case_folders/-1">
+            <input type="submit" value="Добавить"/>
+        </form>
         <table class="list">
             <tr>
                 <th>Префикс нумерации</th>
@@ -30,7 +33,11 @@
                             #foreach ($corrspondent in $caseFolder.correspondents)
                                 <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/$corrspondent.correspondentId")">$corrspondent.displayName [$corrspondent.correspondentId] $corrspondent.fullName</a></li>
                             #end
-                            <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/-1")">Добавить корреспондента</a></li>
+                            <li>
+                                <form method="get" action="/documents/case_folders/$caseFolder.caseId/corr/-1">
+                                    <input type="submit" value="Добавить"/>
+                                </form>
+                            </li>
                         </ul>
                     </td>
                 </tr>

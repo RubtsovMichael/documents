@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("common/styles_import.txt")
     <title>Физическое лицо [$personCommand.personId]</title>
     <meta charset="UTF-8">
 </head>
@@ -8,6 +9,9 @@
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
+        Физическое лицо
+        <br/>
+        <img src="/documents/static/images/persons64.png" alt="Физическое лицо">
         <form method="POST">
             #springFormHiddenInput("personCommand.personId" "")
             <table border="0">

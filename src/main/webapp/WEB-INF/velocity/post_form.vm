@@ -9,6 +9,9 @@
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
+        Должность
+        <br>
+        <img src="/documents/static/images/posts64.png" alt="Должность">
         <form method="POST">
             #springFormHiddenInput("postCommand.postId" "")
             <table border="0">

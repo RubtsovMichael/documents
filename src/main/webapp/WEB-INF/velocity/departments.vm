@@ -9,6 +9,8 @@
 
     <div class="contentwrap">
         Подразделения
+        <br>
+        <img src="/documents/static/images/depts64.png" alt="Подразделения">
         <form method="get" action="/documents/departments/-1">
             <input type="submit" value="Добавить"/>
         </form>

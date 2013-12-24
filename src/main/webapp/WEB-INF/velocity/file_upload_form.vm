@@ -10,6 +10,8 @@
 
     <div class="contentwrap">
         Загрузка изображения для документа [$fileCommand.document.innerNumber]
+        <br/>
+        <img src="/documents/static/images/upload64.png" alt="Загрузка">
         <form method="post" enctype="multipart/form-data" action="/documents/documents/$fileCommand.document.documentId/fileUpload">
             #springFormHiddenInput("fileCommand.document.documentId" "")
             #springFormHiddenInput("fileCommand.document.innerNumber" "")

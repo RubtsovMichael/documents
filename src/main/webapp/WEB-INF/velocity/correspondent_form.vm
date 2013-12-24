@@ -2,13 +2,16 @@
 <html>
 <head>
     #include("common/styles_import.txt")
-    <title>Коррепондент [$correspondentCommand.correspondentId]</title>
+    <title>Корреспондент [$correspondentCommand.correspondentId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
+        Корреспондент
+        <br>
+        <img src="/documents/static/images/corr64.png" alt="Корреспондент">
         <form method="POST">
             #springFormHiddenInput("correspondentCommand.correspondentId" "")
             #springFormHiddenInput("correspondentCommand.caseFolder.caseId" "")

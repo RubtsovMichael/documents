@@ -2,13 +2,16 @@
 <html>
 <head>
     #include("common/styles_import.txt")
-    <title>Должность [$caseCommand.caseId]</title>
+    <title>Дело [$caseCommand.caseId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
+        Дело
+        <br>
+        <img src="/documents/static/images/folders64.png" alt="Дело">
         <form method="POST">
             #springFormHiddenInput("caseCommand.caseId" "")
             <table border="0">
