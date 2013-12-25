@@ -23,6 +23,6 @@ public interface CasesService {
 
     CaseFolderDto getAsDto(Long id);
 
-    Map<Long, CaseFolderDto> getCasesAsMap();
+    Map<Long, String> getCasesAsMap();
 
 }

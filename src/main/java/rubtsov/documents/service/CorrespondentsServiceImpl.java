@@ -32,10 +32,10 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
     }
 
     @Override
-    public Map<Long, CorrespondentDto> getAsMapByCaseFolderId(Long caseId) {
-        HashMap<Long, CorrespondentDto> corrs = new HashMap<>();
+    public Map<Long, String> getAsMapByCaseFolderId(Long caseId) {
+        HashMap<Long, String> corrs = new HashMap<>();
         for (Correspondent correspondent : getByCaseFolderId(caseId)) {
-            corrs.put(correspondent.getCorrespondentId(), new CorrespondentDto(correspondent));
+            corrs.put(correspondent.getCorrespondentId(), (new CorrespondentDto(correspondent)).toString());
         }
         return corrs;
     }

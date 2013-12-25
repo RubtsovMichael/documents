@@ -8,10 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import rubtsov.documents.data.model.dto.DocumentDto;
-import rubtsov.documents.data.model.dto.FileDto;
 import rubtsov.documents.service.CasesService;
 import rubtsov.documents.service.CorrespondentsService;
 import rubtsov.documents.service.DocumentsService;
+import rubtsov.documents.web.Commands.CaseIdCommand;
 import rubtsov.documents.web.utils.Views;
 
 import java.text.SimpleDateFormat;
@@ -60,9 +60,22 @@ public class DocumentsController {
             documentDto = documentsService.getAsDto(docId);
         }
 
+        Long caseId = documentDto.getCorrespondent() == null ? Long.valueOf(-1) : documentDto.getCorrespondent().getCaseFolder().getCaseId();
+        model.put("caseId", new CaseIdCommand(caseId));
         model.put("docCommand", documentDto);
         model.put("caseFolders", casesService.getCasesAsMap());
-        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(documentDto.getCaseId()));
+        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId));
+
+        return Views.DOCUMENT_FORM;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/caseChanged")
+    public String caseChanged(@ModelAttribute("caseId") CaseIdCommand caseId,
+                              @ModelAttribute("docCommand") DocumentDto documentDto,
+                              ModelMap model) {
+
+        model.put("caseFolders", casesService.getCasesAsMap());
+        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId.getCaseId()));
 
         return Views.DOCUMENT_FORM;
     }

@@ -4,6 +4,14 @@
     #include("common/styles_import.txt")
     <title>Документ [$docCommand.documentId]</title>
     <meta charset="UTF-8">
+
+    <script>
+        function caseChanged()
+        {
+            document.getElementById("caseForm").submit();
+        }
+    </script>
+
 </head>
 <body>
     #parse("common/navigation.vm")
@@ -12,13 +20,18 @@
         Документ
         <br>
         <img src="/documents/static/images/docs64.png" alt="Документ">
-        <form method="POST">
+
+        <form method="POST" action="/documents/documents/$docCommand.documentId/caseChanged" id="caseForm">
+            #springFormSingleSelect("caseId.caseId" $caseFolders 'onchange="caseChanged()"')
+        </form>
+
+        <form method="POST" id="editForm">
             #springFormHiddenInput("docCommand.documentId" "")
             <table border="0">
-                <tr>
-                    <td>Дело:</td>
-                    <td>#springFormSingleSelect("docCommand.caseId" $caseFolders '')</td>
-                </tr>
+##                <tr>
+##                    <td>Дело:</td>
+##                    <td>#springFormSingleSelect("docCommand.caseId" $caseFolders 'onchange="reloadPage()"')</td>
+##                </tr>
                 <tr>
                     <td>Корреспондент:</td>
                     <td>#springFormSingleSelect("docCommand.correspondentId" $correspondents '')</td>

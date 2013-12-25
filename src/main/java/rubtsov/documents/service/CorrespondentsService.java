@@ -16,7 +16,7 @@ public interface CorrespondentsService {
 
     List<Correspondent> getByCaseFolderId(Long caseId);
 
-    Map<Long, CorrespondentDto> getAsMapByCaseFolderId(Long caseId);
+    Map<Long, String> getAsMapByCaseFolderId(Long caseId);
 
     List<Correspondent> getAllCorrespondents();
 

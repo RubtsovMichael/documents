@@ -96,10 +96,11 @@ public class CasesServiceImpl implements CasesService {
     }
 
     @Override
-    public Map<Long, CaseFolderDto> getCasesAsMap() {
-        HashMap<Long, CaseFolderDto> cases = new HashMap<>();
+    public Map<Long, String> getCasesAsMap() {
+        HashMap<Long, String> cases = new HashMap<>();
+        cases.put(Long.valueOf(-1), "");
         for (CaseFolderDto caseFolderDto : getAllCaseFoldersDtos()) {
-            cases.put(caseFolderDto.getCaseId(), caseFolderDto);
+            cases.put(caseFolderDto.getCaseId(), caseFolderDto.toString());
         }
         return cases;
     }
