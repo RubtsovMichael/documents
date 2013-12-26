@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static rubtsov.documents.utils.Constants.EMPTY_SELECT_VALUE;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -34,6 +36,7 @@ public class CorrespondentsServiceImpl implements CorrespondentsService {
     @Override
     public Map<Long, String> getAsMapByCaseFolderId(Long caseId) {
         HashMap<Long, String> corrs = new HashMap<>();
+        corrs.put(Long.valueOf(-1), EMPTY_SELECT_VALUE);
         for (Correspondent correspondent : getByCaseFolderId(caseId)) {
             corrs.put(correspondent.getCorrespondentId(), (new CorrespondentDto(correspondent)).toString());
         }

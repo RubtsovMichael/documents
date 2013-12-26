@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static rubtsov.documents.utils.Constants.EMPTY_SELECT_VALUE;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -86,10 +88,11 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public Map<Long, PostDto> getPostsAsMap() {
-        HashMap<Long, PostDto> posts = new HashMap<>();
+    public Map<Long, String> getPostsAsMap() {
+        HashMap<Long, String> posts = new HashMap<>();
+        posts.put(Long.valueOf(-1), EMPTY_SELECT_VALUE);
         for (PostDto postDto : getAllPostsDtos()) {
-            posts.put(postDto.getPostId(), postDto);
+            posts.put(postDto.getPostId(), postDto.toString());
         }
         return posts;
     }

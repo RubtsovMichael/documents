@@ -24,7 +24,7 @@ public interface PostsService {
 
     List<PostDto> getAllPostsDtos();
 
-    Map<Long, PostDto> getPostsAsMap();
+    Map<Long, String> getPostsAsMap();
 
     PostDto getAsDto(Long id);
 }

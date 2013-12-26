@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static rubtsov.documents.utils.Constants.EMPTY_SELECT_VALUE;
 
 /**
  * Created by mike on 25.10.13.
@@ -98,7 +99,7 @@ public class CasesServiceImpl implements CasesService {
     @Override
     public Map<Long, String> getCasesAsMap() {
         HashMap<Long, String> cases = new HashMap<>();
-        cases.put(Long.valueOf(-1), "");
+        cases.put(Long.valueOf(-1), EMPTY_SELECT_VALUE);
         for (CaseFolderDto caseFolderDto : getAllCaseFoldersDtos()) {
             cases.put(caseFolderDto.getCaseId(), caseFolderDto.toString());
         }

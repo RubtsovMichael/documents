@@ -24,7 +24,7 @@ public interface DepartmentsService {
 
     List<DepartmentDto> getAllDepartmentsDtos();
 
-    Map<Long, DepartmentDto> getDeptsAsMap();
+    Map<Long, String> getDeptsAsMap();
 
     DepartmentDto getAsDto(Long id);
 

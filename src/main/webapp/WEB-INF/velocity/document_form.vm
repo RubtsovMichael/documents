@@ -21,17 +21,16 @@
         <br>
         <img src="/documents/static/images/docs64.png" alt="Документ">
 
-        <form method="POST" action="/documents/documents/$docCommand.documentId/caseChanged" id="caseForm">
-            #springFormSingleSelect("caseId.caseId" $caseFolders 'onchange="caseChanged()"')
+        <table border="0">
+        <form method="POST" id="caseForm" action="/documents/documents/$docCommand.documentId/caseChanged">
+                <tr>
+                    <td>Дело:</td>
+                    <td>#springFormSingleSelect("caseIdCommand.caseId" $caseFolders 'onchange="caseChanged()"')</td>
+                </tr>
         </form>
 
-        <form method="POST" id="editForm">
+        <form method="POST" id="editForm" action="/documents/documents/$docCommand.documentId/save">
             #springFormHiddenInput("docCommand.documentId" "")
-            <table border="0">
-##                <tr>
-##                    <td>Дело:</td>
-##                    <td>#springFormSingleSelect("docCommand.caseId" $caseFolders 'onchange="reloadPage()"')</td>
-##                </tr>
                 <tr>
                     <td>Корреспондент:</td>
                     <td>#springFormSingleSelect("docCommand.correspondentId" $correspondents '')</td>
@@ -45,8 +44,8 @@
                     <td>#springFormTextarea("docCommand.description" "")</td>
                 </tr>
                 #include("common/edit_form_submit.txt")
-            </table>
         </form>
+        </table>
 
         #if ($docCommand.documentId != -1)
 

@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static rubtsov.documents.utils.Constants.EMPTY_SELECT_VALUE;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mrubtsov
@@ -99,10 +101,11 @@ public class DepartmentsServiceImpl implements DepartmentsService {
     }
 
     @Override
-    public Map<Long, DepartmentDto> getDeptsAsMap() {
-        HashMap<Long, DepartmentDto> depts = new HashMap<>();
+    public Map<Long, String> getDeptsAsMap() {
+        HashMap<Long, String> depts = new HashMap<>();
+        depts.put(Long.valueOf(-1), EMPTY_SELECT_VALUE);
         for (DepartmentDto departmentDto : getAllDepartmentsDtos()) {
-            depts.put(departmentDto.getDepartmentId(), departmentDto);
+            depts.put(departmentDto.getDepartmentId(), departmentDto.toString());
         }
         return depts;
     }

@@ -24,7 +24,7 @@ public interface PersonsService {
 
     List<PersonDto> getAllPersonsDtos();
 
-    Map<Long, PersonDto> getPersonsAsMap();
+    Map<Long, String> getPersonsAsMap();
 
     PersonDto getAsDto(Long id);
 

@@ -22,6 +22,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(Views.DOCUMENTS + "/**")
+@SessionAttributes({"docCommand", "caseIdCommand"})
 public class DocumentsController {
 
     Logger LOG = org.slf4j.LoggerFactory.getLogger(DocumentsController.class);
@@ -61,7 +62,7 @@ public class DocumentsController {
         }
 
         Long caseId = documentDto.getCorrespondent() == null ? Long.valueOf(-1) : documentDto.getCorrespondent().getCaseFolder().getCaseId();
-        model.put("caseId", new CaseIdCommand(caseId));
+        model.put("caseIdCommand", new CaseIdCommand(caseId));
         model.put("docCommand", documentDto);
         model.put("caseFolders", casesService.getCasesAsMap());
         model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId));
@@ -70,9 +71,7 @@ public class DocumentsController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/caseChanged")
-    public String caseChanged(@ModelAttribute("caseId") CaseIdCommand caseId,
-                              @ModelAttribute("docCommand") DocumentDto documentDto,
-                              ModelMap model) {
+    public String caseChanged(CaseIdCommand caseId, ModelMap model) {
 
         model.put("caseFolders", casesService.getCasesAsMap());
         model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId.getCaseId()));
@@ -80,8 +79,8 @@ public class DocumentsController {
         return Views.DOCUMENT_FORM;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute("docCommand") DocumentDto documentDto) {
+    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/save")
+    public String save(DocumentDto documentDto) {
 
         if (documentDto == null) {
             throw new IllegalArgumentException("A documentDto is required");
