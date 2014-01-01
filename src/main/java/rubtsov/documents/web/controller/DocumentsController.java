@@ -8,10 +8,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import rubtsov.documents.data.model.dto.DocumentDto;
+import rubtsov.documents.data.model.entity.DocumentType;
 import rubtsov.documents.service.CasesService;
 import rubtsov.documents.service.CorrespondentsService;
 import rubtsov.documents.service.DocumentsService;
-import rubtsov.documents.web.Commands.CaseIdCommand;
+import rubtsov.documents.service.PersonsService;
+import rubtsov.documents.web.Commands.DocControlsCommand;
 import rubtsov.documents.web.utils.Views;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +24,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(Views.DOCUMENTS + "/**")
-@SessionAttributes({"docCommand", "caseIdCommand"})
+@SessionAttributes({"docCommand", "docControlsCommand", "caseFolders", "docTypes", "authors"})
 public class DocumentsController {
 
     Logger LOG = org.slf4j.LoggerFactory.getLogger(DocumentsController.class);
@@ -35,6 +37,9 @@ public class DocumentsController {
 
     @Autowired
     CorrespondentsService correspondentsService;
+
+    @Autowired
+    PersonsService personsService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -62,20 +67,20 @@ public class DocumentsController {
         }
 
         Long caseId = documentDto.getCorrespondent() == null ? Long.valueOf(-1) : documentDto.getCorrespondent().getCaseFolder().getCaseId();
-        model.put("caseIdCommand", new CaseIdCommand(caseId));
+
+        model.put("docControlsCommand", new DocControlsCommand(caseId, documentDto.getDocType()));
         model.put("docCommand", documentDto);
         model.put("caseFolders", casesService.getCasesAsMap());
+        model.put("docTypes", DocumentType.getAsMap());
         model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId));
+        model.put("authors", personsService.getPersonsAsMap());
 
         return Views.DOCUMENT_FORM;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/caseChanged")
-    public String caseChanged(CaseIdCommand caseId, ModelMap model) {
-
-        model.put("caseFolders", casesService.getCasesAsMap());
-        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(caseId.getCaseId()));
-
+    @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/controlsChanged")
+    public String caseChanged(DocControlsCommand docControlsCommand, ModelMap model) {
+        model.put("correspondents", correspondentsService.getAsMapByCaseFolderId(docControlsCommand.getCaseId()));
         return Views.DOCUMENT_FORM;
     }
 

@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
 
     <script>
-        function caseChanged()
+        function controlsChanged()
         {
-            document.getElementById("caseForm").submit();
+            document.getElementById("controlsForm").submit();
         }
     </script>
 
@@ -22,29 +22,41 @@
         <img src="/documents/static/images/docs64.png" alt="Документ">
 
         <table border="0">
-        <form method="POST" id="caseForm" action="/documents/documents/$docCommand.documentId/caseChanged">
+            <form method="POST" id="controlsForm" action="/documents/documents/$docCommand.documentId/controlsChanged">
+                <tr>
+                    <td>Тип документа:</td>
+                    <td>#springFormRadioButtons("docControlsCommand.docType" $docTypes '&nbsp;' 'onchange="controlsChanged()"')</td>
+                </tr>
                 <tr>
                     <td>Дело:</td>
-                    <td>#springFormSingleSelect("caseIdCommand.caseId" $caseFolders 'onchange="caseChanged()"')</td>
+                    <td>#springFormSingleSelect("docControlsCommand.caseId" $caseFolders 'onchange="controlsChanged()"')</td>
                 </tr>
-        </form>
+            </form>
 
-        <form method="POST" id="editForm" action="/documents/documents/$docCommand.documentId/save">
-            #springFormHiddenInput("docCommand.documentId" "")
-                <tr>
-                    <td>Корреспондент:</td>
-                    <td>#springFormSingleSelect("docCommand.correspondentId" $correspondents '')</td>
-                </tr>
-                <tr>
-                    <td>Регистрационный номер:</td>
-                    <td>#springFormInput("docCommand.innerNumber" "")</td>
-                </tr>
-                <tr>
-                    <td>Описание:</td>
-                    <td>#springFormTextarea("docCommand.description" "")</td>
-                </tr>
-                #include("common/edit_form_submit.txt")
-        </form>
+            <form method="POST" id="editForm" action="/documents/documents/$docCommand.documentId/save">
+                #springFormHiddenInput("docCommand.documentId" "")
+                    <tr>
+                        <td>Корреспондент:</td>
+                        <td>#springFormSingleSelect("docCommand.correspondentId" $correspondents '')</td>
+                    </tr>
+                    <tr>
+                        <td>Регистрационный номер:</td>
+                        <td>#springFormInput("docCommand.innerNumber" "")</td>
+                    </tr>
+                    <tr>
+                        <td>Автор $docControlsCommand.docType.name():</td>
+                        #if ($docControlsCommand.docType.name() == "INCOMING")
+                            <td>#springFormInput("docCommand.outerAuthor" "")</td>
+                        #else
+                            <td>#springFormSingleSelect("docCommand.authorId" $authors "")</td>
+                        #end
+                    </tr>
+                    <tr>
+                        <td>Описание:</td>
+                        <td>#springFormTextarea("docCommand.description" "")</td>
+                    </tr>
+                    #include("common/edit_form_submit.txt")
+            </form>
         </table>
 
         #if ($docCommand.documentId != -1)
