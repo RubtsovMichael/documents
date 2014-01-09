@@ -30,6 +30,24 @@
                 #include("common/edit_form_submit.txt")
             </table>
         </form>
+
+        #if ($personCommand.personId != -1)
+            <div class="hdivider">
+            </div>
+            <form method="get" action="/documents/persons/$personCommand.personId/employees/-1">
+                <input type="submit" value="Добавить"/>
+            </form>
+            <table class="list">
+                #foreach ($employee in $personCommand.assignments)
+                    <tr>
+                        <td>$employee.post.displayName</td>
+                        <td><a href="#springUrl("/persons/$personCommand.personId/employees/$employee.employeeId")">$employee.person</a></td>
+                        <td>$employee.dateBegin</td>
+                        <td>#if ($employee.dateEnd) $employee.dateEnd #else #end</td>
+                    </tr>
+                #end
+            </table>
+        #end
     </div>
 </body>
 </html>

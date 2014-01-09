@@ -20,7 +20,11 @@
             <table border="0">
                 <tr>
                     <td>Подразделение:</td>
-                    <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+                    #if ($employeeCommand.fromDepartment)
+                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts 'disabled')</td>
+                    #else
+                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+                    #end
                 </tr>
                 <tr>
                     <td>Должность:</td>
@@ -28,7 +32,11 @@
                 </tr>
                 <tr>
                     <td>Физлицо:</td>
-                    <td>#springFormSingleSelect("employeeCommand.personId" $persons '')</td>
+                    #if ($employeeCommand.fromPerson)
+                        <td>#springFormSingleSelect("employeeCommand.personId" $persons 'disabled')</td>
+                    #else
+                        <td>#springFormSingleSelect("employeeCommand.personId" $persons '')</td>
+                    #end
                 </tr>
                 <tr>
                     <td>Дата назначения на должность:</td>

@@ -49,16 +49,18 @@ public class EmployeesController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "**" + Views.EMPLOYEES + "/{employeeId}")
-    public String getEmployeeForm(@PathVariable Long employeeId, ModelMap model) {
-
+    @RequestMapping(method = RequestMethod.GET, value = Views.DEPARTMENTS + "/{depId}" + Views.EMPLOYEES + "/{employeeId}")
+    public String getDepEmployeeForm(@PathVariable Long depId, @PathVariable Long employeeId, ModelMap model) {
         EmployeeDto employeeDto;
         if (employeeId == -1) {
             employeeDto = new EmployeeDto();
             employeeDto.setEmployeeId(Long.valueOf(-1));
+            employeeDto.setDepartmentId(depId);
         } else {
             employeeDto = employeesService.getAsDto(employeeId);
         }
+
+        employeeDto.setFromDepartment(true);
 
         model.put("depts", departmentsService.getDeptsAsMap());
         model.put("posts", postsService.getPostsAsMap());
@@ -68,7 +70,28 @@ public class EmployeesController {
         return Views.EMPLOYEE_FORM;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/departments/{depId}/employees/*")
+    @RequestMapping(method = RequestMethod.GET, value = Views.PERSONS + "/{personId}" + Views.EMPLOYEES + "/{employeeId}")
+    public String getPersonEmployeeForm(@PathVariable Long personId, @PathVariable Long employeeId, ModelMap model) {
+        EmployeeDto employeeDto;
+        if (employeeId == -1) {
+            employeeDto = new EmployeeDto();
+            employeeDto.setEmployeeId(Long.valueOf(-1));
+            employeeDto.setPersonId(personId);
+        } else {
+            employeeDto = employeesService.getAsDto(employeeId);
+        }
+
+        employeeDto.setFromPerson(true);
+
+        model.put("depts", departmentsService.getDeptsAsMap());
+        model.put("posts", postsService.getPostsAsMap());
+        model.put("persons", personsService.getPersonsAsMap());
+        model.put("employeeCommand", employeeDto);
+
+        return Views.EMPLOYEE_FORM;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = Views.DEPARTMENTS + "/{depId}" + Views.EMPLOYEES + "/*")
     public String saveEmployee(@PathVariable Long depId,
             @ModelAttribute("employeeCommand") EmployeeDto employeeDto, BindingResult result) {
         if (employeeDto == null) {

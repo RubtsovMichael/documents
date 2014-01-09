@@ -30,6 +30,10 @@ public class EmployeeDto {
 
     private Date dateEnd;
 
+    private boolean fromDepartment = false;
+
+    private boolean fromPerson = false;
+
     public Long getEmployeeId() {
         return employeeId;
     }
@@ -100,6 +104,22 @@ public class EmployeeDto {
 
     public void setPersonId(Long personId) {
         this.personId = personId;
+    }
+
+    public boolean isFromDepartment() {
+        return fromDepartment;
+    }
+
+    public void setFromDepartment(boolean fromDepartment) {
+        this.fromDepartment = fromDepartment;
+    }
+
+    public boolean isFromPerson() {
+        return fromPerson;
+    }
+
+    public void setFromPerson(boolean fromPerson) {
+        this.fromPerson = fromPerson;
     }
 
     public EmployeeDto() {

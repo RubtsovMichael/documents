@@ -34,6 +34,9 @@
         #if ($departmentCommand.departmentId != -1)
             <div class="hdivider">
             </div>
+            <form method="get" action="/documents/departments/$departmentCommand.departmentId/employees/-1">
+                <input type="submit" value="Добавить"/>
+            </form>
             <table class="list">
                 #foreach ($employee in $departmentCommand.employees)
                     <tr>
