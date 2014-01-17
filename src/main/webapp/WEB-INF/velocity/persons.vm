@@ -10,14 +10,12 @@
 <div class="contentwrap">
     Физические лица
     <br/>
-    <img src="/documents/static/images/persons64.png" alt="Физические лица">
-    <form method="get" action="/documents/persons/-1">
-        <input type="submit" value="Добавить"/>
-    </form>
+    <img src="$paths.images/persons64.png" alt="Физические лица">
+    #addControl("$paths.base$paths.persons/-1")
     <table class="list">
         #foreach ($person in $persons)
             <tr>
-                <td><a href="#springUrl("/persons/$person.personId")">$person.fullName [$person.personId]</a></td>
+                <td><a href="#springUrl("$paths.persons/$person.personId")">$person.fullName [$person.personId]</a></td>
             </tr>
         #end
     </table>

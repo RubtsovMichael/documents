@@ -11,7 +11,7 @@
     <div class="contentwrap">
         Сотрудник
         <br/>
-        <img src="/documents/static/images/employee64.png" alt="Сотрудник">
+        <img src="$paths.images/employee64.png" alt="Сотрудник">
         <form method="POST">
             #springFormHiddenInput("employeeCommand.employeeId" "")
             #springFormHiddenInput("employeeCommand.department.departmentId" "")
@@ -20,11 +20,12 @@
             <table border="0">
                 <tr>
                     <td>Подразделение:</td>
-                    #if ($employeeCommand.fromDepartment)
-                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts 'disabled')</td>
-                    #else
-                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
-                    #end
+                    <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+##                    #if ($employeeCommand.fromDepartment)
+##                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts 'disabled')</td>
+##                    #else
+##                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+##                    #end
                 </tr>
                 <tr>
                     <td>Должность:</td>

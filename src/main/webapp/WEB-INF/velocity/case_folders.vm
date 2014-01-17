@@ -10,10 +10,8 @@
     <div class="contentwrap">
         Дела
         <br>
-        <img src="/documents/static/images/folders64.png" alt="Дела">
-        <form method="get" action="/documents/case_folders/-1">
-            <input type="submit" value="Добавить"/>
-        </form>
+        <img src="$paths.images/folders64.png" alt="Дела">
+        #addControl("$paths.base$paths.caseFolders/-1")
         <table class="list">
             <tr>
                 <th>Префикс нумерации</th>
@@ -22,7 +20,7 @@
             </tr>
             #foreach ($caseFolder in $caseFolders)
                 <tr>
-                    <td><a href="#springUrl("/case_folders/$caseFolder.caseId")">$caseFolder.code</a></td>
+                    <td><a href="#springUrl("$paths.caseFolders/$caseFolder.caseId")">$caseFolder.code</a></td>
                     <td>$caseFolder.name [$caseFolder.caseId]</td>
                     <td>$caseFolder.description</td>
                 </tr>
@@ -31,12 +29,10 @@
                     <td colspan="2">
                         <ul>
                             #foreach ($corrspondent in $caseFolder.correspondents)
-                                <li><a href="#springUrl("/case_folders/$caseFolder.caseId/corr/$corrspondent.correspondentId")">$corrspondent.displayName [$corrspondent.correspondentId] $corrspondent.fullName</a></li>
+                                <li><a href="#springUrl("$paths.caseFolders/$caseFolder.caseId$paths.Correspondents/$corrspondent.correspondentId")">$corrspondent.displayName [$corrspondent.correspondentId] $corrspondent.fullName</a></li>
                             #end
                             <li>
-                                <form method="get" action="/documents/case_folders/$caseFolder.caseId/corr/-1">
-                                    <input type="submit" value="Добавить"/>
-                                </form>
+                                #addControl("$paths.base$paths.caseFolders/$caseFolder.caseId$paths.Correspondents/-1")
                             </li>
                         </ul>
                     </td>

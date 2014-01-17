@@ -25,7 +25,7 @@ import java.util.Date;
  * Time: 18:08
  */
 @Controller
-@RequestMapping("**/" + Views.EMPLOYEES + "/**")
+//@RequestMapping("**/" + Views.EMPLOYEES + "/**")
 public class EmployeesController {
 
     Logger LOG = org.slf4j.LoggerFactory.getLogger(EmployeesController.class);

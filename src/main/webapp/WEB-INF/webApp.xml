@@ -4,7 +4,18 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>image/jpeg</value>
+                        <value>image/png</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <context:component-scan base-package="rubtsov.documents.web" />
 
@@ -17,6 +28,7 @@
             <props>
                 <prop key="input.encoding">UTF-8</prop>
                 <prop key="output.encoding">UTF-8</prop>
+                <prop key="velocimacro.library">macros.vm</prop>
             </props>
         </property>
     </bean>
@@ -32,7 +44,12 @@
 
     <bean id="fileValidator" class="rubtsov.documents.validator.FileValidator" />
 
-    <!--<mvc:interceptors>-->
-        <!--<bean class="rubtsov.documents.web.utils.UtilityAddingInterceptor" autowire="constructor" />-->
-    <!--</mvc:interceptors>-->
+    <bean id="urlParts" class="rubtsov.documents.web.utils.UrlParts">
+        <property name="base" value="/documents" />
+        <property name="images" value="/documents/static/images" />
+    </bean>
+
+    <mvc:interceptors>
+        <bean class="rubtsov.documents.web.utils.UtilityAddingInterceptor"/>
+    </mvc:interceptors>
 </beans>

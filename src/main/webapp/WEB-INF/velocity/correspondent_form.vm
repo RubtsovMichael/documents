@@ -11,7 +11,7 @@
     <div class="contentwrap">
         Корреспондент
         <br>
-        <img src="/documents/static/images/corr64.png" alt="Корреспондент">
+        <img src="$paths.images/corr64.png" alt="Корреспондент">
         <form method="POST">
             #springFormHiddenInput("correspondentCommand.correspondentId" "")
             #springFormHiddenInput("correspondentCommand.caseFolder.caseId" "")

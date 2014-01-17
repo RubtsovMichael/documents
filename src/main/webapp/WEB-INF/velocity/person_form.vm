@@ -11,7 +11,7 @@
     <div class="contentwrap">
         Физическое лицо
         <br/>
-        <img src="/documents/static/images/persons64.png" alt="Физическое лицо">
+        <img src="$paths.images/persons64.png" alt="Физическое лицо">
         <form method="POST">
             #springFormHiddenInput("personCommand.personId" "")
             <table border="0">
@@ -34,14 +34,14 @@
         #if ($personCommand.personId != -1)
             <div class="hdivider">
             </div>
-            <form method="get" action="/documents/persons/$personCommand.personId/employees/-1">
+            <form method="get" action="$paths.base$paths.persons/$personCommand.personId$paths.employees/-1">
                 <input type="submit" value="Добавить"/>
             </form>
             <table class="list">
                 #foreach ($employee in $personCommand.assignments)
                     <tr>
                         <td>$employee.post.displayName</td>
-                        <td><a href="#springUrl("/persons/$personCommand.personId/employees/$employee.employeeId")">$employee.person</a></td>
+                        <td><a href="#springUrl("$paths.persons/$personCommand.personId$paths.employees/$employee.employeeId")">$employee.person</a></td>
                         <td>$employee.dateBegin</td>
                         <td>#if ($employee.dateEnd) $employee.dateEnd #else #end</td>
                     </tr>

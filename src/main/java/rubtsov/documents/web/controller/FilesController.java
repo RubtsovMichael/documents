@@ -1,13 +1,11 @@
 package rubtsov.documents.web.controller;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rubtsov.documents.data.model.dto.DocumentDto;
 import rubtsov.documents.data.model.dto.FileDto;
@@ -15,6 +13,9 @@ import rubtsov.documents.service.DocumentsService;
 import rubtsov.documents.service.FileUploadService;
 import rubtsov.documents.validator.FileValidator;
 import rubtsov.documents.web.utils.Views;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by mrubtsov on 19.12.13.
@@ -41,6 +42,20 @@ public class FilesController {
         model.put("fileCommand", fileDto);
 
         return Views.FILE_UPLOAD_FORM;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = Views.DOCUMENTS + "/{docId}/getImage")
+    public @ResponseBody byte[] getDocImage(@PathVariable Long docId, ModelMap model) throws IOException {
+        byte[] image = fileUploadService.getDocumentScaledImage(docId);
+
+        if (image == null) {
+            InputStream noPhoto = FilesController.class.getResourceAsStream("/no_photo.png");
+            if (noPhoto != null ) {
+                image = IOUtils.toByteArray(noPhoto);
+            }
+        }
+
+        return image;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = Views.DOCUMENTS + "/{docId}/fileUpload")

@@ -9,4 +9,7 @@ public interface FileUploadService {
 
     boolean saveDocumentImage(Long docId, MultipartFile file);
 
+    byte[] getDocumentImage(Long docId);
+
+    byte[] getDocumentScaledImage(Long docId);
 }

@@ -19,10 +19,10 @@
     <div class="contentwrap">
         Документ
         <br>
-        <img src="/documents/static/images/docs64.png" alt="Документ">
+        <img src="$paths.images/docs64.png" alt="Документ">
 
         <table border="0">
-            <form method="POST" id="controlsForm" action="/documents/documents/$docCommand.documentId/controlsChanged">
+            <form method="POST" id="controlsForm" action="$paths.base$paths.documents/$docCommand.documentId/controlsChanged">
                 <tr>
                     <td>Тип документа:</td>
                     <td>#springFormRadioButtons("docControlsCommand.docType" $docTypes '&nbsp;' 'onchange="controlsChanged()"')</td>
@@ -64,9 +64,11 @@
             <div class="hdivider">
             </div>
 
-            <form method="get" action="/documents/documents/$docCommand.documentId/fileUpload">
+            <form method="get" action="$paths.base$paths.documents/$docCommand.documentId/fileUpload">
                 <input type="submit" value="Загрузить изображение" />
             </form>
+
+            <img src="$paths.base$paths.documents/$docCommand.documentId/getImage" alt="Скан документа">
         #end
     </div>
 </body>

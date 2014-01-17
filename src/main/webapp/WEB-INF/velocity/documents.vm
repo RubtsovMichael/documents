@@ -10,7 +10,7 @@
 <div class="contentwrap">
     Документы
     <br>
-    <img src="/documents/static/images/docs64.png" alt="Документы">
+    <img src="$paths.images/docs64.png" alt="Документы">
     <table class="list">
         <tr>
             <th>Номер</th>
@@ -18,7 +18,7 @@
         </tr>
         #foreach ($doc in $docs)
             <tr>
-                <td><a href="#springUrl("/documents/$doc.documentId")">$doc.innerNumber [$doc.documentId]</a></td>
+                <td><a href="#springUrl("$paths.documents/$doc.documentId")">$doc.innerNumber [$doc.documentId]</a></td>
                 <td>$doc.description</td>
             </tr>
         #end

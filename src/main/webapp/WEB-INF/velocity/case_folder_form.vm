@@ -11,7 +11,7 @@
     <div class="contentwrap">
         Дело
         <br>
-        <img src="/documents/static/images/folders64.png" alt="Дело">
+        <img src="$paths.images/folders64.png" alt="Дело">
         <form method="POST">
             #springFormHiddenInput("caseCommand.caseId" "")
             <table border="0">

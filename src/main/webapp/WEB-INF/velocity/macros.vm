@@ -1,0 +1,5 @@
+#macro(addControl $path)
+<form method="get" action="$path">
+    <input type="submit" value="Добавить"/>
+</form>
+#end

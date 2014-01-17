@@ -10,14 +10,12 @@
     <div class="contentwrap">
         Подразделения
         <br>
-        <img src="/documents/static/images/depts64.png" alt="Подразделения">
-        <form method="get" action="/documents/departments/-1">
-            <input type="submit" value="Добавить"/>
-        </form>
+        <img src="$paths.images/depts64.png" alt="Подразделения">
+        #addControl("$paths.base$paths.departments/-1")
         <table class="list">
         #foreach ($department in $departments)
             <tr>
-                <td><a href="#springUrl("/departments/$department.departmentId")">$department.code $department.shortName [$department.departmentId]</a></td>
+                <td><a href="#springUrl("$paths.departments/$department.departmentId")">$department.code $department.shortName [$department.departmentId]</a></td>
                 <td>$department.fullName</td>
             </tr>
         #end

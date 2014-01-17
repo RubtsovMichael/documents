@@ -15,6 +15,7 @@
 
     <bean id="preferences" class="rubtsov.documents.utils.Preferences">
         <property name="imagesFolder" value="/home/mrubtsov/projects/java/docimages/" />
+        <property name="maxImageFactor" value="500" />
     </bean>
 
 </beans>
