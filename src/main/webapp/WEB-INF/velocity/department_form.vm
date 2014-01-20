@@ -34,6 +34,7 @@
         #if ($departmentCommand.departmentId != -1)
             <div class="hdivider">
             </div>
+            Сотрудники
             #addControl("$paths.base$paths.departments/$departmentCommand.departmentId$paths.employees/-1")
             <table class="list">
                 #foreach ($employee in $departmentCommand.employees)

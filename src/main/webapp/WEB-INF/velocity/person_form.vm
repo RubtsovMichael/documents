@@ -34,6 +34,7 @@
         #if ($personCommand.personId != -1)
             <div class="hdivider">
             </div>
+            Назначения
             <form method="get" action="$paths.base$paths.persons/$personCommand.personId$paths.employees/-1">
                 <input type="submit" value="Добавить"/>
             </form>

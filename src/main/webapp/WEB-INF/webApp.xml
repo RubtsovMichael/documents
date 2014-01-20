@@ -17,6 +17,8 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
     <context:component-scan base-package="rubtsov.documents.web" />
 
     <bean id="multipartResolver"

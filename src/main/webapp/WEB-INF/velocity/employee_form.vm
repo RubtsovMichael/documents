@@ -2,10 +2,21 @@
 <html>
 <head>
     #include("common/styles_import.txt")
+
+    <script src="/documents/webjars/jquery/2.0.3/jquery.js"></script>
+    <script src="/documents/webjars/jquery-ui/1.10.3/ui/jquery.ui.core.js"></script>
+    <script src="/documents/webjars/jquery-ui/1.10.3/ui/jquery.ui.datepicker.js"></script>
+    <link href="/documents/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css" rel="stylesheet"></link>
+
     <title>Сотрудник [$employeeCommand.employeeId]</title>
     <meta charset="UTF-8">
 </head>
 <body>
+    <script>
+        $(function () {
+            $("#dateBegin").datepicker({ dateFormat: 'dd/mm/yy'});
+        });
+    </script>
     #parse("common/navigation.vm")
 
     <div class="contentwrap">
@@ -20,12 +31,12 @@
             <table border="0">
                 <tr>
                     <td>Подразделение:</td>
-                    <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
-##                    #if ($employeeCommand.fromDepartment)
-##                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts 'disabled')</td>
-##                    #else
-##                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
-##                    #end
+                    #if ($employeeCommand.fromDepartment)
+                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts 'disabled')
+                        #springFormHiddenInput("employeeCommand.departmentId" "")</td>
+                    #else
+                        <td>#springFormSingleSelect("employeeCommand.departmentId" $depts '')</td>
+                    #end
                 </tr>
                 <tr>
                     <td>Должность:</td>
@@ -34,7 +45,8 @@
                 <tr>
                     <td>Физлицо:</td>
                     #if ($employeeCommand.fromPerson)
-                        <td>#springFormSingleSelect("employeeCommand.personId" $persons 'disabled')</td>
+                        <td>#springFormSingleSelect("employeeCommand.personId" $persons 'disabled')
+                        #springFormHiddenInput("employeeCommand.personId" "")</td>
                     #else
                         <td>#springFormSingleSelect("employeeCommand.personId" $persons '')</td>
                     #end
